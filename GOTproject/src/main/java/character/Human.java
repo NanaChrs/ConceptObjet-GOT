@@ -7,4 +7,6 @@ public abstract class Human extends Character {
 	protected int xp = 0;
 	protected Safezone safezone;
 	protected String name;
+	
+	protected abstract void superAttack(Character character);
 }

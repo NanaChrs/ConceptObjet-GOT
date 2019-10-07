@@ -12,21 +12,34 @@ public class Lannister extends Southerner {
 	}
 
 	@Override
-	protected void move(Box currentBox) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	protected void meet(Character character) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void possibleBoxes() {
+	protected void attack(Character character) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	protected void superAttack(Character character) {
+		// TODO Auto-generated method stub
+		
+		
+		//Paye l'adversaire en PE/PV (en fonction du plus faible)
+		
+		//Déplacement du lannister d'1 case ou 2
+		
+		// FIN du combat
+	}
+
+	@Override
+	protected void move(Box currentBox, int maxStep) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

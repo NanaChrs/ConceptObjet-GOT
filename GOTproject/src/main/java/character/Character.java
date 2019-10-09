@@ -25,19 +25,16 @@ public abstract class Character {
 		//getPossibleBoxes()
 		
 		//récupérer le max de pas et endurance du personnage 
-		
-		//Si personnage se déplace en dehors de la SafeZone --> perte de PE
-		
-		//Si dans la safeZone --> récupère 3PE par case 
-		
-		//Si PV pas au max et case libre récupère 1PV par case traversée
-		
+			
 		//si être vivant est endurance basse, prend la direction de safezone 
-		
-		
-		//lancer des dès pour influer sur le déplacement
+		//sinon, tire aléatoirement directions
+
+		//lancer des dès pour influer sur portée
 		
 		//tant que case libre dans direction et portée ok, "avancer" (actualiser futures coordonnées)
+			//Si en dehors de sa SafeZone --> perte de PE
+			//Sinon --> récupère 3PE par case 
+			//Si PV pas au max, récupère 1PV
 		
 		//déplacer le personnage et changer ses coordonnées + actualiser ancienne et nouvelle case
 		
@@ -71,7 +68,7 @@ public abstract class Character {
 	
 		//Si SUCCES CRITIC : attaque spéciale 
 	
-		//Si SUCCES : adversaire perd des points de vie en fonction de attaquant
+		//Si SUCCES : adversaire perd des points de vie en fonction de attaquant (adversaire n'essaye pas d'esquiver (dodge) ?)
 	
 			//Si PV adversaire tombe à 0 et attaquant != marcheur blanc, adversaire meurt et est supprimé de la map et XP adversaire transféré à attquant 
 	
@@ -82,5 +79,7 @@ public abstract class Character {
 		//Si ECHEC : 
 	
 			//L'attaquant a raté son attaque, rien ne se passe
+
+		//echec critique (?) perd pv ou expérience?
 	 
 }

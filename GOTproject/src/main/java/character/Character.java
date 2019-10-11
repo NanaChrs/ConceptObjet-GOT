@@ -1,5 +1,7 @@
 package character;
 
+import java.util.ArrayList;
+
 import map.Box;
 import map.Direction;
 
@@ -11,75 +13,138 @@ public abstract class Character {
 	private Box currentBox;
 	private int life = 100;
 	private int dodge;
-	//portée/rayon d'action/nbre de cases par tour
+	//portï¿½e/rayon d'action/nbre de cases par tour
 
 	private Direction lastDirection;
 	
-	protected void possibleDirections() {
+	protected ArrayList<Direction> possibleDirections(int maxXMap, int maxYMap) {
 		//renvoie l'arraylist de directions possibles pour un personnage
+		
+		ArrayList<Direction> directions = new ArrayList<Direction>();
+		
+		if(currentBox.getX() == 0 && currentBox.getY()==0) {
+			directions.add(Direction.East);
+			directions.add(Direction.North);
+			directions.add(Direction.NorthEast);
+		}
+		else if (currentBox.getX() == maxXMap && currentBox.getY() ==0) {
+			directions.add(Direction.NorthWest);
+			directions.add(Direction.West);
+			directions.add(Direction.North);
+		}
+		else if(currentBox.getY() == maxYMap && currentBox.getX() == 0) {
+			directions.add(Direction.South);
+			directions.add(Direction.SouthEast);
+			directions.add(Direction.East);
+		}
+		else if(currentBox.getY() == maxYMap && currentBox.getX() == maxXMap) {
+			directions.add(Direction.South);
+			directions.add(Direction.SouthWest);
+			directions.add(Direction.West);
+		}
+		else if(currentBox.getX()==maxXMap) {
+			directions.add(Direction.South);
+			directions.add(Direction.SouthWest);
+			directions.add(Direction.West);
+			directions.add(Direction.North);
+			directions.add(Direction.NorthWest);			
+		}
+		else if (currentBox.getX() == 0) {
+			directions.add(Direction.South);
+			directions.add(Direction.SouthEast);
+			directions.add(Direction.East);
+			directions.add(Direction.North);
+			directions.add(Direction.NorthEast);			
+		}
+		else if(currentBox.getY()==0) {
+			directions.add(Direction.West);
+			directions.add(Direction.NorthWest);	
+			directions.add(Direction.East);
+			directions.add(Direction.North);
+			directions.add(Direction.NorthEast);
+		}
+		else if(currentBox.getY() == maxYMap) {
+			directions.add(Direction.South);
+			directions.add(Direction.SouthWest);
+			directions.add(Direction.West);
+			directions.add(Direction.SouthEast);
+			directions.add(Direction.East);
+		}
+		else {
+			directions.add(Direction.South);
+			directions.add(Direction.SouthWest);
+			directions.add(Direction.West);
+			directions.add(Direction.SouthEast);
+			directions.add(Direction.East);
+			directions.add(Direction.North);
+			directions.add(Direction.NorthEast);	
+			directions.add(Direction.NorthWest);
+		}
+		
+		return directions;
 	}
 	
 	protected  abstract void move(Box currentBox, int maxStep);
-		//récupérer mon énum de direction
+		//rï¿½cupï¿½rer mon ï¿½num de direction
 		
 		//getPossibleBoxes()
 		
-		//récupérer le max de pas et endurance du personnage 
+		//rï¿½cupï¿½rer le max de pas et endurance du personnage 
 			
-		//si être vivant est endurance basse, prend la direction de safezone 
-		//sinon, tire aléatoirement directions
+		//si ï¿½tre vivant est endurance basse, prend la direction de safezone 
+		//sinon, tire alï¿½atoirement directions
 
-		//lancer des dès pour influer sur portée
+		//lancer des dï¿½s pour influer sur portï¿½e
 		
-		//tant que case libre dans direction et portée ok, "avancer" (actualiser futures coordonnées)
+		//tant que case libre dans direction et portï¿½e ok, "avancer" (actualiser futures coordonnï¿½es)
 			//Si en dehors de sa SafeZone --> perte de PE
-			//Sinon --> récupère 3PE par case 
-			//Si PV pas au max, récupère 1PV
+			//Sinon --> rï¿½cupï¿½re 3PE par case 
+			//Si PV pas au max, rï¿½cupï¿½re 1PV
 		
-		//déplacer le personnage et changer ses coordonnées + actualiser ancienne et nouvelle case
+		//dï¿½placer le personnage et changer ses coordonnï¿½es + actualiser ancienne et nouvelle case
 		
-		//scanner les alentours et interagir si autre perso trouvé
+		//scanner les alentours et interagir si autre perso trouvï¿½
 		
 		//Fin de tour XP++
 		
 	
 	
 	protected abstract void meet(Character character);
-	//Si même famille, ajout de PV équitablement en fonction du nombre de cases qu'il reste à parcourir pour la personne en mouvement
+	//Si mï¿½me famille, ajout de PV ï¿½quitablement en fonction du nombre de cases qu'il reste ï¿½ parcourir pour la personne en mouvement
 	
-	//Si même faction, ajout de XP distribué équitablement en fct nb cases
+	//Si mï¿½me faction, ajout de XP distribuï¿½ ï¿½quitablement en fct nb cases
 	
-	//Si faction différente et en dehors de safezone, combat tour par tour => method attaquer (dépend des familles)
+	//Si faction diffï¿½rente et en dehors de safezone, combat tour par tour => method attaquer (dï¿½pend des familles)
 	
 	//SI plus de PE : 
 	
 		//Si != factions : individu sans PE meurt
 		
-		//Si mm faction : 1 seul PE d'aide transféré
+		//Si mm faction : 1 seul PE d'aide transfï¿½rï¿½
 
-		//Si mm famille : moitié des PE partagé
+		//Si mm famille : moitiï¿½ des PE partagï¿½
 	
 	
 	protected abstract void attack(Character character);
-	// Puissance d'attaque et chance d'esquive de l'adversaire à prendre en compte
+	// Puissance d'attaque et chance d'esquive de l'adversaire ï¿½ prendre en compte
 	
 	
-	//Lancer de dés (seuils de % en fonction de la famille du personnage lancant l'attaque)
+	//Lancer de dï¿½s (seuils de % en fonction de la famille du personnage lancant l'attaque)
 	
-		//Si SUCCES CRITIC : attaque spéciale 
+		//Si SUCCES CRITIC : attaque spï¿½ciale 
 	
 		//Si SUCCES : adversaire perd des points de vie en fonction de attaquant (adversaire n'essaye pas d'esquiver (dodge) ?)
 	
-			//Si PV adversaire tombe à 0 et attaquant != marcheur blanc, adversaire meurt et est supprimé de la map et XP adversaire transféré à attquant 
+			//Si PV adversaire tombe ï¿½ 0 et attaquant != marcheur blanc, adversaire meurt et est supprimï¿½ de la map et XP adversaire transfï¿½rï¿½ ï¿½ attquant 
 	
-			//Si PV adversaire tombe à 0 et attaquant == marcheur blanc, adversaire meurt et arrivé d'un nouveau marcheur blanc
+			//Si PV adversaire tombe ï¿½ 0 et attaquant == marcheur blanc, adversaire meurt et arrivï¿½ d'un nouveau marcheur blanc
 	
 			//Sinon, adversaire attack et ainsi de suite 
 	
 		//Si ECHEC : 
 	
-			//L'attaquant a raté son attaque, rien ne se passe
+			//L'attaquant a ratï¿½ son attaque, rien ne se passe
 
-		//echec critique (?) perd pv ou expérience?
+		//echec critique (?) perd pv ou expï¿½rience?
 	 
 }

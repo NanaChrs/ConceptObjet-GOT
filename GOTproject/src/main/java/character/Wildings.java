@@ -14,7 +14,7 @@ public class Wildings extends Northerner {
 	protected void superAttack(Character character) {
 		// TODO Auto-generated method stub
 		
-		//Boire le lait d'une géante
+		//Barbarie 
 		
 		// Regen PV + PA doublée
 	}

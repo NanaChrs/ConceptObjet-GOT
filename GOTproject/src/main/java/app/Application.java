@@ -1,10 +1,17 @@
 package app;
 
+import java.io.IOException;
+
+import gameplay.FileManager;
+
 public class Application {
 	//map
 	//factions
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		FileManager.writeToLogFile("Un combat a commencé");
+		FileManager.writeToLogFile("Daenerys est morte");
+
 		// TODO Auto-generated method stub
 
 		//run
@@ -13,14 +20,14 @@ public class Application {
 	/*
 	run {
 		faire :
-			optionnel : demande à user niveau de détail (pour un tour : n'afficher que carte, afficher aussi les actions ou afficher aussi les stats)
+			optionnel : demande a� user niveau de detail (pour un tour : n'afficher que carte, afficher aussi les actions ou afficher aussi les stats)
 
 			génère les 4 familles
 
-			optionnel : demande à user taille de map
+			optionnel : demande a user taille de map
 			affiche map
 
-			demande à user nombre de tour max
+			demande a user nombre de tour max
 
 			faire :
 				affiche compteur de tour

@@ -1,7 +1,17 @@
 package character;
 
 public abstract class Northerner extends Human {
-	//faut caractérisitique, sinon classe redondante avec Southerner et human
+	
+	static final private int MAX_STAMINA = 120;
+	static final private int MAX_POWER = 100;
+
+	public Northerner() {
+		super();
+		setPower(5);
+		setStamina(120);
+		setMaxStepNumber(6);
+	}
+
 	protected abstract void attack(Character character);
 
 }

@@ -7,15 +7,18 @@ import map.Direction;
 
 public abstract class Character {
 	static final private int MAX_POWER = 100;
-
-	private int power = 0;
-	private int stamina;
-	private Box currentBox;
 	private int life = 100;
-	private int dodge;
-	//portï¿½e/rayon d'action/nbre de cases par tour
 
+	private int power;
+	private int stamina;
+	private int dodge;
+	private int maxStepNumber;
+
+	private Box currentBox;
 	private Direction lastDirection;
+	
+	public Character() {
+	}
 	
 	protected ArrayList<Direction> possibleDirections(int maxXMap, int maxYMap) {
 		//renvoie l'arraylist de directions possibles pour un personnage
@@ -85,7 +88,7 @@ public abstract class Character {
 	}
 	
 	protected  abstract void move(Box currentBox, int maxStep);
-		//rï¿½cupï¿½rer mon ï¿½num de direction
+		//recuperer mon enum de direction
 		
 		//getPossibleBoxes()
 		
@@ -128,16 +131,15 @@ public abstract class Character {
 	protected abstract void attack(Character character);
 	// Puissance d'attaque et chance d'esquive de l'adversaire ï¿½ prendre en compte
 	
-	
 	//Lancer de dï¿½s (seuils de % en fonction de la famille du personnage lancant l'attaque)
 	
 		//Si SUCCES CRITIC : attaque spï¿½ciale 
 	
 		//Si SUCCES : adversaire perd des points de vie en fonction de attaquant (adversaire n'essaye pas d'esquiver (dodge) ?)
 	
-			//Si PV adversaire tombe ï¿½ 0 et attaquant != marcheur blanc, adversaire meurt et est supprimï¿½ de la map et XP adversaire transfï¿½rï¿½ ï¿½ attquant 
+			//Si PV adversaire tombe ï¿½ 0 et attaquant != marcheur blanc, adversaire meurt et est supprime de la map et XP adversaire transfï¿½rï¿½ ï¿½ attquant 
 	
-			//Si PV adversaire tombe ï¿½ 0 et attaquant == marcheur blanc, adversaire meurt et arrivï¿½ d'un nouveau marcheur blanc
+			//Si PV adversaire tombe ï¿½ 0 et attaquant == marcheur blanc, adversaire meurt et arrivee d'un nouveau marcheur blanc
 	
 			//Sinon, adversaire attack et ainsi de suite 
 	
@@ -145,6 +147,39 @@ public abstract class Character {
 	
 			//L'attaquant a ratï¿½ son attaque, rien ne se passe
 
-		//echec critique (?) perd pv ou expï¿½rience?
+		//echec critique (?) perd pv ou expïerience?
+	
+	public int getStamina() {
+		return stamina;
+	}
+
+	public void setStamina(int stamina) {
+		this.stamina = (this.stamina < 0) ? 0 : stamina;
+	}
+
+	public int getPower() {
+		return power;
+	}
+
+	public void setPower(int power) {
+		this.power = (this.power < 0) ? 0 : power;
+	}
+
+	public int getDodge() {
+		return dodge;
+	}
+
+	public void setDodge(int dodge) {
+		this.dodge = (this.dodge < 0) ? 0 : dodge;
+	}
+
+	public int getMaxStepNumber() {
+		return maxStepNumber;
+	}
+
+	public void setMaxStepNumber(int maxStepNumber) {
+		this.maxStepNumber = maxStepNumber;
+	}
+	
 	 
 }

@@ -2,6 +2,10 @@ package app;
 
 import java.io.IOException;
 
+import character.Lannister;
+import character.Stark;
+import character.Targaryen;
+import character.Wildings;
 import gameplay.FileManager;
 
 public class Application {
@@ -9,9 +13,19 @@ public class Application {
 	//factions
 
 	public static void main(String[] args) throws IOException {
-		FileManager.writeToLogFile("Un combat a commencé");
-		FileManager.writeToLogFile("Daenerys est morte");
-
+		
+		Lannister cersei = new Lannister("Cersei");
+		Lannister jaime = new Lannister("Jaime");
+		Stark arya = new Stark("Arya");
+		Stark sansa = new Stark("Sansa");
+		Targaryen jon = new Targaryen("Jon");
+		Targaryen dany = new Targaryen("Daenerys");
+		Wildings gilly = new Wildings("Gilly");
+		Wildings tor = new Wildings("Tormunds");
+		
+		jaime.meet(cersei, 2);
+		tor.meet(sansa, 5);
+		jaime.meet(sansa,4);
 		// TODO Auto-generated method stub
 
 		//run

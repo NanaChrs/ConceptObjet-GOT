@@ -1,2 +1,32 @@
 Un combat a commencé
 Daenerys est morte
+[MEET] Jaime from House Lannister met Cersei from House Lannister.
+[MEET] They both gained 2 xp. And restored 1/4 of their HP.
+[MEET] Tormunds from House Wildings met Sansa from House Stark.
+[MEET] They both gained 5 xp. And restored 1/4 of their HP.
+[MEET] Jaime from House Lannister met Jon from House Targaryen.
+[MEET] They both gained 4 xp. And restored 1/4 of their HP.
+[MEET] Jaime from House Lannister met Cersei from House Lannister.
+[MEET] They both gained 2 xp. And restored 1/4 of their HP.
+[MEET] Tormunds from House Wildings met Sansa from House Stark.
+[MEET] They both gained 5 xp. And restored 1/4 of their HP.
+[MEET] Jaime from House Lannister met Jon from House Targaryen.
+[MEET] They both gained 4 xp. And restored 1/4 of their HP.
+[MEET] Jaime from House Lannister met Cersei from House Lannister.
+[MEET] They both gained 2 xp. And restored 1/4 of their HP.
+[MEET] Tormunds from House Wildings met Sansa from House Stark.
+[MEET] They both gained 5 xp. And restored 1/4 of their HP.
+[MEET] Jaime from House Lannister met Jon from House Targaryen.
+[MEET] They both gained 4 xp. And restored 1/4 of their HP.
+[MEET] Jaime from House Lannister met Cersei from House Lannister.
+[MEET] They both gained 2 xp. And restored 1/4 of their HP.
+[MEET] Tormunds from House Wildings met Sansa from House Stark.
+[MEET] They both gained 5 xp. And restored 1/4 of their HP.
+[MEET] Jaime from House Lannister met Jon from House Targaryen.
+[MEET] They both gained 4 xp. And restored 1/4 of their HP.
+[MEET] Jaime from House Lannister met Cersei from House Lannister.
+[MEET] They both gained 2 xp. And restored 1/4 of their HP.
+[MEET] Tormunds from House Wildings met Sansa from House Stark.
+[MEET] They both gained 5 xp. And restored 1/4 of their HP.
+[MEET] Jaime from House Lannister met Sansa from House Stark.
+[MEET] Jaime attacks Sansa !

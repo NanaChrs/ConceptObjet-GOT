@@ -4,6 +4,11 @@ import map.Box;
 
 public class Targaryen extends Southerner {
 
+	public Targaryen(String string) {
+		super(string);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	protected void attack(Character character) {
 		// TODO Auto-generated method stub
@@ -24,10 +29,5 @@ public class Targaryen extends Southerner {
 		
 	}
 
-	@Override
-	protected void meet(Character character) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -6,15 +6,8 @@ public class Lannister extends Southerner {
 
 	
 	public Lannister(String name) {
-		super();
-		super.name = name;
+		super(name);
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	protected void meet(Character character) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -25,12 +18,13 @@ public class Lannister extends Southerner {
 
 	@Override
 	protected void superAttack(Character character) {
+		
 		// TODO Auto-generated method stub
 		
 		
 		//Paye l'adversaire en PE/PV (en fonction du plus faible)
 		
-		//Déplacement du lannister d'1 case ou 2
+		//Dï¿½placement  du lannister d'1 case ou 2
 		
 		// FIN du combat
 	}

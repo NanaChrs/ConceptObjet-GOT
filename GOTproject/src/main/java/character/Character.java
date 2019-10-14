@@ -1,5 +1,6 @@
 package character;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import map.Box;
@@ -7,7 +8,7 @@ import map.Direction;
 
 public abstract class Character {
 	static final private int MAX_POWER = 100;
-	private int life = 100;
+	protected int life = 100;
 
 	private int power;
 	private int stamina;
@@ -112,7 +113,7 @@ public abstract class Character {
 		
 	
 	
-	protected abstract void meet(Character character);
+	protected abstract void meet(WhiteWalkers character, int remainingBoxes);
 	//Si mï¿½me famille, ajout de PV ï¿½quitablement en fonction du nombre de cases qu'il reste ï¿½ parcourir pour la personne en mouvement
 	
 	//Si mï¿½me faction, ajout de XP distribuï¿½ ï¿½quitablement en fct nb cases
@@ -147,7 +148,7 @@ public abstract class Character {
 	
 			//L'attaquant a ratï¿½ son attaque, rien ne se passe
 
-		//echec critique (?) perd pv ou expïerience?
+		//echec critique (?) perd pv ou expï¿½erience?
 	
 	public int getStamina() {
 		return stamina;
@@ -180,6 +181,8 @@ public abstract class Character {
 	public void setMaxStepNumber(int maxStepNumber) {
 		this.maxStepNumber = maxStepNumber;
 	}
+
+	protected abstract void meet(Human character, int remainingBoxes) throws IOException;
 	
 	 
 }

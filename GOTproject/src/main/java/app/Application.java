@@ -3,6 +3,7 @@ package app;
 import java.io.IOException;
 
 import gameplay.FileManager;
+import map.Westeros;
 
 public class Application {
 	//map
@@ -11,6 +12,8 @@ public class Application {
 	public static void main(String[] args) throws IOException {
 		FileManager.writeToLogFile("Un combat a commencé");
 		FileManager.writeToLogFile("Daenerys est morte");
+		
+		Westeros westeros = Westeros.getInstance();
 
 		// TODO Auto-generated method stub
 

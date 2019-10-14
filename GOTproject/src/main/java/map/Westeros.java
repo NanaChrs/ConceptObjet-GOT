@@ -6,7 +6,18 @@ public class Westeros {
 	public 	SortedSet<Box> boxes;
 	public static final int MAP_LENGTH = 40;
 	public static final int MAP_WIDTH = 50;
-
+	private static Westeros uniqueInstance;
+	
+	private Westeros() {
+	}
+	
+	public static Westeros getInstance() {
+		if (uniqueInstance == null) {
+			uniqueInstance = new Westeros();
+		}
+		return uniqueInstance;
+	}
+	
 	public void mapDisplay() {
 		//displayBox
 

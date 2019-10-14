@@ -25,7 +25,13 @@ public class WhiteWalkers extends Character {
 	}
 
 	@Override
-	protected void meet(Character character) {
+	protected void meet(WhiteWalkers character, int remainingBoxes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void meet(Human character, int remainingBoxes) {
 		// TODO Auto-generated method stub
 		
 	}

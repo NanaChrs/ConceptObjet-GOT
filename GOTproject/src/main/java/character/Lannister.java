@@ -4,7 +4,8 @@ import map.Box;
 
 public class Lannister extends Southerner {	
 
-	
+	static final protected int MAX_STEP_NUMBER = 4;
+
 	public Lannister(String name) {
 		super();
 		super.name = name;
@@ -30,16 +31,11 @@ public class Lannister extends Southerner {
 		
 		//Paye l'adversaire en PE/PV (en fonction du plus faible)
 		
-		//Déplacement du lannister d'1 case ou 2
+		//Dï¿½placement du lannister d'1 case ou 2
 		
 		// FIN du combat
 	}
 
-	@Override
-	protected void move(Box currentBox, int maxStep) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }

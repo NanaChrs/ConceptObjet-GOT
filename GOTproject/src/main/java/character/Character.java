@@ -2,17 +2,33 @@ package character;
 
 import java.util.ArrayList;
 
+import gameplay.DiceResult;
 import map.Box;
 import map.Direction;
 
 public abstract class Character {
 	static final private int MAX_POWER = 100;
-	private int life = 100;
+	static protected int CRITIC_SUCCESS_LEVEL;
+	static protected int FAILURE_LEVEL;
+	static protected int MAX_STEP_NUMBER;
 
-	private int power;
-	private int stamina;
-	private int dodge;
-	private int maxStepNumber;
+	public static int getCriticSuccessLevel() {
+		return CRITIC_SUCCESS_LEVEL;
+	}
+
+	public static int getFailureLevel() {
+		return FAILURE_LEVEL;
+	}
+
+	public static int getMaxStepNumber() {
+		return MAX_STEP_NUMBER;
+	}
+
+	protected int life = 100;
+	protected int power;
+	protected int stamina;
+	protected int dodge;
+	protected int maxStepNumber;
 
 	private Box currentBox;
 	private Direction lastDirection;
@@ -87,29 +103,7 @@ public abstract class Character {
 		return directions;
 	}
 	
-	protected  abstract void move(Box currentBox, int maxStep);
-		//recuperer mon enum de direction
-		
-		//getPossibleBoxes()
-		
-		//rï¿½cupï¿½rer le max de pas et endurance du personnage 
-			
-		//si ï¿½tre vivant est endurance basse, prend la direction de safezone 
-		//sinon, tire alï¿½atoirement directions
-
-		//lancer des dï¿½s pour influer sur portï¿½e
-		
-		//tant que case libre dans direction et portï¿½e ok, "avancer" (actualiser futures coordonnï¿½es)
-			//Si en dehors de sa SafeZone --> perte de PE
-			//Sinon --> rï¿½cupï¿½re 3PE par case 
-			//Si PV pas au max, rï¿½cupï¿½re 1PV
-		
-		//dï¿½placer le personnage et changer ses coordonnï¿½es + actualiser ancienne et nouvelle case
-		
-		//scanner les alentours et interagir si autre perso trouvï¿½
-		
-		//Fin de tour XP++
-		
+	protected abstract void move(Box currentBox, int maxStep, int maxXMap, int maxYMap);
 	
 	
 	protected abstract void meet(Character character);
@@ -126,6 +120,23 @@ public abstract class Character {
 		//Si mm faction : 1 seul PE d'aide transfï¿½rï¿½
 
 		//Si mm famille : moitiï¿½ des PE partagï¿½
+	
+	
+	protected int determineStepNumbers() {
+		switch(this.rollDice()) {
+			
+			case CRITIC_SUCCESS:
+				return(Human.getMaxStepNumber());
+		
+			case SUCCESS: 
+				return (int) (0.5*Human.getMaxStepNumber());
+				
+			default: 
+				return (int) (0.25*Human.getMaxStepNumber());
+		}
+		
+		
+	}
 	
 	
 	protected abstract void attack(Character character);
@@ -147,7 +158,7 @@ public abstract class Character {
 	
 			//L'attaquant a ratï¿½ son attaque, rien ne se passe
 
-		//echec critique (?) perd pv ou expïerience?
+		//echec critique (?) perd pv ou expï¿½erience?
 	
 	public int getStamina() {
 		return stamina;
@@ -173,13 +184,30 @@ public abstract class Character {
 		this.dodge = (this.dodge < 0) ? 0 : dodge;
 	}
 
-	public int getMaxStepNumber() {
-		return maxStepNumber;
-	}
+	
+	/** 
+     * Rolls a die
+     * @return diceResult   result of the throw
+     */ 
+    public  DiceResult rollDice() {
+    	//Plus on est proche de 0, plus la chance d'avoir un echec est grand
+    	
+        //roll a dice
+        int diceValue = (int) (Math.random() * 100) + 1; // gives value between 1 and 100
+        
+        //determine the score
+        DiceResult result;
+        
+        //more frequent
+        if (diceValue < Character.getCriticSuccessLevel() && diceValue > Character.getFailureLevel()) result = DiceResult.SUCCESS;
+        
+        //less frequent
+        else if (diceValue < Character.getFailureLevel()) result = DiceResult.FAILURE;
+        else result = DiceResult.CRITIC_SUCCESS;
+       
+        return result;
+    }
 
-	public void setMaxStepNumber(int maxStepNumber) {
-		this.maxStepNumber = maxStepNumber;
-	}
 	
 	 
 }

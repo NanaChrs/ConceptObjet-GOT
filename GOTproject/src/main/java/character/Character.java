@@ -18,9 +18,6 @@ public abstract class Character {
 	private Box currentBox;
 	private Direction lastDirection;
 	
-	public Character() {
-	}
-	
 	protected ArrayList<Direction> possibleDirections(int maxXMap, int maxYMap) {
 		//renvoie l'arraylist de directions possibles pour un personnage
 		

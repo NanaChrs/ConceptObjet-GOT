@@ -66,7 +66,6 @@ public abstract class Human extends Character {
 				h.life = 0;
 			}
 			else {
-				FileManager.writeToLogFile("[MEET] "+ this.name + " attacks "+ h.name +" !");
 				this.attack(h);
 			}
 		}

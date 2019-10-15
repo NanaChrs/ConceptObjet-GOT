@@ -1,12 +1,16 @@
 package app;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import character.Human;
 import character.Lannister;
 import character.Stark;
 import character.Targaryen;
 import character.Wildings;
 import gameplay.FileManager;
+import map.Box;
+import map.Westeros;
 
 public class Application {
 	//map
@@ -14,18 +18,43 @@ public class Application {
 
 	public static void main(String[] args) throws IOException {
 		
-		Lannister cersei = new Lannister("Cersei");
-		Lannister jaime = new Lannister("Jaime");
-		Stark arya = new Stark("Arya");
-		Stark sansa = new Stark("Sansa");
-		Targaryen jon = new Targaryen("Jon");
-		Targaryen dany = new Targaryen("Daenerys");
-		Wildings gilly = new Wildings("Gilly");
-		Wildings tor = new Wildings("Tormunds");
+		Human cersei = new Lannister("Cersei");
+		Human jaime = new Lannister("Jaime");
+		Human arya = new Stark("Arya");
+		Human sansa = new Stark("Sansa");
+		Human jon = new Targaryen("Jon");
+		Human dany = new Targaryen("Daenerys");
+		Human gilly = new Wildings("Gilly");
+		Human tor = new Wildings("Tormund");
 		
-		jaime.meet(cersei, 2);
-		tor.meet(sansa, 5);
-		jaime.meet(sansa,4);
+		System.out.println(tor.getClass().getSuperclass().getSuperclass().getSuperclass());
+		
+		ArrayList<Character> humans = new ArrayList<Character>();
+		
+//		humans.add(cersei);
+//		humans.add(jaime);
+//		humans.add(arya);
+//		humans.add(sansa);
+//		humans.add(jon);
+//		humans.add(dany);
+//		humans.add(gilly);
+//		humans.add(tor);
+		
+		Westeros map = new Westeros();
+		
+		Box[][] boxes = new Box[Westeros.WIDTH][Westeros.HEIGHT];
+		
+		for(int i =0; i < Westeros.WIDTH; i++) {
+			for (int j=0; j < Westeros.HEIGHT; j++) {
+				if(Math.random()>0.9 && humans.size()>0) {
+					boxes[i][j].setCharacter(humans.get(0));
+				}
+				else if (Math.random()>0.8) {
+					
+				}
+			}
+		}
+		map.mapDisplay();
 		// TODO Auto-generated method stub
 
 		//run

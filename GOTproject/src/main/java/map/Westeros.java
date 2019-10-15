@@ -3,12 +3,36 @@ package map;
 import java.util.SortedSet;
 
 public class Westeros {
-	public 	SortedSet<Box> boxes;
-	public static final int MAP_LENGTH = 40;
-	public static final int MAP_WIDTH = 50;
+	public static final int HEIGHT = 50;
+	public static final int WIDTH = 50;
+	public Box[][] boxes;
+	
+	
 
 	public void mapDisplay() {
 		//displayBox
+		for (int y = HEIGHT-1 ; y >= 0; y-- ) {
+			String str = "";
+			for(int x = 0; x < WIDTH; x++) {
+				if(boxes[x][y].isEmpty()) {
+					if((x==0 || x==WIDTH-1) && y !=HEIGHT-1) {
+						str+="|";
+					}
+					else if(y == 0 || y==HEIGHT-1) {
+						str+="_";
+					}
+					else {
+						str+=" ";
+					}
+				}
+				else {
+					boxes[x][y].displayBox();
+				}
+				
+			}
+			System.out.println(str);
+//				boxes[x][y].displayBox();
+			}
 
 		/*
 		pour chaque ligne du plateau :

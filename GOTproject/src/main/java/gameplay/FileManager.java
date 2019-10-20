@@ -15,19 +15,16 @@ public class FileManager {
      * @throws IOException 
      */ 
     public FileManager() throws IOException {
-
     	//creates file for logs 
         Files.createFile(Paths.get(FileManager.fileName));
-        
     }
     
     public static void writeToLogFile(String content) throws IOException {
     	FileWriter fw = new FileWriter(FileManager.fileName, true);
-	    BufferedWriter bw = new BufferedWriter(fw);
-	    
-	    bw.write(content);
-	    bw.newLine();
-	    bw.close();
+        BufferedWriter bw = new BufferedWriter(fw);
+
+        bw.write(content);
+        bw.newLine();
+        bw.close();
     }
-    
 }

@@ -2,14 +2,15 @@ package character;
 
 public abstract class Northerner extends Human {
 	
-	static final private int MAX_STAMINA = 120;
-	static final private int MAX_POWER = 100;
+	static final protected int MAX_STAMINA = 120;
+	static final protected int MAX_POWER = 100;
+	static final protected int CRITIC_SUCESS_LEVEL = 85;
+	static final protected int FAILURE_LEVEL = 15;
 
-	public Northerner() {
-		super();
+	public Northerner(String string) {
+		super(string);
 		setPower(5);
 		setStamina(120);
-		setMaxStepNumber(6);
 	}
 
 	protected abstract void attack(Character character);

@@ -3,6 +3,12 @@ package character;
 import map.Box;
 
 public class Wildings extends Northerner {
+	//static final protected int MAX_STEP_NUMBER = 5;
+
+	public Wildings(String string) {
+		super(string);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	protected void attack(Character character) {
@@ -16,19 +22,6 @@ public class Wildings extends Northerner {
 		
 		//Barbarie 
 		
-		// Regen PV + PA doublée
+		// Regen PV + PA doublï¿½e
 	}
-
-	@Override
-	protected void move(Box currentBox, int maxStep) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void meet(Character character) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

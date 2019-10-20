@@ -3,6 +3,7 @@ package character;
 import map.Box;
 
 public class Wildings extends Northerner {
+	//static final protected int MAX_STEP_NUMBER = 5;
 
 	public Wildings(String string) {
 		super(string);
@@ -23,11 +24,4 @@ public class Wildings extends Northerner {
 		
 		// Regen PV + PA doubl�e
 	}
-
-	@Override
-	protected void move(Box currentBox, int maxStep) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

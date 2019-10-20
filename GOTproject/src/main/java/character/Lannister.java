@@ -4,6 +4,7 @@ import map.Box;
 
 public class Lannister extends Southerner {	
 
+	//static final protected int MAX_STEP_NUMBER = 4;
 	
 	public Lannister(String name) {
 		super(name);
@@ -28,12 +29,5 @@ public class Lannister extends Southerner {
 		
 		// FIN du combat
 	}
-
-	@Override
-	protected void move(Box currentBox, int maxStep) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 }

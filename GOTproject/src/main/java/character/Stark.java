@@ -4,6 +4,8 @@ import map.Box;
 
 public class Stark extends Northerner {
 
+	static final protected int MAX_STEP_NUMBER = 8;
+
 	public Stark(String string) {
 		super(string);
 		// TODO Auto-generated constructor stub
@@ -21,14 +23,4 @@ public class Stark extends Northerner {
 		
 		// PV adversaire divis� par 2
 	}
-
-	@Override
-	protected void move(Box currentBox, int maxStep) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	
-	
 }

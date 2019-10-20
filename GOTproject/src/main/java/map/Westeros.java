@@ -1,52 +1,75 @@
 package map;
 
-import java.util.SortedSet;
+import character.Character;
+import java.util.ArrayList;
 
 public class Westeros {
-	public static final int HEIGHT = 50;
-	public static final int WIDTH = 50;
-	public Box[][] boxes;
-	
-	
+    private static Westeros uniqueInstance;
+    protected static final int HEIGHT = 20;
+    protected static final int WIDTH = 20;
+    protected /*static*/ Box[][] boxes = new Box[Westeros.WIDTH][Westeros.HEIGHT];
+    ArrayList<Character> population;
+    
+    private static final double PROBA_HUMAN = 0.9;
+    private static final double PROBA_OBSTACLE = 0.95;
 
-	public void mapDisplay() {
-		//displayBox
-		for (int y = HEIGHT-1 ; y >= 0; y-- ) {
-			String str = "";
-			for(int x = 0; x < WIDTH; x++) {
-				if(boxes[x][y].isEmpty()) {
-					if((x==0 || x==WIDTH-1) && y !=HEIGHT-1) {
-						str+="|";
-					}
-					else if(y == 0 || y==HEIGHT-1) {
-						str+="_";
-					}
-					else {
-						str+=" ";
-					}
-				}
-				else {
-					boxes[x][y].displayBox();
-				}
-				
-			}
-			System.out.println(str);
-//				boxes[x][y].displayBox();
-			}
+    public Westeros(ArrayList<Character> population) {
+        this.population = population;
+        int populationNumber = population.size();
+        
+        for(int i = 0; i < WIDTH; ++i) {
+            for (int j=0; j < HEIGHT; ++j) {
+                boxes[i][j] = new Box();
+                if(populationNumber > 0 && Math.random()%1 > PROBA_HUMAN) {
+                    boxes[i][j].setCharacter(this.population.get(--populationNumber));
+                }
+                else if (Math.random()%1 > PROBA_OBSTACLE) {
+                    boxes[i][j].setObstacle(true);
+                }
+            }
+        }
+    }
 
-		/*
-		pour chaque ligne du plateau :
-			si climat : 
-				détermine ou récupère caractères séparateur horizontal et vertical (o pour chaud, | et - ou _ pour tempéré, * pour froid (@ pour marcheur blanc mais plus complexe car localisé))
+    public static Westeros getInstance(ArrayList<Character> population) {
+        if (uniqueInstance == null) {
+            uniqueInstance = new Westeros(population);
+        }
+        return uniqueInstance;
+    }
 
-			affiche séparation horizontale entre lignes (boucle) (o, * ou -) (taille tab * 5 caractères (1 pour séparation + 4 pour case))
+    public static int getHeight() {
+        return HEIGHT;
+    }
+    
+    public static int getWidth() {
+        return WIDTH;
+    }
+    
+    public void getMap(Box[][] map) {
+        for (int x = 0; x < WIDTH; x++) {
+            System.arraycopy(boxes[x], 0, map[x], 0, HEIGHT);
+        }
+    }
+    
+    public void mapDisplay() {
+        String vert = "-", horiz = "|";
+        String result = "";
+        
+        for(int x = 0; x < WIDTH*2 + 2; x++) result+=vert;
+        result += "\n";
+        
+        for (int y = HEIGHT-1; y >= 0; y-- ) {
+            result += horiz;
+            for(int x = 0; x < WIDTH; x++) {
+                result += (!boxes[x][y].isEmpty())? boxes[x][y].displayBox() : " ";
+                result += " ";//double la largeur pour equivaloir la hauteur
+            }
+            result += horiz + "\n";
+        }
+        
+        for(int x = 0; x < WIDTH*2 + 2; x++) result+=vert;
+        System.out.println(result);
+    }
 
-			affiche dernier caractère de séparation horizontale + retour à la ligne + premier caractère de séparation verticale
-			pour chaque case (colonne) de la ligne :
-				affiche contenu de la case (méthode) + caractère séparateur vertical
 
-		affiche séparation horizontale entre lignes (même boucle)
-		affiche dernier caractère de séparation horizontale
-		*/
-	}
 }

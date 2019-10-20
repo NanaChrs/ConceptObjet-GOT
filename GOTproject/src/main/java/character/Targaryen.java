@@ -4,6 +4,8 @@ import map.Box;
 
 public class Targaryen extends Southerner {
 
+	//static final protected int MAX_STEP_NUMBER = 10;
+
 	public Targaryen(String string) {
 		super(string);
 		// TODO Auto-generated constructor stub
@@ -22,12 +24,4 @@ public class Targaryen extends Southerner {
 		
 		// ONE SHOT
 	}
-
-	@Override
-	protected void move(Box currentBox, int maxStep) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }

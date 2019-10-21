@@ -46,10 +46,21 @@ public abstract class Human extends Character {
         this.stamina = (this.stamina < 0) ? 0 : stamina;
     }
     
+    @Override
+    protected void movmentConsequences() {
+        //Si en dehors de sa SafeZone --> perte de PE
+        //Sinon --> r�cup�re 3PE
+        
+        if (life < MAX_LIFE) life++;
+        xp++;
+    }
+    
+    @Override
     protected void meet(WhiteWalkers ww, int remainingBoxes) {
         this.attack(ww);
     }
 
+    @Override
     public void meet(Human h, int remainingBoxes) throws IOException {
             FileManager.writeToLogFile("[MEET] "+ this.name +" from House "+ this.getClass().getSimpleName() + " met " + h.name + " from House "+ h.getClass().getSimpleName() +".");
 
@@ -98,38 +109,6 @@ public abstract class Human extends Character {
                             this.attack(h);
                     }
             }
-    }
-
-    @Override
-    protected void move(Box currentBox) {
-        ArrayList<Direction>possibleDirections = this.possibleDirections(Westeros.getWidth(), Westeros.getHeight());
-
-        Direction takenDirection;
-        //si etre vivant a endurance basse, prend la direction de safezone
-        if (this.getStamina() < 0.10*Human.getMaxStamina()) {
-            //takenDirection = Safezone direction
-        }
-
-        //sinon, tire aleatoirement directions
-        else {
-            int randomIndex = (int) (Math.random() * (possibleDirections.size() - 1));
-            takenDirection = possibleDirections.get(randomIndex);
-        }
-
-        int range = this.determineStepNumbers();
-        do {
-            //tant que case libre dans direction et port�e ok, "avancer" (actualiser futures coordonn�es)
-                //Si en dehors de sa SafeZone --> perte de PE
-                //Sinon --> r�cup�re 3PE par case 
-                //Si PV pas au max, r�cup�re 1PV
-        } while (--range > 0);
-
-
-        //d�placer le personnage et changer ses coordonn�es + actualiser ancienne et nouvelle case
-
-        //scanner les alentours et interagir si autre perso trouv�
-
-        //Fin de tour XP++
     }
 
 	

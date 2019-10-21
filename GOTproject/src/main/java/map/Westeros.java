@@ -58,6 +58,7 @@ public class Westeros {
         for(int x = 0; x < WIDTH*2 + 2; x++) result+=vert;
         result += "\n";
         
+        //haut gauche: (0,0) ; bas droite : (max,max) => inversion des y
         for (int y = HEIGHT-1; y >= 0; y-- ) {
             result += horiz;
             for(int x = 0; x < WIDTH; x++) {

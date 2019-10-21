@@ -15,7 +15,6 @@ public class Box {
 
 
     public Box() {
-        super();
     }
     
     public boolean isEmpty() {

@@ -5,12 +5,12 @@ import map.Box;
 import map.Direction;
 import map.Westeros;
 
-public class WhiteWalkers extends Character {
+public class WhiteWalker extends Character {
     static final protected int MAX_STEP_NUMBER = 6;
 	static final protected int CRITIC_SUCESS_LEVEL = 95;
 	static final protected int FAILURE_LEVEL = 30;
 
-    public WhiteWalkers() {
+    public WhiteWalker() {
         super();
         setPower(20);
         //setDodge(20);
@@ -22,7 +22,7 @@ public class WhiteWalkers extends Character {
     }
     
     @Override
-    protected void meet(WhiteWalkers character, int remainingBoxes) {
+    protected void meet(WhiteWalker character, int remainingBoxes) {
         // TODO Auto-generated method stub
 
     }

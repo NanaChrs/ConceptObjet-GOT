@@ -4,8 +4,8 @@ import character.Character;
 import character.Lannister;
 import character.Stark;
 import character.Targaryen;
-import character.WhiteWalkers;
-import character.Wildings;
+import character.WhiteWalker;
+import character.Wilding;
 
 public class Box {
     private Character character;
@@ -66,10 +66,10 @@ public class Box {
         else if (character.getClass().equals(Targaryen.class)) {
             return "T";
         }
-        else if(character.getClass().equals(Wildings.class)) {
+        else if(character.getClass().equals(Wilding.class)) {
             return "W";
         }
-        else if(character.getClass().equals(WhiteWalkers.class)) {
+        else if(character.getClass().equals(WhiteWalker.class)) {
             return "M";
         }
         else {

@@ -56,7 +56,7 @@ public abstract class Human extends Character {
     }
     
     @Override
-    protected void meet(WhiteWalkers ww, int remainingBoxes) {
+    protected void meet(WhiteWalker ww, int remainingBoxes) {
         this.attack(ww);
     }
 
@@ -98,11 +98,11 @@ public abstract class Human extends Character {
             }
             else {
                     if(this.getStamina() == 0) {
-                            FileManager.writeToLogFile("[MEET] "+ this.name + " is exausted (0 Stamina). "+ h.name + " killed him/her.");
+                            FileManager.writeToLogFile("[MEET] "+ this.name + " is exhausted (0 Stamina). "+ h.name + " killed him/her.");
                             this.life = 0;
                     }
                     else if (h.getStamina() == 0) {
-                            FileManager.writeToLogFile("[MEET] "+ h.name + " is exausted (0 Stamina). "+ this.name + " killed him/her.");
+                            FileManager.writeToLogFile("[MEET] "+ h.name + " is exhausted (0 Stamina). "+ this.name + " killed him/her.");
                             h.life = 0;
                     }
                     else {

@@ -46,7 +46,6 @@ public abstract class Human extends Character {
         this.stamina = (this.stamina < 0) ? 0 : stamina;
     }
     
-    @Override
     protected void movmentConsequences() {
         //Si en dehors de sa SafeZone --> perte de PE
         //Sinon --> r�cup�re 3PE
@@ -56,7 +55,7 @@ public abstract class Human extends Character {
     }
     
     @Override
-    protected void meet(WhiteWalkers ww, int remainingBoxes) {
+    protected void meet(WhiteWalkers ww, int remainingBoxes) throws IOException {
         this.attack(ww);
     }
 

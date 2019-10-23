@@ -12,6 +12,7 @@ public abstract class Character {
     static protected int MAX_LIFE = 100;
     protected int life = 100;
     protected int power;
+    protected boolean isAlive;
     //protected int dodge;
     
     static protected int MAX_STEP_NUMBER;
@@ -22,6 +23,7 @@ public abstract class Character {
     protected Direction lastDirection;
 
     public Character() {
+    	this.isAlive = true;
     }
 
     public static int getCriticSuccessLevel() {
@@ -37,11 +39,11 @@ public abstract class Character {
     }
 
     public int getPower() {
-            return power;
+        return power;
     }
 
     public void setPower(int power) {
-            this.power = (this.power < 0) ? 0 : power;
+        this.power = (this.power < 0) ? 0 : power;
     }
 /*
     public int getDodge() {
@@ -74,7 +76,11 @@ public abstract class Character {
        return result;
     } 
     
-    protected int determineStepNumbers() {
+    public boolean isAlive() {
+		return this.isAlive;
+	}
+
+	protected int determineStepNumbers() {
         switch(this.rollDice()) {
             case CRITIC_SUCCESS:
                 return MAX_STEP_NUMBER;
@@ -247,7 +253,7 @@ public abstract class Character {
                         meet((Human) map[x][y].getCharacter(),range);
                     }
                     else {
-                        meet((WhiteWalkers) map[x][y].getCharacter(),range);
+                        meet((WhiteWalker) map[x][y].getCharacter(),range);
                     }
                 }
             }
@@ -258,7 +264,7 @@ public abstract class Character {
 
     protected abstract void meet(Human character, int remainingBoxes) throws IOException;
     
-    protected abstract void meet(WhiteWalkers character, int remainingBoxes);
+    protected abstract void meet(WhiteWalker character, int remainingBoxes);
         //Si m�me famille, ajout de PV �quitablement en fonction du nombre de cases qu'il reste � parcourir pour la personne en mouvement
         //Si m�me faction, ajout de XP distribu� �quitablement en fct nb cases
         //Si faction diff�rente et en dehors de safezone, combat tour par tour => method attaquer (d�pend des familles)
@@ -278,5 +284,7 @@ public abstract class Character {
             //Si ECHEC : 
                 //L'attaquant a rat� son attaque, rien ne se passe
             //echec critique (?) perd pv ou exp�erience?
+
+
     
 }

@@ -2,10 +2,10 @@ package character;
 
 import map.Box;
 
-public class Wildings extends Northerner {
+public class Wilding extends Northerner {
 	//static final protected int MAX_STEP_NUMBER = 5;
 
-	public Wildings(String string) {
+	public Wilding(String string) {
 		super(string);
 		// TODO Auto-generated constructor stub
 	}

@@ -38,8 +38,24 @@ public abstract class Character {
         return MAX_STEP_NUMBER;
     }
 
-    public int getPower() {
-        return power;
+    public int getLife() {
+		return life;
+	}
+
+	public void setLife(int life) {
+		if(life > 100) {
+			this.life =100;
+		}
+		else if (life <=0) {
+			this.life = 0;
+		}
+		else {
+			this.life = life;
+		}
+	}
+
+	public int getPower() {
+            return power;
     }
 
     public void setPower(int power) {
@@ -264,7 +280,7 @@ public abstract class Character {
 
     protected abstract void meet(Human character, int remainingBoxes) throws IOException;
     
-    protected abstract void meet(WhiteWalker character, int remainingBoxes);
+    protected abstract void meet(WhiteWalkers character, int remainingBoxes) throws IOException;
         //Si m�me famille, ajout de PV �quitablement en fonction du nombre de cases qu'il reste � parcourir pour la personne en mouvement
         //Si m�me faction, ajout de XP distribu� �quitablement en fct nb cases
         //Si faction diff�rente et en dehors de safezone, combat tour par tour => method attaquer (d�pend des familles)
@@ -273,7 +289,7 @@ public abstract class Character {
             //Si mm faction : 1 seul PE d'aide transf�r�
             //Si mm famille : moiti� des PE partag�
 
-    protected abstract void attack(Character character);
+    protected abstract void attack(Character character) throws IOException;
         // Puissance d'attaque et chance d'esquive de l'adversaire � prendre en compte
         //Lancer de d�s (seuils de % en fonction de la famille du personnage lancant l'attaque)
             //Si SUCCES CRITIC : attaque sp�ciale 

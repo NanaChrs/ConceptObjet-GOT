@@ -280,7 +280,7 @@ public abstract class Character {
 
     protected abstract void meet(Human character, int remainingBoxes) throws IOException;
     
-    protected abstract void meet(WhiteWalkers character, int remainingBoxes) throws IOException;
+    protected abstract void meet(WhiteWalker character, int remainingBoxes) throws IOException;
         //Si m�me famille, ajout de PV �quitablement en fonction du nombre de cases qu'il reste � parcourir pour la personne en mouvement
         //Si m�me faction, ajout de XP distribu� �quitablement en fct nb cases
         //Si faction diff�rente et en dehors de safezone, combat tour par tour => method attaquer (d�pend des familles)

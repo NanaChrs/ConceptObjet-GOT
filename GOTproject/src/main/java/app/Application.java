@@ -12,7 +12,6 @@ import character.Stark;
 import character.Targaryen;
 import character.WhiteWalker;
 import character.Wilding;
-import character.Wildings;
 import gameplay.FileManager;
 import gameplay.UserInterface;
 import map.Westeros;
@@ -56,7 +55,7 @@ public class Application {
         		//Affiche compteur de tour
             	System.out.println("Tour n° " + turn);
             	
-            	character.move();
+            	//character.move();
 
             	if (!(character.isAlive())) {
             		population.remove(character);

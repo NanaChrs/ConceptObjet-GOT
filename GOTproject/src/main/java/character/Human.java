@@ -55,7 +55,7 @@ public abstract class Human extends Character {
     }
     
     @Override
-    protected void meet(WhiteWalkers ww, int remainingBoxes) throws IOException {
+    protected void meet(WhiteWalker ww, int remainingBoxes) throws IOException {
         this.attack(ww);
     }
 

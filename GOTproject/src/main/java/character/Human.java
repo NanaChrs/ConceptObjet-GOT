@@ -21,6 +21,7 @@ public abstract class Human extends Character {
     protected int xp = 0;
     static protected int MAX_POWER;
     static protected int MAX_STAMINA;
+    static protected int LOW_STAMINA;
     protected int stamina;
     protected Safezone safezone;
 	

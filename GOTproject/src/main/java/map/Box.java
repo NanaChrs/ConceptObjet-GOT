@@ -55,7 +55,7 @@ public class Box {
 
     public String displayBox() {
         if(isObstacle) {
-            return "X";
+            return "+";
         }
         else if(character.getClass().equals(Lannister.class)) {
             return "L";

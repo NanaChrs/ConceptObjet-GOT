@@ -15,6 +15,7 @@ public abstract class Character {
     protected boolean isAlive;
     //protected int dodge;
     
+    protected Westeros gameBoard;
     static protected int MAX_STEP_NUMBER;
     static protected int CRITIC_SUCCESS_LEVEL;
     static protected int FAILURE_LEVEL;
@@ -26,6 +27,10 @@ public abstract class Character {
     	this.isAlive = true;
     }
 
+    public void setMap(Westeros map) {
+        this.gameBoard = map;
+    }
+    
     public static int getCriticSuccessLevel() {
         return CRITIC_SUCCESS_LEVEL;
     }
@@ -96,7 +101,12 @@ public abstract class Character {
 		return this.isAlive;
 	}
 
-	protected int determineStepNumbers() {
+    protected int determineStepNumbers() {
+        if (this instanceof Human) {
+            Human character = (Human)this;
+            if (character.stamina == 0) return 0;
+        }
+                
         switch(this.rollDice()) {
             case CRITIC_SUCCESS:
                 return MAX_STEP_NUMBER;
@@ -178,6 +188,20 @@ public abstract class Character {
         int x = currentBox.getX(), xMax = Westeros.getWidth(),
             y = currentBox.getY(), yMax = Westeros.getHeight();
 
+        /*
+        if (this instanceof Human) {
+            Human character = (Human)this;
+            if (character.stamina <= character.LOW_STAMINA) {
+                //les 3 directions qui rapprochent de la safezone en verifiant qu'elles ne sont pas bouchées
+                //si bouchées, ne se déplace pas (économise ses forces)
+                list.add(Direction.North);
+                list.add(Direction.North);
+                list.add(Direction.North);
+                return list;
+            }
+        }
+*/
+        
         //haut gauche: (0,0) ; bas droite : (max,max) => inversion des y
         if (y-1 >= 0 
                 && map[x][y-1].isEmpty()) {
@@ -246,30 +270,38 @@ public abstract class Character {
         return nextBox;
     }
     
-    protected void move(Box[][] map) throws IOException {
-        ArrayList<Direction>possibleDirections = possibleDirections(Westeros.getWidth(), Westeros.getHeight());
+    protected void move() throws IOException {
+        //etape 1 : recuperer les directions de deplacement envisageables
+        //ArrayList<Direction>possibleDirections = possibleDirections(Westeros.getWidth(), Westeros.getHeight());
+        ArrayList<Direction> possibleDirections = possibleDirections_alternative(gameBoard.getMap());
         
-        int randomIndex = (int) (Math.random() * (possibleDirections.size() - 1));
-        Direction takenDirection = possibleDirections.get(randomIndex);
-        
-        Box nextBox = currentBox;
+        //etape 2 : se deplacer le long d'une direction
         int range = determineStepNumbers();
-        while (range-- > 0 && (nextBox = stepMove(map, takenDirection)).isEmpty()) {
-            movmentConsequences();
+        if (!possibleDirections.isEmpty()) {
+            //choisir une direction au hasard
+            int randomIndex = (int) (Math.random() * (possibleDirections.size() - 1));
+            Direction takenDirection = possibleDirections.get(randomIndex);
+
+            //tant que la case suivante est vide et à portée, le perso se déplace + action de se déplacer dans movmentConsequences (perte de stamina, gain de pv, xp...)
+            Box nextBox = currentBox;
+            while ((nextBox = stepMove(gameBoard.getMap(), takenDirection)).isEmpty() && range-- > 0) {//ET logique : si le premier test est faux, ne fait pas le second et ne décrémente pas range (normalement)
+                gameBoard.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(null);
+                currentBox = nextBox;
+                gameBoard.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(this);
+
+                movmentConsequences();
+            }
         }
 
-        map[currentBox.getX()][currentBox.getY()].setCharacter(null);
-        currentBox = nextBox;
-        map[currentBox.getX()][currentBox.getY()].setCharacter(this);
-
+        //etape 3 : scan des environs et interaction avec persos des cases juxtaposées
         for (int x = currentBox.getX()-1; x <= currentBox.getX()+1; ++x) {
             for (int y = currentBox.getY()-1; x <= currentBox.getY()+1; ++y) {
-                if (!map[x][y].isEmpty() && !map[x][y].isObstacle()) {
-                    if (map[x][y].getCharacter().getClass() == Human.class) {
-                        meet((Human) map[x][y].getCharacter(),range);
+                if (x != currentBox.getX() && y != currentBox.getY() && !gameBoard.getMap()[x][y].isEmpty() && !gameBoard.getMap()[x][y].isObstacle()) {
+                    if (gameBoard.getMap()[x][y].getCharacter().getClass() == Human.class) {
+                        meet((Human) gameBoard.getMap()[x][y].getCharacter(),range);
                     }
                     else {
-                        meet((WhiteWalker) map[x][y].getCharacter(),range);
+                        meet((WhiteWalker) gameBoard.getMap()[x][y].getCharacter(),range);
                     }
                 }
             }

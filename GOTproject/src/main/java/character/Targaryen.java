@@ -1,7 +1,5 @@
 package character;
 
-import map.Box;
-
 public class Targaryen extends Southerner {
 
 	//static final protected int MAX_STEP_NUMBER = 10;

@@ -1,7 +1,5 @@
 package character;
 
-import map.Box;
-
 public class Stark extends Northerner {
 
 	static final protected int MAX_STEP_NUMBER = 8;

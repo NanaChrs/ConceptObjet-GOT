@@ -1,7 +1,5 @@
 package character;
 
-import map.Box;
-
 public class Wilding extends Northerner {
 	//static final protected int MAX_STEP_NUMBER = 5;
 

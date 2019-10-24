@@ -14,7 +14,10 @@ public class Box {
     private int y;
 
 
-    public Box() {
+    public Box(int x, int y) {
+        this.x = x;
+        this.y = y;
+        isObstacle = false;
     }
     
     public boolean isEmpty() {

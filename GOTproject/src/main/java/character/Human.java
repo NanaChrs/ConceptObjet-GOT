@@ -1,18 +1,9 @@
 package character;
 
-//import java.util.ArrayList;
-import gameplay.DiceResult;
 import java.io.IOException;
 
 import gameplay.FileManager;
 import gameplay.Safezone;
-import java.util.ArrayList;
-import map.Box;
-import map.Direction;
-import map.Westeros;
-//import gameplay.DiceResult;
-//import map.Box;
-//import map.Direction;
 
 public abstract class Human extends Character {
     protected String name;
@@ -26,9 +17,8 @@ public abstract class Human extends Character {
     protected Safezone safezone;
 	
     public Human(String name) {
-        super();
         this.name = name;
-	}
+    }
 	
     
     public static int getMaxStamina() {
@@ -44,7 +34,7 @@ public abstract class Human extends Character {
     }
 
     public void setStamina(int stamina) {
-        this.stamina = (this.stamina < 0) ? 0 : stamina;
+        this.stamina = (stamina < 0) ? 0 : stamina;
     }
     
     protected void movmentConsequences() {

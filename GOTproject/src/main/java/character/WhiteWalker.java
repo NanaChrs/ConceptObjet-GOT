@@ -1,12 +1,8 @@
 package character;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import gameplay.FileManager;
-import map.Box;
-import map.Direction;
-import map.Westeros;
 
 public class WhiteWalker extends Character {
     static final protected int MAX_STEP_NUMBER = 6;
@@ -14,7 +10,6 @@ public class WhiteWalker extends Character {
 	static final protected int FAILURE_LEVEL = 40;
 
     public WhiteWalker() {
-        super();
         setPower(20);
         //setDodge(20);
     }
@@ -58,7 +53,7 @@ public class WhiteWalker extends Character {
     }
 
     @Override
-    protected void attack(Character c) throws IOException {
+    protected void attack(Character c) throws IOException {//Exception in thread "main" java.lang.ClassCastException: character.WhiteWalker cannot be cast to character.Human
         // TODO Auto-generated method stub
     		switch (this.rollDice()) {
     		case CRITIC_SUCCESS:

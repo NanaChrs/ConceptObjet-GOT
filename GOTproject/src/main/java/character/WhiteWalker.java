@@ -59,11 +59,8 @@ public class WhiteWalker extends Character {
     		case CRITIC_SUCCESS:
     		case SUCCESS:
     			Human h = (Human) c;
-    			c.life -= this.power;
-    			if(c.life <0) {
-    				c.life =0;
-    			}
-    			FileManager.writeToLogFile("[ATTACK] The whitewalker attacked successfully. "+ h.name+"from House "+ h.getClass().getSimpleName()+" lost "+c.power +"and has now "+ c.life+" hp.");
+    			c.setLife(c.life - this.power);
+    			FileManager.writeToLogFile("[ATTACK] The whitewalker attacked successfully. "+ h.name+"from House "+ h.getClass().getSimpleName()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
     			break;
     		default:
     			FileManager.writeToLogFile("[ATTACK] The whitewalker missed his attack! Nothing happened.");

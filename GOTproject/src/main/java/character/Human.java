@@ -109,6 +109,31 @@ public abstract class Human extends Character {
                     }
             }
     }
+    
+    @Override
+    protected void attack(Character c) throws IOException {
+    	switch(this.rollDice()) {
+    	case CRITIC_SUCCESS:
+    		this.superAttack(c);
+    		break;
+    	case SUCCESS:
+    		c.setLife(c.life - (int)(this.xp * 0.3) -this.power);
+    		if(c instanceof Human) {
+    			Human h = (Human) c;
+    			FileManager.writeToLogFile("[ATTACK] "+ this.name+" from House "+ this.getClass().getSimpleName()+" attacked successfully. "+ h.name+"from House "+ h.getClass().getSimpleName()+" lost "+c.power +"and has now "+ c.life+" hp.");
+    		}
+    		else {
+    			WhiteWalkers w = (WhiteWalkers) c;
+    			FileManager.writeToLogFile("[ATTACK] "+ this.name+" from House "+ this.getClass().getSimpleName()+" attacked successfully. The whitewalker lost "+c.power +"and has now "+ c.life+" hp.");
+    		}
+			break;
+		default:
+			FileManager.writeToLogFile("[ATTACK]"+ this.name+" from House "+ this.getClass().getSimpleName() +" missed his attack! Nothing happened.");
+			break;
+    	}
+    		
+    	
+    }
 
 	
     protected abstract void superAttack(Character character);

@@ -1,5 +1,9 @@
 package character;
 
+import java.io.IOException;
+
+import gameplay.FileManager;
+
 public class Lannister extends Southerner {	
 
 	//static final protected int MAX_STEP_NUMBER = 4;
@@ -10,16 +14,18 @@ public class Lannister extends Southerner {
 	}
 
 	@Override
-	protected void attack(Character character) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void superAttack(Character character) {
+	protected void superAttack(Character c) {
 		
 		// TODO Auto-generated method stub
-		
+			c.life = (int)this.life/3;
+			this.setLife(this.life - (int)this.life/3);
+			
+			try {
+				FileManager.writeToLogFile("[SUPERATTACK] A Lannister always pays his debts ! "+ this.name+" gave 1/3 of his life.");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 		//Paye l'adversaire en PE/PV (en fonction du plus faible)
 		

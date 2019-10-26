@@ -56,8 +56,7 @@ public abstract class Human extends Character {
     	
     	if(!this.isAlive()) {
     		FileManager.writeToLogFile("[DEATH] " + this.name + " from House " + this.getClass().getSimpleName() + " is killed by the whitewalker.");
-    		//character.xp += 100;
-    		//character.setLife(character.life+25);
+    		ww.setLife(ww.life+25);
     	}
     	else {
     		FileManager.writeToLogFile("[DEATH] The whitewalker is killed by "+ this.name+" from House "+ this.getClass().getSimpleName()+".");

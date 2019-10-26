@@ -18,8 +18,8 @@ public class GameMaster {
     private ArrayList<Character> population;
     private GameBoard westeros;
     
-    private final int LATENCY = 2;
-    private final int MAX_TURN = 5;
+    private final int LATENCY = 1;
+    private final int MAX_TURN = 10;
     private final int WHITEWALKER_FREQUENCY = 10;
     private int turn = 0;
     
@@ -32,13 +32,14 @@ public class GameMaster {
     }
     
     private GameMaster() {
+        UserInterface.cleanUI();
         westeros = GameBoard.getInstance();
         System.out.println("Génération du plateau");
         westeros.displayMap();
     }
 
     public void initialize(/*int populationByFaction, int maxTurn, int latency, int WWfrequency...*/) throws InterruptedException {
-        //lance une nouvelle partie
+        //lance une nouvelle partie - vider les logs 
         
         //Génère les familles avec génération de nom aléatoire
         population = new ArrayList();
@@ -65,13 +66,34 @@ public class GameMaster {
         while (turn < MAX_TURN && !isFinished()) {
             Collections.shuffle(population);
 
+            ArrayList<Character> populationAlive = new ArrayList<>(population);
+            
             for (Character character : population) {
-                character.move();
-                
-                if (!character.isAlive()) {
-                    population.remove(character);
+            	if (!character.isAlive()) {
+            		populationAlive.remove(character);
+            		westeros.removeBody(character);
+            	}
+            	else {
+            		character.move();
+            	}
+            	if (!character.isAlive()) {
+            		populationAlive.remove(character);
+            		westeros.removeBody(character);
+            	}
+            	/*
+                if (character.isAlive()) { 
+                	character.move();
+                	if (character.isAlive()) { 
+                		populationAlive.add(character);
+                	}
                 }
+                if (!character.isAlive()) {
+                	westeros.removeBody(character);
+                }
+                */
             }
+            Collections.copy(population, populationAlive);
+            
             
             //doit être vu (affiché) au moins une fois avant de bouger et interagir avec les gens
             if (turn%WHITEWALKER_FREQUENCY == 0) {

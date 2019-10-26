@@ -1,5 +1,20 @@
-[MEET] Arya from House Stark met Cersei from House Lannister.
-[MEET] Gilly from House Wilding met Arya from House Stark.
+[MEET] Arya from House Stark met Gilly from House Wilding.
 [MEET] They both gained 2 xp. And restored 1/4 of their HP.
-[MEET] Jaime from House Lannister met Sansa from House Stark.
-[MEET] Cersei from House Lannister met Arya from House Stark.
+[MEET] John from House Targaryen met Daenerys from House Targaryen.
+[MEET] They both gained -1 xp. And restored 1/4 of their HP.
+[MEET] Daenerys from House Targaryen met John from House Targaryen.
+[MEET] They both gained 1 xp. And restored 1/4 of their HP.
+[MEET] Humain rencontre whitewalker : COMBAT !
+[ATTACK] The whitewalker attacked successfully. Arya from House Stark lost 20 HP and has now 100 hp.
+[ATTACK] The whitewalker attacked successfully. Arya from House Stark lost 20 HP and has now 80 hp.
+[ATTACK] The whitewalker attacked successfully. Arya from House Stark lost 20 HP and has now 60 hp.
+[ATTACK] The whitewalker attacked successfully. Arya from House Stark lost 20 HP and has now 40 hp.
+[ATTACK] The whitewalker attacked successfully. Arya from House Stark lost 20 HP and has now 20 hp.
+[ATTACK] The whitewalker attacked successfully. Arya from House Stark lost 20 HP and has now 0 hp.
+[DEATH] Arya from House Stark is killed by the whitewalker.
+[MEET] Jaime from House Lannister met John from House Targaryen.
+[MEET] They both gained -1 xp. And restored 1/4 of their HP.
+[MEET] John from House Targaryen met Daenerys from House Targaryen.
+[MEET] They both gained 1 xp. And restored 1/4 of their HP.
+[MEET] Jaime from House Lannister met Gilly from House Wilding.
+[MEET] Sansa from House Stark met Jaime from House Lannister.

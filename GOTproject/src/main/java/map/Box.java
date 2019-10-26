@@ -20,6 +20,10 @@ public class Box {
         isObstacle = false;
     }
     
+    public void free() {
+    	character = null;
+    }
+    
     public boolean isEmpty() {
         return character==null && !isObstacle;
     }
@@ -28,16 +32,16 @@ public class Box {
         return character;
     }
 
-    public void setCharacter(character.Character character2) {
-        this.character = character2;
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 
     public boolean isObstacle() {
         return isObstacle;
     }
 
-    public void setObstacle(boolean isObstacle) {
-        this.isObstacle = isObstacle;
+    public void setObstacle() {
+        this.isObstacle = true;
     }
 
     public int getX() {

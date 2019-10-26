@@ -12,20 +12,22 @@ public abstract class Character {
     static protected int MAX_LIFE = 100;
     protected int life = 100;
     protected int power;
-    protected boolean isAlive;
     //protected int dodge;
     
-    protected GameBoard westeros;
     static protected int MAX_STEP_NUMBER;
     static protected int CRITIC_SUCCESS_LEVEL;
     static protected int FAILURE_LEVEL;
 
+    protected GameBoard westeros;
     protected Box currentBox;
     //protected Direction lastDirection;
 
     public Character() {
-    	this.isAlive = true;
         MAX_STEP_NUMBER = 5;
+    }
+    
+    public Box getBox() {
+    	return currentBox;
     }
 
     public void setMap(GameBoard map) {
@@ -102,8 +104,8 @@ public abstract class Character {
        return result;
     } 
     
-    public boolean isAlive() {//life > 0
-        return this.isAlive;
+    public boolean isAlive() {
+        return this.life > 0;
     }
 
     protected int determineStepNumbers() {
@@ -316,26 +318,7 @@ public abstract class Character {
     protected abstract void meet(Human character, int remainingBoxes) throws IOException;
     
     protected abstract void meet(WhiteWalker character, int remainingBoxes) throws IOException;
-        //Si m�me famille, ajout de PV �quitablement en fonction du nombre de cases qu'il reste � parcourir pour la personne en mouvement
-        //Si m�me faction, ajout de XP distribu� �quitablement en fct nb cases
-        //Si faction diff�rente et en dehors de safezone, combat tour par tour => method attaquer (d�pend des familles)
-        //SI plus de PE : 
-            //Si != factions : individu sans PE meurt
-            //Si mm faction : 1 seul PE d'aide transf�r�
-            //Si mm famille : moiti� des PE partag�
 
     protected abstract void attack(Character character) throws IOException;
-        // Puissance d'attaque et chance d'esquive de l'adversaire � prendre en compte
-        //Lancer de d�s (seuils de % en fonction de la famille du personnage lancant l'attaque)
-            //Si SUCCES CRITIC : attaque sp�ciale 
-            //Si SUCCES : adversaire perd des points de vie en fonction de attaquant (adversaire n'essaye pas d'esquiver (dodge) ?)
-                //Si PV adversaire tombe � 0 et attaquant != marcheur blanc, adversaire meurt et est supprime de la map et XP adversaire transf�r� � attquant 
-                //Si PV adversaire tombe � 0 et attaquant == marcheur blanc, adversaire meurt et arrivee d'un nouveau marcheur blanc
-                //Sinon, adversaire attack et ainsi de suite 
-            //Si ECHEC : 
-                //L'attaquant a rat� son attaque, rien ne se passe
-            //echec critique (?) perd pv ou exp�erience?
-
-
     
 }

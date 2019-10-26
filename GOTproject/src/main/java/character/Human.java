@@ -47,7 +47,23 @@ public abstract class Human extends Character {
     
     @Override
     protected void meet(WhiteWalker ww, int remainingBoxes) throws IOException {
-        this.attack(ww);
+    	//this.attack(ww);
+    	
+    	FileManager.writeToLogFile("[MEET] Humain rencontre whitewalker : COMBAT !");
+
+    	do {
+    		this.attack(ww);
+    		if (ww.isAlive()) ww.attack(this);
+    	} while(this.isAlive() && ww.isAlive());
+    	
+    	if(!this.isAlive()) {
+    		FileManager.writeToLogFile("[DEATH] " + this.name + " from House " + this.getClass().getSimpleName() + " is killed by the whitewalker.");
+    		//character.xp += 100;
+    		//character.setLife(character.life+25);
+    	}
+    	else {
+    		FileManager.writeToLogFile("[DEATH] The whitewalker is killed by "+ this.name+" from House "+ this.getClass().getSimpleName()+".");
+    	}
     }
 
     @Override
@@ -56,11 +72,11 @@ public abstract class Human extends Character {
 
             if(this.getClass() == h.getClass()) {
                     if(this.getStamina() == 0) {
-                            FileManager.writeToLogFile("[MEET] "+ this.name + " is exausted (0 Stamina). "+ h.name + " gave him/her half of his/her : "+ h.getStamina()/2 + ".");
+                            FileManager.writeToLogFile("[MEET] "+ this.name + " is exhausted (0 Stamina). "+ h.name + " gave him/her half of his/her : "+ h.getStamina()/2 + ".");
                             this.setStamina(h.getStamina()/2);
                     }
                     else if (h.getStamina() == 0) {
-                            FileManager.writeToLogFile("[MEET] "+ h.name + " is exausted (0 Stamina). "+ this.name + " gave him/her half of his/her : "+ this.getStamina()/2 + ".");
+                            FileManager.writeToLogFile("[MEET] "+ h.name + " is exhausted (0 Stamina). "+ this.name + " gave him/her half of his/her : "+ this.getStamina()/2 + ".");
                             h.setStamina(this.getStamina()/2);
                     }
                     else {
@@ -104,26 +120,24 @@ public abstract class Human extends Character {
     @Override
     protected void attack(Character c) throws IOException {
     	switch(this.rollDice()) {
-    	case CRITIC_SUCCESS:
-    		this.superAttack(c);
-    		break;
-    	case SUCCESS:
-    		c.setLife(c.life - (int)(this.xp * 0.3) -this.power);
-    		if(c instanceof Human) {
-    			Human h = (Human) c;
-    			FileManager.writeToLogFile("[ATTACK] "+ this.name+" from House "+ this.getClass().getSimpleName()+" attacked successfully. "+ h.name+"from House "+ h.getClass().getSimpleName()+" lost "+c.power +"and has now "+ c.life+" hp.");
-    		}
-    		else {
-    			WhiteWalker w = (WhiteWalker) c;
-    			FileManager.writeToLogFile("[ATTACK] "+ this.name+" from House "+ this.getClass().getSimpleName()+" attacked successfully. The whitewalker lost "+c.power +"and has now "+ c.life+" hp.");
-    		}
-			break;
-		default:
-			FileManager.writeToLogFile("[ATTACK]"+ this.name+" from House "+ this.getClass().getSimpleName() +" missed his attack! Nothing happened.");
-			break;
-    	}
-    		
-    	
+	    	case CRITIC_SUCCESS:
+	    		this.superAttack(c);
+	    		break;
+	    	case SUCCESS:
+	    		c.setLife(c.life - (int)(this.xp * 0.3) -this.power);
+	    		if(c instanceof Human) {
+	    			Human h = (Human) c;
+	    			FileManager.writeToLogFile("[ATTACK] "+ this.name+" from House "+ this.getClass().getSimpleName()+" attacked successfully. "+ h.name+"from House "+ h.getClass().getSimpleName()+" lost "+c.power +"and has now "+ c.life+" hp.");
+	    		}
+	    		else {
+	    			WhiteWalker w = (WhiteWalker) c;
+	    			FileManager.writeToLogFile("[ATTACK] "+ this.name+" from House "+ this.getClass().getSimpleName()+" attacked successfully. The whitewalker lost "+c.power +"and has now "+ c.life+" hp.");
+	    		}
+				break;
+			default:
+				FileManager.writeToLogFile("[ATTACK]"+ this.name+" from House "+ this.getClass().getSimpleName() +" missed his attack! Nothing happened.");
+				break;
+	    }
     }
 
 	

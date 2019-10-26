@@ -17,8 +17,8 @@ public class GameBoard {
         for(int i = 0; i < WIDTH; ++i) {
             for (int j=0; j < HEIGHT; ++j) {
                 map[i][j] = new Box(i,j);
-                if (Math.random()%1 > PROBA_OBSTACLE) {
-                    map[i][j].setObstacle(true);
+                if (Math.random() > PROBA_OBSTACLE) {
+                    map[i][j].setObstacle();
                 }
             }
         }
@@ -50,6 +50,9 @@ public class GameBoard {
         }
     }
     
+    public void removeBody(Character character) {
+    	map[character.getBox().getX()][character.getBox().getY()].free();
+    }
     
     public static int getHeight() {
         return HEIGHT;

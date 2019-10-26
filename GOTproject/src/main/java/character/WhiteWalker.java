@@ -30,21 +30,14 @@ public class WhiteWalker extends Character {
 
     @Override
     protected void meet(Human character, int remainingBoxes) throws IOException {
-        //Character att = this;
-    	//Character def = character;
+    	FileManager.writeToLogFile("[MEET] A whitewalker met "+ character.name + " from House "+ character.getClass().getSimpleName() +".");
+    	
     	do {
     		this.attack(character);
     		if (character.isAlive()) character.attack(this);
     	} while(this.isAlive() && character.isAlive());
-    	FileManager.writeToLogFile("[MEET] A whitewalker met "+ character.name + " from House "+ character.getClass().getSimpleName() +".");
     	
-    	/*while(def.life >0) {
-    		att.attack(def);
-    		Character temp = def;
-    		def = att;
-    		att = def;
-    	}*/
-    	if(!this.isAlive()/*def instanceof WhiteWalker*/) {
+    	if(!this.isAlive()) {
     		FileManager.writeToLogFile("[DEATH] The whitewalker is dead and "+ character.name+" from House "+ character.getClass().getSimpleName()+" gained 100 XP and 25 HP.");
     		character.xp += 100;
     		character.setLife(character.life+25);
@@ -52,8 +45,6 @@ public class WhiteWalker extends Character {
     	else {
     		FileManager.writeToLogFile("[DEATH] The whitewalker killed "+ character.name+" from House "+ character.getClass().getSimpleName()+".");
     	}
-    	
-    	
     }
 
     @Override
@@ -70,6 +61,5 @@ public class WhiteWalker extends Character {
     			FileManager.writeToLogFile("[ATTACK] The whitewalker missed his attack! Nothing happened.");
     			break;
     		}
-    	
     }
 }

@@ -47,9 +47,8 @@ public abstract class Human extends Character {
     
     @Override
     protected void meet(WhiteWalker ww, int remainingBoxes) throws IOException {
-    	//this.attack(ww);
+    	FileManager.writeToLogFile("[MEET] "+ this.name +" from House "+ this.getClass().getSimpleName() + " met a White Walker.");
     	
-
     	do {
     		this.attack(ww);
     		if (ww.isAlive()) ww.attack(this);
@@ -63,7 +62,6 @@ public abstract class Human extends Character {
     	else {
     		FileManager.writeToLogFile("[DEATH] The whitewalker is killed by "+ this.name+" from House "+ this.getClass().getSimpleName()+".");
     	}
-    	FileManager.writeToLogFile("[MEET] "+ this.name +" from House "+ this.getClass().getSimpleName() + " met a White Walker.");
     }
 
     @Override
@@ -115,9 +113,9 @@ public abstract class Human extends Character {
                     	Human att = this;
                     	Human def = h;
                     	
-                    	while (def.isAlive) {
+                    	while (def.life > 0) {
                     		att.attack(def);
-                    		if(def.isAlive) {
+                    		if(def.life > 0) {
                     			Human temp = def;
                     			def = att;
                     			att = temp;

@@ -68,7 +68,7 @@ public class Westeros {
             } while (!map[x][y].isEmpty());
             
             map[x][y].setCharacter(character);
-            character.setMap(this);//agrégation
+//            character.setMap(this);//agrégation
         }
     }
     

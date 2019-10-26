@@ -114,7 +114,7 @@ public abstract class Human extends Character {
     			FileManager.writeToLogFile("[ATTACK] "+ this.name+" from House "+ this.getClass().getSimpleName()+" attacked successfully. "+ h.name+"from House "+ h.getClass().getSimpleName()+" lost "+c.power +"and has now "+ c.life+" hp.");
     		}
     		else {
-    			WhiteWalkers w = (WhiteWalkers) c;
+    			WhiteWalker w = (WhiteWalker) c;
     			FileManager.writeToLogFile("[ATTACK] "+ this.name+" from House "+ this.getClass().getSimpleName()+" attacked successfully. The whitewalker lost "+c.power +"and has now "+ c.life+" hp.");
     		}
 			break;

@@ -60,6 +60,8 @@ public abstract class Human extends Character {
     	}
     	else {
     		FileManager.writeToLogFile("[DEATH] The whitewalker is killed by "+ this.name+" from House "+ this.getClass().getSimpleName()+".");
+    		this.xp += 100;
+    		this.setLife(this.life+25);
     	}
     }
 
@@ -77,9 +79,12 @@ public abstract class Human extends Character {
                             h.setStamina(this.getStamina()/2);
                     }
                     else {
-                            FileManager.writeToLogFile("[MEET] They both gained "+ remainingBoxes +" xp. And restored 1/4 of their HP.");
-                            this.xp += remainingBoxes;
-                            h.xp += remainingBoxes;
+                    	int xp;
+                    	if(remainingBoxes <0) xp = 1;
+                    	else xp = remainingBoxes;
+                            FileManager.writeToLogFile("[MEET] They both gained "+ xp +" xp. And restored 1/4 of their HP.");
+                            this.xp += xp;
+                            h.xp += xp;
                             this.life += 25;
                             h.life += 25;
                     }
@@ -94,7 +99,7 @@ public abstract class Human extends Character {
                             h.setStamina(this.getStamina()/2);
                     }
                     else {
-                            FileManager.writeToLogFile("[MEET] They both gained "+ remainingBoxes +" xp. And restored 1/4 of their HP.");
+                            FileManager.writeToLogFile("[MEET] They both restored 1/4 of their HP.");
                             this.life += 25;
                             h.life += 25;
                     }
@@ -109,20 +114,19 @@ public abstract class Human extends Character {
                             h.life = 0;
                     }
                     else {
-                    	Human att = this;
-                    	Human def = h;
+                    	do {
+                    		this.attack(h);
+                    		if (h.isAlive()) h.attack(this);
+                    	} while(this.isAlive() && h.isAlive());
                     	
-                    	while (def.life > 0) {
-                    		att.attack(def);
-                    		if(def.life > 0) {
-                    			Human temp = def;
-                    			def = att;
-                    			att = temp;
-                    		}
+                    	if(!this.isAlive()) {
+                    		h.xp += this.xp;
+                    		FileManager.writeToLogFile("[DEATH] " + this.name + " from House " + this.getClass().getSimpleName() + " is killed by "+ h.name + " from House "+ h.getClass().getSimpleName());
                     	}
-                    	att.xp += h.xp;                    	
-                        FileManager.writeToLogFile("[DEATH] "+ def.name +" from House "+  def.getClass().getSimpleName() + " was killed by "+ att.name + " from House "+ att.getClass().getSimpleName()+".");
-                        FileManager.writeToLogFile("[STATS] "+ att.name+" gained all the XP from its opponent and has now : "+ att.xp);
+                    	else {
+                    		FileManager.writeToLogFile("[DEATH] "+ h.name +" from House "+ h.getClass().getSimpleName()+" is killed by "+ this.name+" from House "+ this.getClass().getSimpleName()+".");
+                    		this.xp += h.xp;
+                    	}              	
                             
                     }
             }

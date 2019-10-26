@@ -7,6 +7,8 @@ import gameplay.FileManager;
 public class Lannister extends Southerner {	
 
 	//static final protected int MAX_STEP_NUMBER = 4;
+	static final protected int CRITIC_SUCCESS_LEVEL= 65;
+	static final protected int FAILURE_LEVEL = 5;
 	
 	public Lannister(String name) {
 		super(name);

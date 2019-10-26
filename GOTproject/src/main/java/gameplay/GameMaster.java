@@ -102,6 +102,7 @@ public class GameMaster {
             TimeUnit.SECONDS.sleep(LATENCY * 2);
             UserInterface.cleanUI();
             System.out.println("Fin du tour n°" + ++turn);
+            FileManager.writeToLogFile("[TOUR] FIN DU TOUR N°" + turn);
             westeros.displayMap();
         }
     }

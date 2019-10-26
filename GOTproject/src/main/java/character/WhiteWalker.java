@@ -31,6 +31,8 @@ public class WhiteWalker extends Character {
     @Override
     protected void meet(Human character, int remainingBoxes) throws IOException {
         // TODO Auto-generated method stub
+    	FileManager.writeToLogFile("[MEET] A whitewalker met "+ character.name + " from House "+ character.getClass().getSimpleName() +".");
+
     	Character att = this;
     	Character def = character;
     	
@@ -39,9 +41,10 @@ public class WhiteWalker extends Character {
     		Character temp = def;
     		def = att;
     		att = def;
+    		System.out.println(def);
     	}
     	if(def instanceof WhiteWalker) {
-    		FileManager.writeToLogFile("[DEATH] The whitewalker is dead and "+ character.name+" from House "+ character.getClass().getSimpleName()+" gained 100 XP and 20 HP.");
+    		FileManager.writeToLogFile("[DEATH] The whitewalker is dead and "+ character.name+" from House "+ character.getClass().getSimpleName()+" gained 100 XP and 25 HP.");
     		character.xp += 100;
     		character.setLife(character.life+25);
     	}
@@ -60,7 +63,7 @@ public class WhiteWalker extends Character {
     		case SUCCESS:
     			Human h = (Human) c;
     			c.setLife(c.life - this.power);
-    			FileManager.writeToLogFile("[ATTACK] The whitewalker attacked successfully. "+ h.name+"from House "+ h.getClass().getSimpleName()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
+    			FileManager.writeToLogFile("[ATTACK] The whitewalker attacked successfully. "+ h.name+" from House "+ h.getClass().getSimpleName()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
     			break;
     		default:
     			FileManager.writeToLogFile("[ATTACK] The whitewalker missed his attack! Nothing happened.");

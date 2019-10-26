@@ -300,10 +300,10 @@ public abstract class Character {
                     x != currentBox.getX() && y != currentBox.getY()) {
                     //va a sa rencontre
                     if (westeros.getMap()[x][y].getCharacter() instanceof Human) {
-                        //meet((Human) westeros.getMap()[x][y].getCharacter(),range);
+                        meet((Human) westeros.getMap()[x][y].getCharacter(),range);
                     }
                     else {
-                        //meet((WhiteWalker) westeros.getMap()[x][y].getCharacter(),range);
+                        meet((WhiteWalker) westeros.getMap()[x][y].getCharacter(),range);
                     }
                 }
             }

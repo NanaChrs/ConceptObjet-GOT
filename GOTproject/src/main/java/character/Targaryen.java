@@ -6,7 +6,9 @@ import gameplay.FileManager;
 
 public class Targaryen extends Southerner {
 
-	//static final protected int MAX_STEP_NUMBER = 10;
+	static final protected int CRITIC_SUCCESS_LEVEL= 95;
+
+	static final protected int FAILURE_LEVEL = 25;
 
 	public Targaryen(String string) {
 		super(string);

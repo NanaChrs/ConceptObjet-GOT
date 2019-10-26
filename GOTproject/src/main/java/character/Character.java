@@ -1,3 +1,4 @@
+
 package character;
 
 import java.io.IOException;
@@ -15,8 +16,8 @@ public abstract class Character {
     //protected int dodge;
     
     static protected int MAX_STEP_NUMBER;
-    static protected int CRITIC_SUCCESS_LEVEL;
-    static protected int FAILURE_LEVEL;
+    static protected int CRITIC_SUCCESS_LEVEL=80;
+    static protected int FAILURE_LEVEL=20;
 
     protected GameBoard westeros;
     protected Box currentBox;
@@ -91,6 +92,7 @@ public abstract class Character {
        int diceValue = (int) (Math.random() * 100) + 1;//plus grand échec : 0 | plus grande réussite : 100
        
        DiceResult result;//more to less probable
+       
        if (diceValue < Character.getCriticSuccessLevel() && diceValue > Character.getFailureLevel()) {
            result = DiceResult.SUCCESS;
        }

@@ -7,6 +7,8 @@ import gameplay.FileManager;
 public class Stark extends Northerner {
 
 	static final protected int MAX_STEP_NUMBER = 8;
+	static final protected int CRITIC_SUCCESS_LEVEL= 80;
+	static final protected int FAILURE_LEVEL = 15;
 
 	public Stark(String string) {
 		super(string);

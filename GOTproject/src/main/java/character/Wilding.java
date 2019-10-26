@@ -6,6 +6,8 @@ import gameplay.FileManager;
 
 public class Wilding extends Northerner {
 	//static final protected int MAX_STEP_NUMBER = 5;
+	static final protected int CRITIC_SUCCESS_LEVEL=75;
+	static final protected int FAILURE_LEVEL = 10;
 
 	public Wilding(String string) {
 		super(string);

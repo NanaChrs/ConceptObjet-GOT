@@ -32,11 +32,11 @@ public class WhiteWalker extends Character {
     protected void meet(Human character, int remainingBoxes) throws IOException {
         //Character att = this;
     	//Character def = character;
-    	FileManager.writeToLogFile("[MEET] Whiltewalker rencontre humain : COMBAT !");
     	do {
     		this.attack(character);
     		if (character.isAlive()) character.attack(this);
     	} while(this.isAlive() && character.isAlive());
+    	FileManager.writeToLogFile("[MEET] A whitewalker met "+ character.name + " from House "+ character.getClass().getSimpleName() +".");
     	
     	/*while(def.life >0) {
     		att.attack(def);
@@ -45,7 +45,7 @@ public class WhiteWalker extends Character {
     		att = def;
     	}*/
     	if(!this.isAlive()/*def instanceof WhiteWalker*/) {
-    		FileManager.writeToLogFile("[DEATH] The whitewalker is dead and "+ character.name+" from House "+ character.getClass().getSimpleName()+" gained 100 XP and 20 HP.");
+    		FileManager.writeToLogFile("[DEATH] The whitewalker is dead and "+ character.name+" from House "+ character.getClass().getSimpleName()+" gained 100 XP and 25 HP.");
     		character.xp += 100;
     		character.setLife(character.life+25);
     	}
@@ -64,7 +64,7 @@ public class WhiteWalker extends Character {
     		case SUCCESS:
     			Human h = (Human) c;
     			c.setLife(c.life - this.power);
-    			FileManager.writeToLogFile("[ATTACK] The whitewalker attacked successfully. "+ h.name+ " from House "+ h.getClass().getSimpleName()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
+    			FileManager.writeToLogFile("[ATTACK] The whitewalker attacked successfully. "+ h.name+" from House "+ h.getClass().getSimpleName()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
     			break;
     		default:
     			FileManager.writeToLogFile("[ATTACK] The whitewalker missed his attack! Nothing happened.");

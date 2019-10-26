@@ -13,6 +13,4 @@ public abstract class Southerner extends Human {
 		setStamina(100);
 	}
 	
-	protected abstract void attack(Character character);
-	
 }

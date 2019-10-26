@@ -13,6 +13,4 @@ public abstract class Northerner extends Human {
 		setStamina(120);
 	}
 
-	protected abstract void attack(Character character);
-
 }

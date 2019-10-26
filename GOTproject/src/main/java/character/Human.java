@@ -47,7 +47,20 @@ public abstract class Human extends Character {
     
     @Override
     protected void meet(WhiteWalker ww, int remainingBoxes) throws IOException {
-        this.attack(ww);
+    	FileManager.writeToLogFile("[MEET] "+ this.name +" from House "+ this.getClass().getSimpleName() + " met a White Walker.");
+    	Character att = this;
+    	Character def = ww;
+    	
+    	while (def.isAlive) {
+    		att.attack(def);
+    		if(def.isAlive) {
+    			Character temp = def;
+    			def = att;
+    			att = temp;
+    		}
+    	}
+    	
+    	
     }
 
     @Override
@@ -96,7 +109,21 @@ public abstract class Human extends Character {
                             h.life = 0;
                     }
                     else {
-                            this.attack(h);
+                    	Human att = this;
+                    	Human def = h;
+                    	
+                    	while (def.isAlive) {
+                    		att.attack(def);
+                    		if(def.isAlive) {
+                    			Human temp = def;
+                    			def = att;
+                    			att = temp;
+                    		}
+                    	}
+                    	att.xp += h.xp;                    	
+                        FileManager.writeToLogFile("[DEATH] "+ def.name +" from House "+  def.getClass().getSimpleName() + " was killed by "+ att.name + " from House "+ att.getClass().getSimpleName()+".");
+                        FileManager.writeToLogFile("[STATS] "+ att.name+" gained all the XP from its opponent and has now : "+ att.xp);
+                            
                     }
             }
     }

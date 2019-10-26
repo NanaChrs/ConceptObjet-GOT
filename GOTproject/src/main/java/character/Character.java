@@ -57,6 +57,7 @@ public abstract class Character {
             this.life =100;
         }
         else if (life <=0) {
+        	this.isAlive = false;
             this.life = 0;
         }
         else {

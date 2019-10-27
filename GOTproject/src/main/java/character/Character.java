@@ -11,7 +11,7 @@ import map.Direction;
 import map.GameBoard;
 
 public abstract class Character {
-    static protected int MAX_LIFE = 100;
+    final static protected int MAX_LIFE = 100; //Attribut statique qui a du sens
     protected int life = 100;
     protected int power;
     //protected int dodge;

@@ -9,10 +9,11 @@ public class Stark extends Northerner {
 	static final protected int MAX_STEP_NUMBER = 8;
 	static final protected int CRITIC_SUCCESS_LEVEL= 80;
 	static final protected int FAILURE_LEVEL = 15;
+	static protected int NB_STARKS = 0;  //Attribut statique qui a du sens
 
 	public Stark(String string) {
 		super(string);
-		// TODO Auto-generated constructor stub
+		NB_STARKS++;
 	}
 
 	@Override

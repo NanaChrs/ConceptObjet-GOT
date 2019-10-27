@@ -8,9 +8,11 @@ public class Wilding extends Northerner {
 	//static final protected int MAX_STEP_NUMBER = 5;
 	static final protected int CRITIC_SUCCESS_LEVEL=75;
 	static final protected int FAILURE_LEVEL = 10;
+	static protected int NB_WILDINGS = 0;  //Attribut statique qui a du sens
 
 	public Wilding(String string) {
 		super(string);
+		NB_WILDINGS++;
 		// TODO Auto-generated constructor stub
 	}
 

@@ -10,17 +10,18 @@ public abstract class Human extends Character {
 
     protected int level = 0; //augmentation des stats  
     protected int xp = 0;
+    
     static protected int MAX_POWER;
     static protected int MAX_STAMINA;
-    static protected int LOW_STAMINA;
+    static protected int LOW_STAMINA = 20; //Attribut statique qui a du sens
+    
     protected int stamina;
     protected Safezone safezone;
 	
     public Human(String name) {
         this.name = name;
     }
-	
-    
+	 
     public static int getMaxStamina() {
         return MAX_STAMINA;
     }

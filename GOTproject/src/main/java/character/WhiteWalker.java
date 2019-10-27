@@ -8,9 +8,11 @@ public class WhiteWalker extends Character {
     static final protected int MAX_STEP_NUMBER = 6;
 	static final protected int CRITIC_SUCESS_LEVEL = 95;
 	static final protected int FAILURE_LEVEL = 40;
-
+	static protected int NB_WHITEWALKERS = 0; //Attribut statique qui a du sens
+	
     public WhiteWalker() {
         setPower(20);
+        NB_WHITEWALKERS++;
         //setDodge(20);
     }
 

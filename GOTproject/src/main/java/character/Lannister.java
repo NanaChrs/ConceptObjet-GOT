@@ -9,9 +9,11 @@ public class Lannister extends Southerner {
 	//static final protected int MAX_STEP_NUMBER = 4;
 	static final protected int CRITIC_SUCCESS_LEVEL= 65;
 	static final protected int FAILURE_LEVEL = 5;
-	
+	static protected int NB_LANNISTERS = 0;  //Attribut statique qui a du sens
+
 	public Lannister(String name) {
 		super(name);
+		NB_LANNISTERS++;
 		// TODO Auto-generated constructor stub
 	}
 

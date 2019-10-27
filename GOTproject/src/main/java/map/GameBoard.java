@@ -9,7 +9,7 @@ public class GameBoard {
     protected static final int WIDTH = 20;
     protected Box[][] map;
 
-    private static final double PROBA_OBSTACLE = 0.95;
+    private static final double PROBA_OBSTACLE = 5;
 
     private GameBoard() {
         //initialise map
@@ -17,7 +17,7 @@ public class GameBoard {
         for(int i = 0; i < WIDTH; ++i) {
             for (int j=0; j < HEIGHT; ++j) {
                 map[i][j] = new Box(i,j);
-                if (Math.random() > PROBA_OBSTACLE) {
+                if (Math.random() > (1-(PROBA_OBSTACLE/100))) {
                     map[i][j].setObstacle();
                 }
             }

@@ -10,15 +10,6 @@ import java.nio.file.Paths;
 public class FileManager {
     protected static String fileName = "logs.txt";
     
-    /** 
-     * Constructor of the class
-     * @throws IOException 
-     */ 
-    public FileManager() throws IOException {
-    	//creates file for logs 
-        Files.createFile(Paths.get(FileManager.fileName));
-    }
-    
     public static void writeToLogFile(String content) throws IOException {
     	FileWriter fw = new FileWriter(FileManager.fileName, true);
         BufferedWriter bw = new BufferedWriter(fw);
@@ -26,5 +17,26 @@ public class FileManager {
         bw.write(content);
         bw.newLine();
         bw.close();
+    }
+    
+    public static void createLogFile() {
+    	try {
+			Files.createFile(Paths.get(FileManager.fileName));
+		} 
+        
+        catch (IOException e) {
+			System.out.println("[ERROR] Impossible de créer le fichier log");
+		}
+    }
+    
+    public static void cleanLogFile () {
+    	try {
+        	Files.delete(Paths.get(FileManager.fileName));
+        	createLogFile();
+		} 
+        
+        catch (IOException e) {
+			System.out.println("[ERROR] Impossible de nettoyer le fichier log");
+		}
     }
 }

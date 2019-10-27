@@ -16,16 +16,9 @@ public class Stark extends Northerner {
 	}
 
 	@Override
-	protected void superAttack(Character character) {
-		// TODO Auto-generated method stub
+	protected void superAttack(Character character) throws IOException {
 		character.setLife((int)character.life/2);
-		try {
-			FileManager.writeToLogFile("[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		// PV adversaire divis� par 2
+		FileManager.writeToLogFile("[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP");
+	
 	}
 }

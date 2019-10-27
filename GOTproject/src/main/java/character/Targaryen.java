@@ -16,16 +16,9 @@ public class Targaryen extends Southerner {
 	}
 
 	@Override
-	protected void superAttack(Character character) {
-		// TODO Auto-generated method stub
-		
+	protected void superAttack(Character character) throws IOException {		
 		character.setLife(0);
-		try {
-			FileManager.writeToLogFile("[SUPERATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// ONE SHOT
+		FileManager.writeToLogFile("[SUPERATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.");
+		
 	}
 }

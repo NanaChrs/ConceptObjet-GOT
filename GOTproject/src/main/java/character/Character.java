@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import gameplay.DiceResult;
+import static gameplay.UserInterface.displayConsole;
 import map.Box;
 import map.Direction;
 import map.GameBoard;
@@ -21,7 +22,7 @@ public abstract class Character {
 
     protected GameBoard westeros;
     protected Box currentBox;
-    //protected Direction lastDirection;
+    protected Direction lastDirection;
 
     public Character() {
         MAX_STEP_NUMBER = 5;
@@ -88,7 +89,7 @@ public abstract class Character {
     * Rolls a dice
     * @return diceResult   result of the throw
     */ 
-    public  DiceResult rollDice() {
+    protected  DiceResult rollDice() {
        int diceValue = (int) (Math.random() * 100) + 1;//plus grand échec : 0 | plus grande réussite : 100
        
        DiceResult result;//more to less probable
@@ -110,7 +111,7 @@ public abstract class Character {
         return this.life > 0;
     }
 
-    protected int determineStepNumbers() {
+    private int determineStepNumbers() {
         //si humain à court d'energie, bouge plus
         if (this instanceof Human) {
             Human character = (Human)this;
@@ -127,8 +128,74 @@ public abstract class Character {
         }	
     }
     
-    protected ArrayList<Direction> possibleDirections() {
-        ArrayList<Direction> list = new ArrayList();
+    private Direction stepBack() {
+        switch (lastDirection) {
+            case North:
+                return Direction.South;
+            case South:
+                return Direction.North;
+            case East:
+                return Direction.West;
+            case West:
+                return Direction.East;
+            case NorthWest:
+                return Direction.SouthEast;
+            case SouthWest:
+                return Direction.NorthEast;
+            case NorthEast:
+                return Direction.SouthWest;
+            case SouthEast:
+                return Direction.NorthWest;
+        }
+        return lastDirection;
+    }
+    
+    private Direction stepBackDiagoRight() {
+        switch (lastDirection) {
+            case North:
+                return Direction.SouthEast;
+            case South:
+                return Direction.NorthWest;
+            case East:
+                return Direction.SouthWest;
+            case West:
+                return Direction.NorthEast;
+            case NorthWest:
+                return Direction.East;
+            case SouthWest:
+                return Direction.North;
+            case NorthEast:
+                return Direction.South;
+            case SouthEast:
+                return Direction.West;
+        }
+        return lastDirection;
+    }
+    
+    private Direction stepBackDiagoLeft() {
+        switch (lastDirection) {
+            case North:
+                return Direction.SouthWest;
+            case South:
+                return Direction.NorthEast;
+            case East:
+                return Direction.NorthWest;
+            case West:
+                return Direction.SouthEast;
+            case NorthWest:
+                return Direction.South;
+            case SouthWest:
+                return Direction.East;
+            case NorthEast:
+                return Direction.West;
+            case SouthEast:
+                return Direction.North;
+        }
+        return lastDirection;
+    }
+    
+    private ArrayList<Direction> possibleDirections() {
+        ArrayList<Direction> list = new ArrayList<>();
 
         int x = currentBox.getX(), xMax = GameBoard.getWidth(),
             y = currentBox.getY(), yMax = GameBoard.getHeight();
@@ -183,10 +250,46 @@ public abstract class Character {
             list.add(Direction.West);
         }
         
+        //si a beaucoup de choix, évite de reprendre inverse de dernière direction et ses diagonales
+        if (lastDirection != null && list.size() > 1) {
+            //commence par ne pas reculer
+            Direction stepBack = stepBack();
+            if (list.contains(stepBack)) {
+                list.remove(stepBack);
+            }
+            
+            //si a encore beaucoup de choix, préfère avancer
+            if (list.size() > 2) {
+                Direction diagoRight = stepBackDiagoRight(),
+                        diagoLeft = stepBackDiagoLeft();
+                if (list.contains(diagoRight)) {
+                    list.remove(diagoRight);
+                }
+                if (list.contains(diagoLeft)) {
+                    list.remove(diagoLeft);
+                }
+            }
+            //si a juste un peu de choix, élimine une des diago 
+            else if (list.size() > 1) {
+                if (Math.random() > 0.5) {
+                    Direction diagoRight = stepBackDiagoRight();
+                    if (list.contains(diagoRight)) {
+                        list.remove(diagoRight);
+                    }
+                }
+                else {
+                    Direction diagoLeft = stepBackDiagoLeft();
+                    if (list.contains(diagoLeft)) {
+                        list.remove(diagoLeft);
+                    }
+                }
+            }
+        }
+        
         return list;
     }
 
-    protected boolean canMove(Direction takenDirection) {
+    private boolean canMove(Direction takenDirection) {
         //complémentaire de possibleDirection
         switch(takenDirection) {
             case NorthWest :
@@ -234,7 +337,7 @@ public abstract class Character {
         return false;
     }
     
-    protected Box stepMove(Direction takenDirection) {
+    private Box stepMove(Direction takenDirection) {
         //complémentaire de possibleDirection, sécurisé par canMove
         Box nextBox = this.currentBox;
         switch(takenDirection) {
@@ -266,7 +369,7 @@ public abstract class Character {
         return nextBox;
     }
     
-    public void move() throws IOException {
+    public void move(String message) throws IOException, InterruptedException {
         //etape 1 : recuperer les directions de deplacement envisageables
         ArrayList<Direction> possibleDirections = possibleDirections();
         
@@ -284,8 +387,12 @@ public abstract class Character {
                 currentBox = nextBox;
                 westeros.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(this);
                 
+                displayConsole(message, westeros, 4);
+                
                 movmentConsequences();
             }
+            
+            lastDirection = takenDirection;
         }
 
         //etape 3 : scan des environs dans carte et interaction avec persos des cases juxtaposées
@@ -297,11 +404,12 @@ public abstract class Character {
             limYSup = currentBox.getY()+1,
             yMax = GameBoard.getHeight();
         //test des limites de map dans boucle for (moins de test au total)
+        this.currentBox.displayBox();
         for (int x = limXInf+(limXInf<0 ? 1 : 0); x <= limXSup-(limXSup>=xMax ? 1 : 0); ++x) {
             for (int y = limYInf+(limYInf<0 ? 1 : 0); y <= limYSup-(limYSup>=yMax? 1 : 0); ++y) {
                 //si être vivant présent autour du perso
                 if (!westeros.getMap()[x][y].isEmpty() && !westeros.getMap()[x][y].isObstacle() && 
-                    x != currentBox.getX() && y != currentBox.getY()) {
+                    !(x == currentBox.getX() && y == currentBox.getY())) {
                     //va a sa rencontre
                     if (westeros.getMap()[x][y].getCharacter() instanceof Human) {
                         meet((Human) westeros.getMap()[x][y].getCharacter(),range);
@@ -314,7 +422,6 @@ public abstract class Character {
         }
     }
     
-    //impact d'un déplacement sur les attributs du perso
     protected abstract void movmentConsequences();
 
     protected abstract void meet(Human character, int remainingBoxes) throws IOException;

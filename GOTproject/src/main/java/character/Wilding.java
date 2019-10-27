@@ -15,19 +15,10 @@ public class Wilding extends Northerner {
 	}
 
 	@Override
-	protected void superAttack(Character character) {
-		// TODO Auto-generated method stub
-		
+	protected void superAttack(Character character) throws IOException {		
 		this.setLife(this.life+10);
 		character.setLife((int) (character.life-2*(this.power+(int)this.xp*0.3)));
-		try {
-			FileManager.writeToLogFile("[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//Barbarie 
-		
-		// Regen PV + PA doubl�e
+
+		FileManager.writeToLogFile("[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !");
 	}
 }

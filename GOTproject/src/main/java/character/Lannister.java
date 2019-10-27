@@ -16,24 +16,12 @@ public class Lannister extends Southerner {
 	}
 
 	@Override
-	protected void superAttack(Character c) {
+	protected void superAttack(Character c) throws IOException {
 		
-		// TODO Auto-generated method stub
-			c.life = (int)this.life/3;
-			this.setLife(this.life - (int)this.life/3);
-			
-			try {
-				FileManager.writeToLogFile("[SUPERATTACK] A Lannister always pays his debts ! "+ this.name+" gave 1/3 of his life.");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		c.life = (int)this.life/3;
+		this.setLife(this.life - (int)this.life/3);
 		
-		//Paye l'adversaire en PE/PV (en fonction du plus faible)
-		
-		//D�placement  du lannister d'1 case ou 2
-		
-		// FIN du combat
+		FileManager.writeToLogFile("[SUPERATTACK] A Lannister always pays his debts ! "+ this.name+" gave 1/3 of his life.");
 	}
 
 }

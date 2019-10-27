@@ -1,93 +1,137 @@
 package gameplay;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import factions.WildingsName;
+import factions.TargaryenName;
+import factions.LannisterName;
+import factions.StarkName;
 import character.Character;
+import character.Human;
 import character.Lannister;
 import character.Stark;
 import character.Targaryen;
 import character.WhiteWalker;
 import character.Wilding;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.concurrent.TimeUnit;
+import factions.Faction;
 import map.GameBoard;
 
-//gère les instances de jeu
+
 public class GameMaster {
     private static GameMaster uniqueInstance;
     private ArrayList<Character> population;
-    private GameBoard westeros;
+    private final GameBoard westeros;
 
-    private final int LATENCY = 1;
-    private final int LATENCY_END_TURN = 1;
-    private final int MAX_TURN = 10;
-    private final int WHITEWALKER_FREQUENCY = 10;
-    private int turn = 0;
+    private final static int MAX_TURN = 15;
+    private final static int WHITEWALKER_FREQUENCY = 4;
+    private final static int POP_BY_FACTION = 5;
+    private int turn;
     
     
-    public static GameMaster getInstance() {
+    public static GameMaster getInstance() throws InterruptedException {
         if (uniqueInstance == null) {
             uniqueInstance = new GameMaster();
         }
         return uniqueInstance;
     }
     
-    private GameMaster() {
-        UserInterface.cleanUI();
+    private GameMaster() throws InterruptedException {
+        UserInterface.generateSwipe();
+        UserInterface.cleanConsole();
+        FileManager.createLogFile();
         westeros = GameBoard.getInstance();
-        System.out.println("Génération du plateau");
-        westeros.displayMap();
+        UserInterface.displayConsole("Génération du plateau", westeros, 1);
     }
 
-    public void initialize(/*int populationByFaction, int maxTurn, int latency, int WWfrequency...*/) throws InterruptedException {
-        //lance une nouvelle partie - vider les logs 
+    protected void addFaction(Faction faction) {
+        //load enum content
+        ArrayList<String> names = new ArrayList<>();
+        switch(faction) {
+            case Lannister :
+                for (LannisterName name : LannisterName.values()) names.add(name.toString());
+                break;
+            case Stark :
+                for (StarkName name : StarkName.values()) names.add(name.toString());
+                break;
+            case Targaryen :
+                for (TargaryenName name : TargaryenName.values()) names.add(name.toString());
+                break;
+            case Wildings :
+                for (WildingsName name : WildingsName.values()) names.add(name.toString());
+                break;
+        }
         
-        //Génère les familles avec génération de nom aléatoire
-        population = new ArrayList();
-        population.add(new Lannister(FactionLannister.Cersei.toString()));
-        population.add(new Lannister(FactionLannister.Jaime.toString()));
-        population.add(new Stark(FactionStark.Arya.toString()));
-        population.add(new Stark(FactionStark.Sansa.toString()));
-        population.add(new Targaryen(FactionTargaryen.John.toString()));
-        population.add(new Targaryen(FactionTargaryen.Daenerys.toString()));
-        population.add(new Wilding(FactionWildings.Gilly.toString()));
-        population.add(new Wilding(FactionWildings.Tormund.toString()));
+        //normalize
+        while (names.size() > POP_BY_FACTION) names.remove((int)(Math.random() * names.size()));
         
+        //generate factions
+        switch(faction) {
+            case Lannister :
+                for (String perso : names) population.add(new Lannister(perso));
+                break;
+            case Stark :
+                for (String perso : names) population.add(new Stark(perso));
+                break;
+            case Targaryen :
+                for (String perso : names) population.add(new Targaryen(perso));
+                break;
+            case Wildings :
+                for (String perso : names) population.add(new Wilding(perso));
+                break;
+        }
+    }
+    
+    public void initialize(/*int popByFaction, int maxTurn, int latency, int WWfrequency...*/) throws InterruptedException, IOException {
+        //lance une nouvelle partie
+    	FileManager.cleanLogFile();
+        FileManager.writeToLogFile("[GAME] New simulation");
+        turn = 0;
+        
+        //Génère les familles avec génération de noms aléatoires
+        population = new ArrayList<>();
+        addFaction(Faction.Lannister);
+        addFaction(Faction.Stark);
+        addFaction(Faction.Targaryen);
+        addFaction(Faction.Wildings);
         westeros.addCharacters(population);
         
-        TimeUnit.SECONDS.sleep(LATENCY);
-        UserInterface.cleanUI();
-        System.out.println("Positionnement des personnages");
-        westeros.displayMap();
+        UserInterface.displayConsole("Positionnement des personnages", westeros, 1);
     }
     
     public void run() throws InterruptedException, IOException {
         //exécution de la simulation tour par tour
         turn = 0;
         while (turn < MAX_TURN && !isFinished()) {
-        	FileManager.writeToLogFile("\n[SYSTEM] Turn " + turn);
+            UserInterface.displayConsole("Début du tour n°" + ++turn, westeros, 1);
+            FileManager.writeToLogFile("\n[GAME] TURN N°" + turn + " BEGIN");
+            
             Collections.shuffle(population);
 
             //1 seule opération si vivant (pas add + remove)
             ArrayList<Character> populationAlive = new ArrayList<>();
             for (Character character : population) {
+                String name;
+                if (character instanceof Human) {
+                	 name = ((Human)character).getName() + " (" + character.getClass().getSimpleName() + ")";
+                }
+                else {
+                	name = "marcheur blanc";
+                }
+                
                 if (character.isAlive()) {//n'a pas été tué pendant un combat
-                	character.move();
-
-                    TimeUnit.SECONDS.sleep(LATENCY);
-                    UserInterface.cleanUI();
-                    westeros.displayMap();
+                    character.move("Tour n°" + turn + "\nDéplacement de " + name);
                     
-                	if (character.isAlive()) {//n'est pas mort dans son combat
-                		populationAlive.add(character);
-                	}
+                    UserInterface.displayConsole("Tour n°" + turn + "\nDéplacement de " + name, westeros, 3);
+                    
+                    if (character.isAlive()) {//n'est pas mort dans son combat
+                        populationAlive.add(character);
+                    }
                 }
                 if (!character.isAlive()) {
-                	westeros.removeBody(character);
-                	
-	                TimeUnit.SECONDS.sleep(LATENCY);
-	                UserInterface.cleanUI();
-	                westeros.displayMap();
+                    westeros.removeBody(character);
+                    UserInterface.displayConsole("Tour n°" + turn + "\nMort de " + name, westeros, 2);
                 }
             }
             Collections.copy(population, populationAlive);
@@ -97,13 +141,10 @@ public class GameMaster {
                 Character white = new WhiteWalker();
                 westeros.addCharacter(white);
                 population.add(white);
+                
+                FileManager.writeToLogFile("\n[GAME] New WhiteWalker");
+                UserInterface.displayConsole("Tour n°" + turn + "\nUn white walker arrive !", westeros, 1);
             }
-            
-            TimeUnit.SECONDS.sleep(LATENCY * 2);
-            UserInterface.cleanUI();
-            System.out.println("Fin du tour n°" + ++turn);
-            FileManager.writeToLogFile("[TOUR] FIN DU TOUR N°" + turn);
-            westeros.displayMap();
         }
     }
     

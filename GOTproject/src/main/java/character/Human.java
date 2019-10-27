@@ -37,6 +37,12 @@ public abstract class Human extends Character {
         this.stamina = (stamina < 0) ? 0 : stamina;
     }
     
+    public String getName() {
+		return name;
+	}
+
+
+	@Override
     protected void movmentConsequences() {
         //Si en dehors de sa SafeZone --> perte de PE
         //Sinon --> r�cup�re 3PE
@@ -66,7 +72,7 @@ public abstract class Human extends Character {
     }
 
     @Override
-    public void meet(Human h, int remainingBoxes) throws IOException {
+    protected void meet(Human h, int remainingBoxes) throws IOException {
             FileManager.writeToLogFile("[MEET] "+ this.name +" from House "+ this.getClass().getSimpleName() + " met " + h.name + " from House "+ h.getClass().getSimpleName() +".");
 
             if(this.getClass() == h.getClass()) {
@@ -156,5 +162,5 @@ public abstract class Human extends Character {
     }
 
 	
-    protected abstract void superAttack(Character character);
+    protected abstract void superAttack(Character character) throws IOException;
 }

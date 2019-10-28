@@ -1,12 +1,15 @@
 package map;
 
 import character.Character;
+import factions.Faction;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameBoard {
     private static GameBoard uniqueInstance;
     protected static final int HEIGHT = 20;
     protected static final int WIDTH = 20;
+    protected ArrayList<SafeZone> towns;
     protected Box[][] map;
 
     private static final double PROBA_OBSTACLE = 5;
@@ -14,6 +17,7 @@ public class GameBoard {
     private GameBoard() {
         //initialise map
         map = new Box[GameBoard.WIDTH][GameBoard.HEIGHT];
+        
         for(int i = 0; i < WIDTH; ++i) {
             for (int j=0; j < HEIGHT; ++j) {
                 map[i][j] = new Box(i,j);
@@ -21,6 +25,14 @@ public class GameBoard {
                     map[i][j].setObstacle();
                 }
             }
+        }
+        
+        towns = new ArrayList<>();
+        ArrayList<Direction> corners = new ArrayList<>(Arrays.asList(Direction.NorthEast, Direction.NorthWest,
+                                                                     Direction.SouthEast, Direction.SouthWest));
+        for (Faction population : Faction.values()) {
+            towns.add(new SafeZone(this, population, corners.get((int) (Math.random() * corners.size()))));
+            corners.remove(towns.get(towns.size()-1).getCorner());
         }
     }
 
@@ -50,6 +62,20 @@ public class GameBoard {
         }
     }
     
+    public SafeZone getSafeZone(String population) {//buggé?
+        switch(population) {
+            case "Lannister":
+                return towns.get(towns.indexOf(Faction.Lannister));
+            case "Stark":
+                return towns.get(towns.indexOf(Faction.Stark));
+            case "Targaryen":
+                return towns.get(towns.indexOf(Faction.Targaryen));
+            case "Wilding":
+                return towns.get(towns.indexOf(Faction.Wilding));
+        }
+        return null;
+    }
+    
     public void removeBody(Character character) {
     	map[character.getBox().getX()][character.getBox().getY()].free();
     }
@@ -73,12 +99,12 @@ public class GameBoard {
         for(int x = 0; x < WIDTH*2 + 2; x++) result+=vert;
         result += "\n";
         
-        //haut gauche: (0,0) ; bas droite : (max,max) => inversion des y
         for (int y = HEIGHT-1; y >= 0; y-- ) {
             result += horiz;
             for(int x = 0; x < WIDTH; x++) {
-                result += (!map[x][y].isEmpty())? map[x][y].displayBox() : " ";
-                result += " ";//double la largeur pour equivaloir la hauteur
+                result += map[x][y].displayBox() + " ";
+                //result += (!map[x][y].isEmpty())? map[x][y].displayBox() : " ";//remplacer pour avoir les safeZone
+                //result += " ";//double la largeur pour equivaloir la hauteur
             }
             result += horiz + "\n";
         }

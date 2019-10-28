@@ -22,10 +22,24 @@ public abstract class Character {
 
     protected GameBoard westeros;
     protected Box currentBox;
-    protected Direction lastDirection;
 
     public Character() {
         MAX_STEP_NUMBER = 5;
+    }
+    
+    public void death() throws InterruptedException {
+        westeros.removeBody(this);
+        displayConsole((this instanceof Human? ((Human)this).name + " " + this.getClass().getSimpleName() : "Un marcheur blanc") + 
+                " meurt", westeros, 2);
+    }
+
+    public int getLife() {
+        return life;
+    }
+
+    public void setLife(int life) throws InterruptedException {
+        if (life <= 0) this.death();
+        this.life = (life > MAX_LIFE)? MAX_LIFE : life;
     }
     
     public Box getBox() {
@@ -52,28 +66,16 @@ public abstract class Character {
         return MAX_STEP_NUMBER;
     }
 
-    public int getLife() {
-        return life;
-    }
-
-    public void setLife(int life) {
-        if(life > MAX_LIFE) {
-            this.life =100;
-        }
-        else if (life <=0) {
-            this.life = 0;
-        }
-        else {
-            this.life = life;
-        }
-    }
-
     public int getPower() {
         return power;
     }
 
     public void setPower(int power) {
         this.power = (this.power < 0) ? 0 : power;
+    }
+    
+    public boolean isAlive() {
+        return this.life > 0;
     }
 /*
     public int getDodge() {
@@ -105,17 +107,12 @@ public abstract class Character {
        }
 
        return result;
-    } 
-    
-    public boolean isAlive() {
-        return this.life > 0;
     }
 
     private int determineStepNumbers() {
         //si humain à court d'energie, bouge plus
-        if (this instanceof Human) {
-            Human character = (Human)this;
-            if (character.stamina == 0) return 0;
+        if (this instanceof Human && ((Human)this).stamina == 0) {
+            return 0;
         }
         
         switch(this.rollDice()) {
@@ -128,271 +125,105 @@ public abstract class Character {
         }	
     }
     
-    private Direction stepBack() {
-        switch (lastDirection) {
-            case North:
-                return Direction.South;
-            case South:
-                return Direction.North;
-            case East:
-                return Direction.West;
-            case West:
-                return Direction.East;
-            case NorthWest:
-                return Direction.SouthEast;
-            case SouthWest:
-                return Direction.NorthEast;
-            case NorthEast:
-                return Direction.SouthWest;
-            case SouthEast:
-                return Direction.NorthWest;
+    private boolean isNextFree(Direction takenDirection) {
+        int posX = this.currentBox.getX(), posY = this.currentBox.getY();
+        int xMax = GameBoard.getWidth(), yMax = GameBoard.getHeight();
+        
+        switch(takenDirection) {//bas gauche: (0,0) ; haut droite : (max,max)
+            case NorthWest :
+                return (posX-1 >= 0 &&      posY+1 < yMax &&    westeros.getMap()[posX-1][posY+1].isEmpty());
+            case North :
+                return (                    posY+1 < yMax &&    westeros.getMap()[posX][posY+1].isEmpty());
+            case NorthEast :
+                return (posX+1 < xMax &&    posY+1 < yMax &&    westeros.getMap()[posX+1][posY+1].isEmpty());
+            case East :
+                return (posX+1 < xMax &&                        westeros.getMap()[posX+1][posY].isEmpty());
+            case SouthEast :
+                return (posX+1 < xMax &&    posY-1 >= 0 &&      westeros.getMap()[posX+1][posY-1].isEmpty());
+            case South :
+                return (                    posY-1 >= 0 &&      westeros.getMap()[posX][posY-1].isEmpty());
+            case SouthWest :
+                return (posX-1 >= 0 &&      posY-1 >= 0 &&      westeros.getMap()[posX-1][posY-1].isEmpty());
+            case West :
+                return (posX-1 >= 0 &&                          westeros.getMap()[posX-1][posY].isEmpty());
+            default:
+                return false;
         }
-        return lastDirection;
-    }
-    
-    private Direction stepBackDiagoRight() {
-        switch (lastDirection) {
-            case North:
-                return Direction.SouthEast;
-            case South:
-                return Direction.NorthWest;
-            case East:
-                return Direction.SouthWest;
-            case West:
-                return Direction.NorthEast;
-            case NorthWest:
-                return Direction.East;
-            case SouthWest:
-                return Direction.North;
-            case NorthEast:
-                return Direction.South;
-            case SouthEast:
-                return Direction.West;
-        }
-        return lastDirection;
-    }
-    
-    private Direction stepBackDiagoLeft() {
-        switch (lastDirection) {
-            case North:
-                return Direction.SouthWest;
-            case South:
-                return Direction.NorthEast;
-            case East:
-                return Direction.NorthWest;
-            case West:
-                return Direction.SouthEast;
-            case NorthWest:
-                return Direction.South;
-            case SouthWest:
-                return Direction.East;
-            case NorthEast:
-                return Direction.West;
-            case SouthEast:
-                return Direction.North;
-        }
-        return lastDirection;
     }
     
     private ArrayList<Direction> possibleDirections() {
         ArrayList<Direction> list = new ArrayList<>();
 
-        int x = currentBox.getX(), xMax = GameBoard.getWidth(),
-            y = currentBox.getY(), yMax = GameBoard.getHeight();
-
         /*
         //si humain bientot à court d'énergie, cherche safezone -> implémnter safezone
-        if (this instanceof Human) {
-            Human character = (Human)this;
-            if (character.stamina <= character.LOW_STAMINA) {
-                //les 3 directions qui rapprochent de la safezone en verifiant qu'elles ne sont pas bouchées
-                //si bouchées, ne se déplace pas (économise ses forces)
-                list.add(Direction.North);
-                list.add(Direction.North);
-                list.add(Direction.North);
-                return list;
-            }
+        if (this instanceof Human && ((Human)this).stamina <= Human.LOW_STAMINA) {
+            Direction corner = ((Human)this).westeros.getSafeZone(this.getClass().getSimpleName()).getCorner();
+
+            //les 3 directions qui rapprochent de la safezone en verifiant qu'elles ne sont pas bouchées
+            //si bouchées, ne se déplace pas (économise ses forces)
+            list.add(corner);
+            list.add(corner);
+            list.add(corner);
+
+            return list;
         }
 */
         
         //ajoute directions dégagées à une case de distance
-        //bas gauche: (0,0) ; haut droite : (max,max)
-        if (x-1 >= 0 && y+1 < yMax 
-                && westeros.getMap()[x-1][y+1].isEmpty()) {
-            list.add(Direction.NorthWest);
-        }
-        if (y+1 < yMax 
-                && westeros.getMap()[x][y+1].isEmpty()) {
-            list.add(Direction.North);
-        }
-        if (x+1 < xMax && y+1 < yMax 
-                && westeros.getMap()[x+1][y+1].isEmpty()) {
-            list.add(Direction.NorthEast);
-        }
-        if (x+1 < xMax 
-                && westeros.getMap()[x+1][y].isEmpty()) {
-            list.add(Direction.East);
-        }
-        if (x+1 < xMax && y-1 >= 0 
-                && westeros.getMap()[x+1][y-1].isEmpty()) {
-            list.add(Direction.SouthEast);
-        }
-        if (y-1 >= 0 
-                && westeros.getMap()[x][y-1].isEmpty()) {
-            list.add(Direction.South);
-        }
-        if (x-1 >= 0 && y-1 >= 0 
-                && westeros.getMap()[x-1][y-1].isEmpty()) {
-            list.add(Direction.SouthWest);
-        }
-        if (x-1 >= 0 
-                && westeros.getMap()[x-1][y].isEmpty()) {
-            list.add(Direction.West);
-        }
-        
-        //si a beaucoup de choix, évite de reprendre inverse de dernière direction et ses diagonales
-        if (lastDirection != null && list.size() > 1) {
-            //commence par ne pas reculer
-            Direction stepBack = stepBack();
-            if (list.contains(stepBack)) {
-                list.remove(stepBack);
-            }
-            
-            //si a encore beaucoup de choix, préfère avancer
-            if (list.size() > 2) {
-                Direction diagoRight = stepBackDiagoRight(),
-                        diagoLeft = stepBackDiagoLeft();
-                if (list.contains(diagoRight)) {
-                    list.remove(diagoRight);
-                }
-                if (list.contains(diagoLeft)) {
-                    list.remove(diagoLeft);
-                }
-            }
-            //si a juste un peu de choix, élimine une des diago 
-            else if (list.size() > 1) {
-                if (Math.random() > 0.5) {
-                    Direction diagoRight = stepBackDiagoRight();
-                    if (list.contains(diagoRight)) {
-                        list.remove(diagoRight);
-                    }
-                }
-                else {
-                    Direction diagoLeft = stepBackDiagoLeft();
-                    if (list.contains(diagoLeft)) {
-                        list.remove(diagoLeft);
-                    }
-                }
+        for (Direction dir : Direction.values()) {
+            if(isNextFree(dir)) {
+                list.add(dir);
             }
         }
         
         return list;
     }
 
-    private boolean canMove(Direction takenDirection) {
-        //complémentaire de possibleDirection
-        switch(takenDirection) {
-            case NorthWest :
-                if (this.currentBox.getX()-1 >= 0 && this.currentBox.getY()+1 < GameBoard.getHeight()) {
-                    return true;
-                }
-                break;
-            case North :
-                if (this.currentBox.getY()+1 < GameBoard.getHeight()) {
-                    return true;
-                }
-                break;
-            case NorthEast :
-                if (this.currentBox.getX()+1 < GameBoard.getWidth() && this.currentBox.getY()+1 < GameBoard.getHeight()) {
-                    return true;
-                }
-                break;
-            case East :
-                if (this.currentBox.getX()+1 < GameBoard.getWidth()) {
-                    return true;
-                }
-                break;
-            case SouthEast :
-                if (this.currentBox.getX()+1 < GameBoard.getWidth() && this.currentBox.getY()-1 >= 0) {
-                    return true;
-                }
-                break;
-            case South :
-                if (this.currentBox.getY()-1 >= 0) {
-                    return true;
-                }
-                break;
-            case SouthWest :
-                if (this.currentBox.getX()-1 >= 0 && this.currentBox.getY()-1 >= 0) {
-                    return true;
-                }
-                break;
-            case West :
-                if (this.currentBox.getX()-1 >= 0) {
-                    return true;
-                }
-                break;
-        }
-        
-        return false;
-    }
-    
     private Box stepMove(Direction takenDirection) {
-        //complémentaire de possibleDirection, sécurisé par canMove
-        Box nextBox = this.currentBox;
+        //complémentaire de isNextFree
         switch(takenDirection) {
             case NorthWest :
-                nextBox = westeros.getMap()[this.currentBox.getX()-1][this.currentBox.getY()+1];
-                break;
+                return westeros.getMap()[this.currentBox.getX()-1][this.currentBox.getY()+1];
             case North :
-                nextBox = westeros.getMap()[this.currentBox.getX()][this.currentBox.getY()+1];
-                break;
+                return westeros.getMap()[this.currentBox.getX()][this.currentBox.getY()+1];
             case NorthEast :
-                nextBox = westeros.getMap()[this.currentBox.getX()+1][this.currentBox.getY()+1];
-                break;
+                return westeros.getMap()[this.currentBox.getX()+1][this.currentBox.getY()+1];
             case East :
-                nextBox = westeros.getMap()[this.currentBox.getX()+1][this.currentBox.getY()];
-                break;
+                return westeros.getMap()[this.currentBox.getX()+1][this.currentBox.getY()];
             case SouthEast :
-                nextBox = westeros.getMap()[this.currentBox.getX()+1][this.currentBox.getY()-1];
-                break;
+                return westeros.getMap()[this.currentBox.getX()+1][this.currentBox.getY()-1];
             case South :
-                nextBox = westeros.getMap()[this.currentBox.getX()][this.currentBox.getY()-1];
-                break;
+                return westeros.getMap()[this.currentBox.getX()][this.currentBox.getY()-1];
             case SouthWest :
-                nextBox = westeros.getMap()[this.currentBox.getX()-1][this.currentBox.getY()-1];
-                break;
+                return westeros.getMap()[this.currentBox.getX()-1][this.currentBox.getY()-1];
             case West :
-                nextBox = westeros.getMap()[this.currentBox.getX()-1][this.currentBox.getY()];
-                break;
+                return westeros.getMap()[this.currentBox.getX()-1][this.currentBox.getY()];
+            default:
+                return currentBox;//ou null
         }
-        return nextBox;
     }
     
-    public void move(String message) throws IOException, InterruptedException {
+    public void move() throws IOException, InterruptedException {
         //etape 1 : recuperer les directions de deplacement envisageables
-        ArrayList<Direction> possibleDirections = possibleDirections();
+        ArrayList<Direction> validDir = possibleDirections();
         
         //etape 2 : se deplacer le long d'une direction
         int range = determineStepNumbers();
-        if (!possibleDirections.isEmpty()) {
+        if (!validDir.isEmpty() && range > 0) {
             //choisir une direction au hasard
-            int randomIndex = (int) (Math.random() * (possibleDirections.size() - 1));
-            Direction takenDirection = possibleDirections.get(randomIndex);
+            Direction takenDir = validDir.get((int)(Math.random() * validDir.size()));
             
             //tant que la case suivante est vide et à portée, le perso se déplace + action de se déplacer dans movmentConsequences (perte de stamina, gain de pv, xp...)
-            Box nextBox = currentBox;
-            while (canMove(takenDirection) && (nextBox = stepMove(takenDirection)).isEmpty() && range-- > 0) {//ET logique : si le premier test est faux, ne fait pas le second et ne décrémente pas range (normalement)
+            do {//premiere case forcément vide
                 westeros.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(null);
-                currentBox = nextBox;
+                currentBox = stepMove(takenDir);
                 westeros.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(this);
                 
-                displayConsole(message, westeros, 4);
+                displayConsole((this instanceof Human? ((Human)this).name + " " + this.getClass().getSimpleName() : "Un marcheur blanc") + 
+                        " se déplace", westeros, 3);
                 
                 movmentConsequences();
-            }
-            
-            lastDirection = takenDirection;
+            } while(--range > 0 && isNextFree(takenDir));
         }
 
         //etape 3 : scan des environs dans carte et interaction avec persos des cases juxtaposées
@@ -422,12 +253,11 @@ public abstract class Character {
         }
     }
     
-    protected abstract void movmentConsequences();
+    protected abstract void movmentConsequences() throws InterruptedException;
 
-    protected abstract void meet(Human character, int remainingBoxes) throws IOException;
+    protected abstract void meet(Human character, int remainingBoxes) throws IOException, InterruptedException;
     
-    protected abstract void meet(WhiteWalker character, int remainingBoxes) throws IOException;
+    protected abstract void meet(WhiteWalker character, int remainingBoxes) throws IOException, InterruptedException;
 
-    protected abstract void attack(Character character) throws IOException;
-    
+    protected abstract void attack(Character character) throws IOException, InterruptedException;
 }

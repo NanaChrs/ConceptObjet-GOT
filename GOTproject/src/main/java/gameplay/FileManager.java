@@ -21,22 +21,24 @@ public class FileManager {
     
     public static void createLogFile() {
     	try {
-			Files.createFile(Paths.get(FileManager.fileName));
-		} 
+            if (Files.notExists(Paths.get(FileManager.fileName))) {
+                Files.createFile(Paths.get(FileManager.fileName));
+            }
+        } 
         
         catch (IOException e) {
-			System.out.println("[ERROR] Impossible de créer le fichier log");
-		}
+            System.out.println("[ERROR] Impossible de créer le fichier log");
+        }
     }
     
     public static void cleanLogFile () {
     	try {
-        	Files.delete(Paths.get(FileManager.fileName));
-        	createLogFile();
-		} 
-        
+            Files.delete(Paths.get(FileManager.fileName));
+            createLogFile();
+        } 
+
         catch (IOException e) {
-			System.out.println("[ERROR] Impossible de nettoyer le fichier log");
-		}
+            System.out.println("[ERROR] Impossible de nettoyer le fichier log");
+        }
     }
 }

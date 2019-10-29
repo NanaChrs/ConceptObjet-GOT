@@ -4,7 +4,6 @@ import character.Character;
 import character.Lannister;
 import character.Stark;
 import character.Targaryen;
-import character.WhiteWalker;
 import character.Wilding;
 import factions.Faction;
 
@@ -56,6 +55,10 @@ public class Box {
 
     public void setCharacter(Character character) {
         this.character = character;
+    }
+    
+    public void removeCharacter() {
+        this.character = null;
     }
 
     public boolean isObstacle() {

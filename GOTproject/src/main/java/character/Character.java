@@ -9,43 +9,48 @@ import static gameplay.UserInterface.displayConsole;
 import map.Box;
 import map.Direction;
 import map.GameBoard;
+import map.SafeZone;
 
 public abstract class Character {
-    final static protected int MAX_LIFE = 100; //Attribut statique qui a du sens
-    protected int life = 100;
-    protected int power;
-    //protected int dodge;
+    //Attributs - Instance définie par :
+    //  sa position sur la map et la possibilité de s'y mouvoir
+    protected GameBoard westeros;//agrégation
+    protected Box currentBox;//agrégation
+    protected final static int MAX_RANGE = 5; //Attribut statique qui a du sens
     
-    static protected int MAX_STEP_NUMBER;
-    static protected int CRITIC_SUCCESS_LEVEL=80;
-    static protected int FAILURE_LEVEL=20;
-
-    protected GameBoard westeros;
-    protected Box currentBox;
-
-    public Character() {
-        MAX_STEP_NUMBER = 5;
+    //  sa vie et les dégâts qu'il fait
+    protected final static int DEFAULT_STAT_VALUE = 100;
+    protected int maxLife;//ww op car + de vie que les autres
+    protected int life;
+    protected int maxPower;//ww op car + de power que les autres & systeme de niveau
+    protected int power;
+    //protected int dodge;//ajouter complexité aux combats
+    
+    //  sa chance
+    private final static int DEFAULT_THRESHOLD_VALUE = 50;
+    private final static int THRESHOLD_MAX = 100; //Attribut statique qui a du sens
+    private final int criticalSuccessThreshold;
+    private final int failureThreshold;
+    
+    //Constructeur & destructeur - naissance et mort de l'instance
+    public Character(int maxLife, int maxPower, int power, int criticalSuccessThreshold, int failureThreshold) {
+        this.life = this.maxLife    = maxLife > 0   ? maxLife   : DEFAULT_STAT_VALUE;
+        this.maxPower               = maxPower > 0  ? maxPower  : DEFAULT_STAT_VALUE;
+        
+        this.power = power < 0 ? 0 : (power > this.maxPower ? DEFAULT_STAT_VALUE/4 : power);
+        
+        this.criticalSuccessThreshold   = criticalSuccessThreshold < 0  ? DEFAULT_THRESHOLD_VALUE   : (criticalSuccessThreshold > THRESHOLD_MAX ? THRESHOLD_MAX : criticalSuccessThreshold);
+        this.failureThreshold           = failureThreshold < 0          ? DEFAULT_THRESHOLD_VALUE   : (failureThreshold         > THRESHOLD_MAX ? THRESHOLD_MAX : failureThreshold);
     }
     
     public void death() throws InterruptedException {
         westeros.removeBody(this);
-        displayConsole((this instanceof Human? ((Human)this).name + " " + this.getClass().getSimpleName() : "Un marcheur blanc") + 
-                " meurt", westeros, 2);
-    }
-
-    public int getLife() {
-        return life;
-    }
-
-    public void setLife(int life) throws InterruptedException {
-        if (life <= 0) this.death();
-        this.life = (life > MAX_LIFE)? MAX_LIFE : life;
+        displayConsole((this instanceof Human? ((Human)this).getFullName() : "Le marcheur blanc") + 
+                " meurt", westeros, 3);
     }
     
-    public Box getBox() {
-    	return currentBox;
-    }
-
+    //Getters & setters utiles
+    //  position
     public void setMap(GameBoard map) {
         this.westeros = map;
     }
@@ -54,74 +59,56 @@ public abstract class Character {
         this.currentBox = position;
     }
     
-    public static int getCriticSuccessLevel() {
-        return CRITIC_SUCCESS_LEVEL;
+    public Box getBox() {
+        return this.currentBox;
     }
-
-    public static int getFailureLevel() {
-        return FAILURE_LEVEL;
+    
+    //  attributs
+    public void setLife(int life) {
+        this.life = (life > maxLife)? maxLife : life;
     }
-
-    public static int getMaxStepNumber() {
-        return MAX_STEP_NUMBER;
+    
+    public void addLife(int life) {
+        this.setLife(this.life + life);
     }
-
-    public int getPower() {
-        return power;
-    }
-
-    public void setPower(int power) {
-        this.power = (this.power < 0) ? 0 : power;
+    
+    public void reduceLife(int life) throws InterruptedException {
+        this.setLife(this.life - life);
+        if (this.life <= 0) this.death();
     }
     
     public boolean isAlive() {
         return this.life > 0;
     }
-/*
-    public int getDodge() {
-            return dodge;
+
+    public void setPower(int power) {
+        this.power = (power < 0) ? 0 : (power > maxPower ? maxPower : power);
     }
 
+    public void addPower(int power) {
+        this.setPower(this.power + power);
+    }
+
+/*
     public void setDodge(int dodge) {
             this.dodge = (this.dodge < 0) ? 0 : dodge;
     }
 */
     
-    /** 
-    * Rolls a dice
-    * @return diceResult   result of the throw
-    */ 
-    protected  DiceResult rollDice() {
-       int diceValue = (int) (Math.random() * 100) + 1;//plus grand échec : 0 | plus grande réussite : 100
-       
-       DiceResult result;//more to less probable
-       
-       if (diceValue < Character.getCriticSuccessLevel() && diceValue > Character.getFailureLevel()) {
-           result = DiceResult.SUCCESS;
-       }
-       else if (diceValue < Character.getFailureLevel()) {
-           result = DiceResult.FAILURE;
-       }
-       else {
-           result = DiceResult.CRITIC_SUCCESS;
-       }
-
-       return result;
-    }
-
-    private int determineStepNumbers() {
+    //Méthodes private - actions spécifiques
+    private int currentRange() {
         //si humain à court d'energie, bouge plus
         if (this instanceof Human && ((Human)this).stamina == 0) {
             return 0;
         }
         
         switch(this.rollDice()) {
-            case CRITIC_SUCCESS:
-                return MAX_STEP_NUMBER;
+            case CRITICAL_SUCCESS:
+                return MAX_RANGE;
             case SUCCESS: 
-                return (int) (0.5*MAX_STEP_NUMBER);
+                return (int) (0.6*MAX_RANGE);
             default: 
-                return (int) (0.25*MAX_STEP_NUMBER);
+                return (int) (0.3*MAX_RANGE);
         }	
     }
     
@@ -151,76 +138,193 @@ public abstract class Character {
         }
     }
     
-    private ArrayList<Direction> possibleDirections() {
+    private Direction diagoRight(Direction dir) {
+        switch (dir) {
+            case North:
+                return Direction.NorthEast;
+            case NorthEast:
+                return Direction.East;
+            case East:
+                return Direction.SouthEast;
+            case SouthEast:
+                return Direction.South;
+            case South:
+                return Direction.SouthWest;
+            case SouthWest:
+                return Direction.West;
+            case West:
+                return Direction.NorthWest;
+            case NorthWest:
+                return Direction.North;
+            default: 
+                return null;
+        }
+    }
+    
+    private Direction diagoLeft(Direction dir) {
+        switch (dir) {
+            case North:
+                return Direction.NorthWest;
+            case NorthWest:
+                return Direction.West;
+            case West:
+                return Direction.SouthWest;
+            case SouthWest:
+                return Direction.South;
+            case South:
+                return Direction.SouthEast;
+            case SouthEast:
+                return Direction.East;
+            case East:
+                return Direction.NorthEast;
+            case NorthEast:
+                return Direction.North;
+            default: 
+                return null;
+        }
+    }
+    
+    private ArrayList<Direction> potentialDirections() {
         ArrayList<Direction> list = new ArrayList<>();
-
-        /*
-        //si humain bientot à court d'énergie, cherche safezone -> implémnter safezone
+        
+        //si humain bientot à court d'énergie, cherche safezone
         if (this instanceof Human && ((Human)this).stamina <= Human.LOW_STAMINA) {
-            Direction corner = ((Human)this).westeros.getSafeZone(this.getClass().getSimpleName()).getCorner();
-
             //les 3 directions qui rapprochent de la safezone en verifiant qu'elles ne sont pas bouchées
             //si bouchées, ne se déplace pas (économise ses forces)
-            list.add(corner);
-            list.add(corner);
-            list.add(corner);
-
-            return list;
+            
+            //corner : duo de directions cardinales
+            Direction corner = ((Human)this).westeros.getSafeZone(this.getClass().getSimpleName()).getCorner();
+            if (isNextFree(corner)) {
+                list.add(corner);
+            }
+            
+            int posX = this.currentBox.getX(), posY = this.currentBox.getY();
+            
+            //une coordonnée au niveau de safezone : déplacement en "+"
+            if ((corner.equals(Direction.NorthWest) && posX < SafeZone.getSize()) || 
+                (corner.equals(Direction.SouthWest) && posY < SafeZone.getSize()) || 
+                (corner.equals(Direction.SouthEast) && posX > GameBoard.getWidth() - SafeZone.getSize()) || 
+                (corner.equals(Direction.NorthEast) && posY > GameBoard.getHeight() - SafeZone.getSize())) {
+                Direction diagoRight = diagoRight(corner);
+                if (isNextFree(diagoRight)) {
+                    list.add(diagoRight);
+                }
+                diagoRight = diagoRight(diagoRight);
+                if (isNextFree(diagoRight)) {
+                    list.add(diagoRight);
+                }
+            }
+            //l'autre coordonnée au niveau de safezone : déplacement en "+"
+            else if ((corner.equals(Direction.SouthWest) && posX < SafeZone.getSize()) || 
+                    (corner.equals(Direction.SouthEast) && posY < SafeZone.getSize()) || 
+                    (corner.equals(Direction.NorthEast) && posX > GameBoard.getWidth() - SafeZone.getSize()) || 
+                    (corner.equals(Direction.NorthWest) && posY > GameBoard.getHeight() - SafeZone.getSize())) {
+                Direction diagoLeft = diagoLeft(corner);
+                if (isNextFree(diagoLeft)) {
+                    list.add(diagoLeft);
+                }
+                diagoLeft = diagoLeft(diagoLeft);
+                if (isNextFree(diagoLeft)) {
+                    list.add(diagoLeft);
+                }
+            }
+            //aucune coordonnée au niveau de safezone : déplacement en "x"
+            else {
+                Direction diagoRight = diagoRight(corner);
+                if (isNextFree(diagoRight)) {
+                    list.add(diagoRight);
+                }
+                Direction diagoLeft = diagoLeft(corner);
+                if (isNextFree(diagoLeft)) {
+                    list.add(diagoLeft);
+                }
+            }
         }
-*/
-        
-        //ajoute directions dégagées à une case de distance
-        for (Direction dir : Direction.values()) {
-            if(isNextFree(dir)) {
-                list.add(dir);
+        else {
+            //ajoute directions dégagées à une case de distance
+            for (Direction dir : Direction.values()) {
+                if(isNextFree(dir)) {
+                    list.add(dir);
+                }
             }
         }
         
         return list;
     }
 
-    private Box stepMove(Direction takenDirection) {
+    private Box makeStep(Direction direction) {
         //complémentaire de isNextFree
-        switch(takenDirection) {
+        int posX = this.currentBox.getX(), posY = this.currentBox.getY();
+        
+        switch(direction) {
             case NorthWest :
-                return westeros.getMap()[this.currentBox.getX()-1][this.currentBox.getY()+1];
+                return westeros.getMap()[posX-1][posY+1];
             case North :
-                return westeros.getMap()[this.currentBox.getX()][this.currentBox.getY()+1];
+                return westeros.getMap()[posX  ][posY+1];
             case NorthEast :
-                return westeros.getMap()[this.currentBox.getX()+1][this.currentBox.getY()+1];
+                return westeros.getMap()[posX+1][posY+1];
             case East :
-                return westeros.getMap()[this.currentBox.getX()+1][this.currentBox.getY()];
+                return westeros.getMap()[posX+1][posY  ];
             case SouthEast :
-                return westeros.getMap()[this.currentBox.getX()+1][this.currentBox.getY()-1];
+                return westeros.getMap()[posX+1][posY-1];
             case South :
-                return westeros.getMap()[this.currentBox.getX()][this.currentBox.getY()-1];
+                return westeros.getMap()[posX  ][posY-1];
             case SouthWest :
-                return westeros.getMap()[this.currentBox.getX()-1][this.currentBox.getY()-1];
+                return westeros.getMap()[posX-1][posY-1];
             case West :
-                return westeros.getMap()[this.currentBox.getX()-1][this.currentBox.getY()];
+                return westeros.getMap()[posX-1][posY  ];
             default:
-                return currentBox;//ou null
+                return null;
         }
     }
     
+    //Méthodes protected - actions définies ou réutilisables en interne dans d'autres contextes
+    /** 
+    * Rolls a dice
+    * @return diceResult   result of the throw
+    */ 
+    protected  DiceResult rollDice() {
+       int diceValue = (int) (Math.random() * 100) + 1;//plus grand échec : 1 | plus grande réussite : 100
+       
+       //more to less probable
+       if (diceValue < this.criticalSuccessThreshold && diceValue > this.failureThreshold) {
+           return DiceResult.SUCCESS;
+       }
+       else if (diceValue < this.failureThreshold) {
+           return DiceResult.FAILURE;
+       }
+       else {
+           return DiceResult.CRITICAL_SUCCESS;
+       }
+    }
+
+    protected abstract void movmentConsequences();
+
+    protected abstract void meet(Human character, int remainingBoxes) throws IOException, InterruptedException;
+    
+    protected abstract void meet(WhiteWalker character, int remainingBoxes) throws IOException, InterruptedException;
+
+    protected abstract void attack(Character character) throws IOException, InterruptedException;
+    
+    //Méthodes public - actions que peut réaliser l'instance
     public void move() throws IOException, InterruptedException {
         //etape 1 : recuperer les directions de deplacement envisageables
-        ArrayList<Direction> validDir = possibleDirections();
+        ArrayList<Direction> validDir = potentialDirections();
         
         //etape 2 : se deplacer le long d'une direction
-        int range = determineStepNumbers();
+        int range = currentRange();
         if (!validDir.isEmpty() && range > 0) {
             //choisir une direction au hasard
             Direction takenDir = validDir.get((int)(Math.random() * validDir.size()));
             
             //tant que la case suivante est vide et à portée, le perso se déplace + action de se déplacer dans movmentConsequences (perte de stamina, gain de pv, xp...)
             do {//premiere case forcément vide
-                westeros.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(null);
-                currentBox = stepMove(takenDir);
+                westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
+                currentBox = makeStep(takenDir);
                 westeros.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(this);
                 
-                displayConsole((this instanceof Human? ((Human)this).name + " " + this.getClass().getSimpleName() : "Un marcheur blanc") + 
-                        " se déplace", westeros, 3);
+                displayConsole((this instanceof Human? ((Human)this).getFullName() : "Un marcheur blanc") +
+                        " se déplace" + (this instanceof Human? "(" + ((Human)this).stamina + ")" : ""), westeros, 4);
                 
                 movmentConsequences();
             } while(--range > 0 && isNextFree(takenDir));
@@ -234,30 +338,23 @@ public abstract class Character {
             limYInf = currentBox.getY()-1,
             limYSup = currentBox.getY()+1,
             yMax = GameBoard.getHeight();
+        
         //test des limites de map dans boucle for (moins de test au total)
         this.currentBox.displayBox();
         for (int x = limXInf+(limXInf<0 ? 1 : 0); x <= limXSup-(limXSup>=xMax ? 1 : 0); ++x) {
             for (int y = limYInf+(limYInf<0 ? 1 : 0); y <= limYSup-(limYSup>=yMax? 1 : 0); ++y) {
                 //si être vivant présent autour du perso
-                if (!westeros.getMap()[x][y].isEmpty() && !westeros.getMap()[x][y].isObstacle() && 
-                    !(x == currentBox.getX() && y == currentBox.getY())) {
+                Character somebody = westeros.getMap()[x][y].getCharacter();
+                if (somebody != null && !(x == currentBox.getX() && y == currentBox.getY())) {
                     //va a sa rencontre
-                    if (westeros.getMap()[x][y].getCharacter() instanceof Human) {
-                        meet((Human) westeros.getMap()[x][y].getCharacter(),range);
+                    if (somebody instanceof Human) {
+                        meet((Human) somebody,range);
                     }
                     else {
-                        meet((WhiteWalker) westeros.getMap()[x][y].getCharacter(),range);
+                        meet((WhiteWalker) somebody,range);
                     }
                 }
             }
         }
     }
-    
-    protected abstract void movmentConsequences() throws InterruptedException;
-
-    protected abstract void meet(Human character, int remainingBoxes) throws IOException, InterruptedException;
-    
-    protected abstract void meet(WhiteWalker character, int remainingBoxes) throws IOException, InterruptedException;
-
-    protected abstract void attack(Character character) throws IOException, InterruptedException;
 }

@@ -63,15 +63,10 @@ public class GameBoard {
     }
     
     public SafeZone getSafeZone(String population) {//buggé?
-        switch(population) {
-            case "Lannister":
-                return towns.get(towns.indexOf(Faction.Lannister));
-            case "Stark":
-                return towns.get(towns.indexOf(Faction.Stark));
-            case "Targaryen":
-                return towns.get(towns.indexOf(Faction.Targaryen));
-            case "Wilding":
-                return towns.get(towns.indexOf(Faction.Wilding));
+        for (SafeZone town : towns) {
+            if ((town.getSafeFor().toString()).equals(population)) {
+                return town;
+            }
         }
         return null;
     }
@@ -92,9 +87,9 @@ public class GameBoard {
         return this.map;
     }
     
-    public void displayMap() {
-        String vert = "-", horiz = "|";
+    public String displayMap() {
         String result = "";
+        String vert = "-", horiz = "|";
         
         for(int x = 0; x < WIDTH*2 + 2; x++) result+=vert;
         result += "\n";
@@ -102,14 +97,13 @@ public class GameBoard {
         for (int y = HEIGHT-1; y >= 0; y-- ) {
             result += horiz;
             for(int x = 0; x < WIDTH; x++) {
-                result += map[x][y].displayBox() + " ";
-                //result += (!map[x][y].isEmpty())? map[x][y].displayBox() : " ";//remplacer pour avoir les safeZone
-                //result += " ";//double la largeur pour equivaloir la hauteur
+                result += map[x][y].displayBox() + " ";//double la largeur pour equivaloir la hauteur
+                //result += ((!map[x][y].isEmpty())? map[x][y].displayBox() : " ") + " ";
             }
             result += horiz + "\n";
         }
         
         for(int x = 0; x < WIDTH*2 + 2; x++) result+=vert;
-        System.out.println(result);
+        return (result + "\n");
     }
 }

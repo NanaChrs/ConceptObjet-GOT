@@ -5,20 +5,25 @@ import java.io.IOException;
 import gameplay.FileManager;
 
 public class Wilding extends Northerner {
-    //static final protected int MAX_STEP_NUMBER = 5;
-    static final protected int CRITIC_SUCCESS_LEVEL=75;
-    static final protected int FAILURE_LEVEL = 10;
-    static protected int NB_WILDINGS = 0;  //Attribut statique qui a du sens
+    //statistiques
+    protected static int NB_WILDINGS = 0;  //Attribut statique qui a du sens
+    
+    //Attributs - Instance définie par :
+    //  sa chance
+    protected final static int CRITICAL_SUCCESS_THRESHOLD= 75;
+    protected final static int FAILURE_THRESHOLD = 10;
 
-    public Wilding(String string) {
-        super(string);
+    //Constructeur - naissance de l'instance
+    public Wilding(String name) {
+        super(name, CRITICAL_SUCCESS_THRESHOLD, FAILURE_THRESHOLD);
         NB_WILDINGS++;
     }
 
+    //Méthodes protected - définition d'actions
     @Override
     protected void superAttack(Character character) throws IOException, InterruptedException {		
-        this.setLife(this.life+10);
-        character.setLife((int) (character.life-2*(this.power+(int)this.xp*0.3)));
+        this.addLife(10);
+        character.reduceLife(2*this.power);
 
         FileManager.writeToLogFile("[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !");
     }

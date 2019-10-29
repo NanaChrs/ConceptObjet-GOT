@@ -1,3 +1,3 @@
 package gameplay;
 
-public enum DiceResult {CRITIC_SUCCESS, SUCCESS, FAILURE}
+public enum DiceResult {CRITICAL_SUCCESS, SUCCESS, FAILURE}

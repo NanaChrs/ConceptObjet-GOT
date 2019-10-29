@@ -24,8 +24,9 @@ public class GameMaster {
     private final GameBoard westeros;
 
     private final static int MAX_TURN = 15;
-    private final static int WHITEWALKER_FREQUENCY = 4;
-    private final static int POP_BY_FACTION = 5;
+    private final static int WHITEWALKER_COMMING = 2;
+    private final static int WHITEWALKER_FREQUENCY = 5;
+    private final static int POP_BY_FACTION = 4;
     private static int turn;
     
     
@@ -37,11 +38,9 @@ public class GameMaster {
     }
     
     private GameMaster() throws InterruptedException {
-        UserInterface.generateSwipe();
-        UserInterface.cleanConsole();
         FileManager.createLogFile();
         westeros = GameBoard.getInstance();
-        UserInterface.displayConsole("Génération du plateau", westeros, 1);
+        UserInterface.displayConsole("Génération du plateau", westeros, 2);
     }
     
     public static int getTurn() {
@@ -100,7 +99,7 @@ public class GameMaster {
         addFaction(Faction.Wilding);
         westeros.addCharacters(population);
         
-        UserInterface.displayConsole("Positionnement des personnages", westeros, 1);
+        UserInterface.displayConsole("Positionnement des personnages", westeros, 2);
     }
     
     public void run() throws InterruptedException, IOException {
@@ -126,13 +125,14 @@ public class GameMaster {
             Collections.copy(population, populationAlive);
             
             //doit être vu (affiché) au moins une fois avant de bouger et interagir avec les gens
-            if (turn%WHITEWALKER_FREQUENCY == 0) {
+            if ((turn - WHITEWALKER_COMMING >= 0 && (turn - WHITEWALKER_COMMING) % WHITEWALKER_FREQUENCY == 0) ||//decalage de cycle
+                    turn == WHITEWALKER_COMMING) {//suffit d'un vrai : plus fréquent en premier
                 Character white = new WhiteWalker();
                 westeros.addCharacter(white);
                 population.add(white);
                 
                 FileManager.writeToLogFile("\n[GAME] New WhiteWalker");
-                UserInterface.displayConsole("Un white walker arrive !", westeros, 2);
+                UserInterface.displayConsole("Un white walker arrive !", westeros, 3);
             }
         }
     }

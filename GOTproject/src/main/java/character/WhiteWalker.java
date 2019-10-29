@@ -3,34 +3,47 @@ package character;
 import java.io.IOException;
 
 import gameplay.FileManager;
+import static gameplay.UserInterface.displayConsole;
 
 public class WhiteWalker extends Character {
-    static final protected int MAX_STEP_NUMBER = 6;
-	static final protected int CRITIC_SUCESS_LEVEL = 95;
-	static final protected int FAILURE_LEVEL = 40;
-	static protected int NB_WHITEWALKERS = 0; //Attribut statique qui a du sens
-	
+    //statistiques
+    protected static int NB_WHITEWALKERS = 0; //Attribut statique qui a du sens
+    
+    //Attributs - Instance définie par :
+    //  sa vie et les dégâts qu'il fait
+    protected final static int LIFE = 200;//équivaut au INITIAL_LIFE de human
+    protected final static int POWER = 50;//équivaut aux MAX_POWER de southterner et northterner
+    
+    //  sa chance
+    protected final static int CRITICAL_SUCCESS_THRESHOLD = 95;
+    protected final static int FAILURE_THRESHOLD = 40;
+
+    //Constructeur - naissance de l'instance
     public WhiteWalker() {
-        setPower(20);
+        super(LIFE, POWER, POWER, CRITICAL_SUCCESS_THRESHOLD, FAILURE_THRESHOLD);
         NB_WHITEWALKERS++;
-        //setDodge(20);
     }
 
+    //Méthodes protected - définition d'actions
     @Override
-    protected void movmentConsequences() throws InterruptedException {
-        //si pv pas au max, recupère 1 pv? this.life++;
+    protected void movmentConsequences() {
+        //recupere pas de vie : pas réellement vivant
+        //instaure climat mortel sur case pour x tours
     }
     
     @Override
     protected void meet(WhiteWalker c, int remainingBoxes) throws IOException, InterruptedException {
-    	c.setLife(c.life +25);
-    	this.setLife(this.life+25);
-    	FileManager.writeToLogFile("[MEET] 2 whitewalkers met each other. They gained 1/4 of their HP. They are now at :");
+        displayConsole("Le marcheur blanc rencontre un semblable", westeros, 2);
+    	FileManager.writeToLogFile("\n[MEET] 2 whitewalkers met each other. They gained 1/4 of their HP. They are now at :");
+        
+    	c.addLife(25);
+    	this.addLife(25);
     }
 
     @Override
     protected void meet(Human character, int remainingBoxes) throws IOException, InterruptedException {
-    	FileManager.writeToLogFile("[MEET] A whitewalker met "+ character.name + " from House "+ character.getClass().getSimpleName() +".");
+        displayConsole("Le marcheur blanc attaque " + character.getFullName() + " lv" + character.level, westeros, 2);
+    	FileManager.writeToLogFile("\n[MEET] A whitewalker met "+ character.name + " from House "+ character.getClass().getSimpleName() +".");
     	
     	do {
             this.attack(character);
@@ -39,8 +52,8 @@ public class WhiteWalker extends Character {
     	
     	if(!this.isAlive()) {
             FileManager.writeToLogFile("[DEATH] The whitewalker is dead and "+ character.name+" from House "+ character.getClass().getSimpleName()+" gained 100 XP and 25 HP.");
-            character.xp += 100;
-            character.setLife(character.life+25);
+            character.addXp(100);
+            character.addLife(25);
     	}
     	else {
             FileManager.writeToLogFile("[DEATH] The whitewalker killed "+ character.name+" from House "+ character.getClass().getSimpleName()+".");
@@ -50,10 +63,10 @@ public class WhiteWalker extends Character {
     @Override
     protected void attack(Character c) throws IOException, InterruptedException {
         switch (this.rollDice()) {
-            case CRITIC_SUCCESS:
+            case CRITICAL_SUCCESS:
             case SUCCESS:
                 Human h = (Human) c;
-                c.setLife(c.life - this.power);
+                c.reduceLife(this.power);
                 FileManager.writeToLogFile("[ATTACK] The whitewalker attacked successfully. "+ h.name+" from House "+ h.getClass().getSimpleName()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
                 break;
             default:

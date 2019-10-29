@@ -32,11 +32,11 @@ public class SafeZone {
     public Faction getSafeFor() {
         return safeFor;
     }
-    
+    /*
     public void setSafeFor(Faction population) {
         this.safeFor = population;
         applySafeZone();
-    }
+    }*/
     
     private void applySafeZone() {
         int xMax = GameBoard.getWidth()-1, yMax = GameBoard.getHeight()-1;

@@ -10,7 +10,7 @@ public class UserInterface {
     private static final int LATENCY_MESSAGE_IMPORTANT = 1200;
     private static final int LATENCY_MESSAGE_LONG = 800;
     private static final int LATENCY_MESSAGE_SHORT = 600;
-    private static final int LATENCY_MESSAGE_REDUNDANT = 250;
+    private static final int LATENCY_MESSAGE_REDUNDANT = 210;
     
     public static void displayConsole(String message, GameBoard westeros, int deepness) throws InterruptedException {
         if (swipe == null) {//s'initialise au premier appel ~ lancement

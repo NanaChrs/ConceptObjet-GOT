@@ -10,7 +10,7 @@ public class GameBoard {
     protected static final int HEIGHT = 20;
     protected static final int WIDTH = 20;
     protected ArrayList<SafeZone> towns;
-    protected Box[][] map;
+    private Box[][] map;
 
     private static final double PROBA_OBSTACLE = 5;
 
@@ -35,7 +35,19 @@ public class GameBoard {
             corners.remove(towns.get(towns.size()-1).getCorner());
         }
     }
-
+    
+    public static int getHeight() {
+        return HEIGHT;
+    }
+    
+    public static int getWidth() {
+        return WIDTH;
+    }
+    
+    public Box[][] getMap() {
+        return this.map;
+    }
+    
     public static GameBoard getInstance() {
         if (uniqueInstance == null) {
             uniqueInstance = new GameBoard();
@@ -62,7 +74,7 @@ public class GameBoard {
         }
     }
     
-    public SafeZone getSafeZone(String population) {//buggé?
+    public SafeZone getSafeZone(String population) {
         for (SafeZone town : towns) {
             if ((town.getSafeFor().toString()).equals(population)) {
                 return town;
@@ -75,17 +87,6 @@ public class GameBoard {
     	map[character.getBox().getX()][character.getBox().getY()].free();
     }
     
-    public static int getHeight() {
-        return HEIGHT;
-    }
-    
-    public static int getWidth() {
-        return WIDTH;
-    }
-    
-    public Box[][] getMap() {
-        return this.map;
-    }
     
     public String displayMap() {
         String result = "";
@@ -98,7 +99,6 @@ public class GameBoard {
             result += horiz;
             for(int x = 0; x < WIDTH; x++) {
                 result += map[x][y].displayBox() + " ";//double la largeur pour equivaloir la hauteur
-                //result += ((!map[x][y].isEmpty())? map[x][y].displayBox() : " ") + " ";
             }
             result += horiz + "\n";
         }

@@ -1,6 +1,7 @@
 package map;
 
 import character.Character;
+import character.Human;
 import character.Lannister;
 import character.Stark;
 import character.Targaryen;
@@ -89,53 +90,53 @@ public class Box {
         this.y = y;
     }
 
-    public String displayBox() {
+    public char displayBox() {
+        //plus au moins probable / lourd en calcul
         if (this.isEmpty() && !limitSafeZone) {
-            return " ";
+            return ' ';
         }
         if(isObstacle) {
-            return "+";
+            return '+';
         }
         if (character != null) {
-            /*switch(character.getClass().getSimpleName()) {
-                case "Lannister":
-                    return "L";
-                case "Stark":
-                    return "S";
-                case "Targaryen":
-                    return "T";
-                case "Wilding":
-                    return "W";
-                default:
-                    return "M";
-            }*/
+            return (character instanceof Human)? character.getClass().getSimpleName().charAt(0) : 'M';
+        }
+        return safeFor.toString().charAt(0);
+    }
+
+    public char displayUnicodeBox() {
+        if (this.isEmpty() && !limitSafeZone) {
+            return ' ';
+        }
+        if(isObstacle) {
+            return '+';
+        }
+        if (character != null) {
             if(character.getClass().equals(Lannister.class)) {
-                return "L";
+                return 'L';
             }
-            else if (character.getClass().equals(Stark.class)) {
-                return "S";
+            if (character.getClass().equals(Stark.class)) {
+                return 'S';
             }
-            else if (character.getClass().equals(Targaryen.class)) {
-                return "T";
+            if (character.getClass().equals(Targaryen.class)) {
+                return 'T';
             }
-            else if(character.getClass().equals(Wilding.class)) {
-                return "W";
+            if(character.getClass().equals(Wilding.class)) {
+                return 'W';
             }
-            else {
-                return "M";
-            }
+            return 'M';
         }
         switch (safeFor) {
             case Lannister:
-                return "l";
+                return 'l';
             case Stark:
-                return "s";
+                return 's';
             case Targaryen:
-                return "t";
+                return 't';
             case Wilding:
-                return "w";
+                return 'w';
+            default:
+                return '?';
         }
-        return " ";
     }
-
 }

@@ -93,10 +93,9 @@ public class GameMaster {
         
         //Génère les familles avec génération de noms aléatoires
         population = new ArrayList<>();
-        addFaction(Faction.Lannister);
-        addFaction(Faction.Stark);
-        addFaction(Faction.Targaryen);
-        addFaction(Faction.Wilding);
+        for (Faction faction : Faction.values()) {
+            addFaction(faction);
+        }
         westeros.addCharacters(population);
         
         UserInterface.displayConsole("Positionnement des personnages", westeros, 2);

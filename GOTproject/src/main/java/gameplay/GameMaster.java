@@ -9,7 +9,6 @@ import factions.TargaryenName;
 import factions.LannisterName;
 import factions.StarkName;
 import character.Character;
-import character.Human;
 import character.Lannister;
 import character.Stark;
 import character.Targaryen;
@@ -25,9 +24,10 @@ public class GameMaster {
     private final GameBoard westeros;
 
     private final static int MAX_TURN = 15;
-    private final static int WHITEWALKER_FREQUENCY = 4;
-    private final static int POP_BY_FACTION = 5;
-    private int turn;
+    private final static int WHITEWALKER_COMMING = 2;
+    private final static int WHITEWALKER_FREQUENCY = 5;
+    private final static int POP_BY_FACTION = 4;
+    private static int turn;
     
     
     public static GameMaster getInstance() throws InterruptedException {
@@ -38,11 +38,13 @@ public class GameMaster {
     }
     
     private GameMaster() throws InterruptedException {
-        UserInterface.generateSwipe();
-        UserInterface.cleanConsole();
         FileManager.createLogFile();
         westeros = GameBoard.getInstance();
-        UserInterface.displayConsole("Génération du plateau", westeros, 1);
+        UserInterface.displayConsole("Génération du plateau", westeros, 2);
+    }
+    
+    public static int getTurn() {
+        return turn;
     }
 
     protected void addFaction(Faction faction) {
@@ -58,7 +60,7 @@ public class GameMaster {
             case Targaryen :
                 for (TargaryenName name : TargaryenName.values()) names.add(name.toString());
                 break;
-            case Wildings :
+            case Wilding :
                 for (WildingsName name : WildingsName.values()) names.add(name.toString());
                 break;
         }
@@ -77,7 +79,7 @@ public class GameMaster {
             case Targaryen :
                 for (String perso : names) population.add(new Targaryen(perso));
                 break;
-            case Wildings :
+            case Wilding :
                 for (String perso : names) population.add(new Wilding(perso));
                 break;
         }
@@ -94,17 +96,17 @@ public class GameMaster {
         addFaction(Faction.Lannister);
         addFaction(Faction.Stark);
         addFaction(Faction.Targaryen);
-        addFaction(Faction.Wildings);
+        addFaction(Faction.Wilding);
         westeros.addCharacters(population);
         
-        UserInterface.displayConsole("Positionnement des personnages", westeros, 1);
+        UserInterface.displayConsole("Positionnement des personnages", westeros, 2);
     }
     
     public void run() throws InterruptedException, IOException {
         //exécution de la simulation tour par tour
         turn = 0;
-        while (turn < MAX_TURN && !isFinished()) {
-            UserInterface.displayConsole("Début du tour n°" + ++turn, westeros, 1);
+        while (turn++ < MAX_TURN && !isFinished()) {
+            UserInterface.displayConsole("Nouveau tour", westeros, 1);
             FileManager.writeToLogFile("\n[GAME] TURN N°" + turn + " BEGIN");
             
             Collections.shuffle(population);
@@ -112,38 +114,25 @@ public class GameMaster {
             //1 seule opération si vivant (pas add + remove)
             ArrayList<Character> populationAlive = new ArrayList<>();
             for (Character character : population) {
-                String name;
-                if (character instanceof Human) {
-                	 name = ((Human)character).getName() + " (" + character.getClass().getSimpleName() + ")";
-                }
-                else {
-                	name = "marcheur blanc";
-                }
-                
                 if (character.isAlive()) {//n'a pas été tué pendant un combat
-                    character.move("Tour n°" + turn + "\nDéplacement de " + name);
-                    
-                    UserInterface.displayConsole("Tour n°" + turn + "\nDéplacement de " + name, westeros, 3);
+                    character.move();
                     
                     if (character.isAlive()) {//n'est pas mort dans son combat
                         populationAlive.add(character);
                     }
                 }
-                if (!character.isAlive()) {
-                    westeros.removeBody(character);
-                    UserInterface.displayConsole("Tour n°" + turn + "\nMort de " + name, westeros, 2);
-                }
             }
             Collections.copy(population, populationAlive);
             
             //doit être vu (affiché) au moins une fois avant de bouger et interagir avec les gens
-            if (turn%WHITEWALKER_FREQUENCY == 0) {
+            if ((turn - WHITEWALKER_COMMING >= 0 && (turn - WHITEWALKER_COMMING) % WHITEWALKER_FREQUENCY == 0) ||//decalage de cycle
+                    turn == WHITEWALKER_COMMING) {//suffit d'un vrai : plus fréquent en premier
                 Character white = new WhiteWalker();
                 westeros.addCharacter(white);
                 population.add(white);
                 
                 FileManager.writeToLogFile("\n[GAME] New WhiteWalker");
-                UserInterface.displayConsole("Tour n°" + turn + "\nUn white walker arrive !", westeros, 1);
+                UserInterface.displayConsole("Un white walker arrive !", westeros, 3);
             }
         }
     }

@@ -4,20 +4,41 @@ import character.Character;
 import character.Lannister;
 import character.Stark;
 import character.Targaryen;
-import character.WhiteWalker;
 import character.Wilding;
+import factions.Faction;
 
 public class Box {
     private Character character;
     private boolean isObstacle;
     private int x;
     private int y;
+    private Faction safeFor;
+    private boolean limitSafeZone;
 
 
     public Box(int x, int y) {
         this.x = x;
         this.y = y;
         isObstacle = false;
+        character = null;
+        safeFor = null;
+        limitSafeZone = false;
+    }
+    
+    public void setLimitSafeZone() {
+        limitSafeZone = true;
+    }
+
+    public Faction getSafeFor() {
+        return safeFor;
+    }
+    
+    public boolean isSafe() {
+        return safeFor != null;
+    }
+
+    public void setSafeFor(Faction population) {
+        this.safeFor = population;
     }
     
     public void free() {
@@ -35,6 +56,10 @@ public class Box {
     public void setCharacter(Character character) {
         this.character = character;
     }
+    
+    public void removeCharacter() {
+        this.character = null;
+    }
 
     public boolean isObstacle() {
         return isObstacle;
@@ -42,6 +67,10 @@ public class Box {
 
     public void setObstacle() {
         this.isObstacle = true;
+    }
+
+    public void removeObstacle() {
+        this.isObstacle = false;
     }
 
     public int getX() {
@@ -61,27 +90,52 @@ public class Box {
     }
 
     public String displayBox() {
+        if (this.isEmpty() && !limitSafeZone) {
+            return " ";
+        }
         if(isObstacle) {
             return "+";
         }
-        else if(character.getClass().equals(Lannister.class)) {
-            return "L";
+        if (character != null) {
+            /*switch(character.getClass().getSimpleName()) {
+                case "Lannister":
+                    return "L";
+                case "Stark":
+                    return "S";
+                case "Targaryen":
+                    return "T";
+                case "Wilding":
+                    return "W";
+                default:
+                    return "M";
+            }*/
+            if(character.getClass().equals(Lannister.class)) {
+                return "L";
+            }
+            else if (character.getClass().equals(Stark.class)) {
+                return "S";
+            }
+            else if (character.getClass().equals(Targaryen.class)) {
+                return "T";
+            }
+            else if(character.getClass().equals(Wilding.class)) {
+                return "W";
+            }
+            else {
+                return "M";
+            }
         }
-        else if (character.getClass().equals(Stark.class)) {
-            return "S";
+        switch (safeFor) {
+            case Lannister:
+                return "l";
+            case Stark:
+                return "s";
+            case Targaryen:
+                return "t";
+            case Wilding:
+                return "w";
         }
-        else if (character.getClass().equals(Targaryen.class)) {
-            return "T";
-        }
-        else if(character.getClass().equals(Wilding.class)) {
-            return "W";
-        }
-        else if(character.getClass().equals(WhiteWalker.class)) {
-            return "M";
-        }
-        else {
-            return " ";
-        }
+        return " ";
     }
 
 }

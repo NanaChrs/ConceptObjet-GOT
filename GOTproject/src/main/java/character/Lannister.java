@@ -4,26 +4,27 @@ import java.io.IOException;
 
 import gameplay.FileManager;
 
-public class Lannister extends Southerner {	
+public class Lannister extends Southerner {
+    //statistiques
+    protected static int NB_LANNISTERS = 0;  //Attribut statique qui a du sens
+    
+    //Attributs - Instance définie par :
+    //  sa chance
+    protected final static int CRITICAL_SUCCESS_THRESHOLD= 65;
+    protected final static int FAILURE_THRESHOLD = 5;
 
-	//static final protected int MAX_STEP_NUMBER = 4;
-	static final protected int CRITIC_SUCCESS_LEVEL= 65;
-	static final protected int FAILURE_LEVEL = 5;
-	static protected int NB_LANNISTERS = 0;  //Attribut statique qui a du sens
+    //Constructeur - naissance de l'instance
+    public Lannister(String name) {
+        super(name, CRITICAL_SUCCESS_THRESHOLD, FAILURE_THRESHOLD);
+        NB_LANNISTERS++;
+    }
 
-	public Lannister(String name) {
-		super(name);
-		NB_LANNISTERS++;
-		// TODO Auto-generated constructor stub
-	}
+    //Méthodes protected - définition d'actions
+    @Override
+    protected void superAttack(Character c) throws IOException, InterruptedException {
+        c.reduceLife((int)(this.maxLife/3));
+        this.reduceLife((int)(this.maxLife/3));
 
-	@Override
-	protected void superAttack(Character c) throws IOException {
-		
-		c.life = (int)this.life/3;
-		this.setLife(this.life - (int)this.life/3);
-		
-		FileManager.writeToLogFile("[SUPERATTACK] A Lannister always pays his debts ! "+ this.name+" gave 1/3 of his life.");
-	}
-
+        FileManager.writeToLogFile("[SUPERATTACK] A Lannister always pays his debts ! "+ this.name+" gave 1/3 of his life.");
+    }
 }

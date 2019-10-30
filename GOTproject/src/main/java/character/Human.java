@@ -149,7 +149,7 @@ public abstract class Human extends Character {
             }
         }
         //ennemis
-        else {
+        else if (!this.currentBox.isSafe() && !h.currentBox.isSafe()) {
             if(this.stamina == 0) {
                 FileManager.writeToLogFile("[MEET] "+ this.name + " is exhausted (0 Stamina). "+ h.name + " killed him/her.");
                 this.reduceLife(this.life);
@@ -173,6 +173,9 @@ public abstract class Human extends Character {
                     this.addXp(h.xp);
                 }
             }
+        }
+        else {
+        	FileManager.writeToLogFile("[MEET] One of the character is inside a safezone ! No fight allowed.");
         }
     }
     

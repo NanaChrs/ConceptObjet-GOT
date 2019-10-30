@@ -3,13 +3,18 @@ package gameplay;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
 
 import factions.WildingsName;
 import factions.TargaryenName;
 import factions.LannisterName;
 import factions.StarkName;
 import character.Character;
+import character.Human;
 import character.Lannister;
+import character.Southerner;
 import character.Stark;
 import character.Targaryen;
 import character.WhiteWalker;
@@ -23,7 +28,7 @@ public class GameMaster {
     private ArrayList<Character> population;
     private final GameBoard westeros;
 
-    private final static int MAX_TURN = 15;
+    private final static int MAX_TURN = 5;
     private final static int WHITEWALKER_COMMING = 2;
     private final static int WHITEWALKER_FREQUENCY = 5;
     private final static int POP_BY_FACTION = 4;
@@ -138,6 +143,25 @@ public class GameMaster {
     
     private boolean isFinished() {
         //vérifie conditions de fin (famille/faction gagnante, paix ou toutes les factions mortes)
+    	Map<String, Integer> dic = new HashMap<>();
+    	
+    	for (Character character : population) {
+    		if(character instanceof Human) {
+    			dic.put("Human", dic.get("Human")==null?1: dic.get("Human")+1);
+    			if(character instanceof Southerner) {
+    				
+    			}
+    		}
+    		else {
+    			dic.put("WhiteWalker", dic.get("WhiteWalker")==null?1: dic.get("WhiteWalker")+1);
+    		}
+		}
+    	try {
+			FileManager.writeToLogFile("DICTIO:"+population.size());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return population.isEmpty();
     }
     
@@ -145,4 +169,5 @@ public class GameMaster {
         //affiche fin correcte
         System.out.println("Fin de la démo en "+turn+" tours - merci d'avoir joué");
     }
+    
 }

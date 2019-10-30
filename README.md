@@ -1,32 +1,60 @@
 # ConceptObjet-GOT
 
-Idées pour aller plus loin
+TO-DO List :
 
-# Plateau :
-- Diviser le plateau en 3 zones climatiques : froid (nord), chaud (sud), tempéré (milieu)
-o Un sudiste au nord perd quelques PV par tour (entre 2 et 5) et vice versa
-o Le climat tempéré n'affecte personne
-o (Aller plus loin ++) Les marcheurs ont leurs micro climat : personnage à moins de quatres cases du marcheur blanc prend des dégâts
+# Fin du jeu : condition, affichage (nouveau : priorité haute | durée estimée : moyenne)
+- gérer conditions de victoire
+    - reste que des ww
+    - reste que des nordistes
+    - reste que des sudistes
+- afficher le gagnant
+    - ww
+    - famille restante avec le plus de représentants? avec les meilleurs niveaux? avec le plus de vie restante? les faire s'affronter "virtuellement" pour déterminer qui reste?
+- afficher les stats de la partie (nouvelle classe)
 
-# Nordistes et Sudistes :
-- Nordiste = grosse armure pour se tenir chaud : implique que son armure est plus lourde et qu'il se déplace et esquive moins car plus lent et vice versa
-o Les Sauvageons ont une armure plus légère que les Nordistes car peaux de bête
-o Les Targaryens ont plus d'attaques et de déplacements que les Lannisters car dragons
+# safeZone : interdire les combats (amélioration : priorité moyenne | durée estimée : très courte)
+- entre humains uniquement
 
-- Cool Down sur les super pouvoirs
-o Un Targaryen ne peut utiliser ses dragons que tous les x tours... à spécifier pour chaque faction...
+# Affichage : niveaux (amélioration : priorité moyenne | durée estimée : courte)
+- à implémenter, prendre en compte l'entrée utilisateur
 
-# Conditions de fin :
-- Alliance entre les 4 factions pour détruire ensemble les marcheurs blancs : fin idéale
+# attack : Implémenter dodge (amélioration : priorité moyenne | durée estimée : courte)
+- si réussite critique ou échec à l'attaque, pas d'esquive
+- si réussite simple : lance un dé d'esquive
+    - esquive critique : prend aucun dégât (alternative : regain de vie? inflige légers dégâts à l'attaquant?)
+    - esquive réussie : prend la moitié des dégats (alternative : évite simplement l'attaque? perd de l'énergie?)
+    - esquive échouée : prend les dégâts initialement prévus
 
-# Safezone :
-- Si une faction tue le dernier représentant d'une autre, il récupère sa safezone
+# Gameplay : climats (nouveau : priorité moyenne | durée estimée : moyenne)
+## WIP CLARA
+- région tempérée, neutre (bordure : |)
+- régions chaudes et froides, peu acueillantes pour les familles non originaires (bordure : soleil et flocon OU o et @)
+- sillage des ww, peu acueillant pour les êtres vivants sur x tours (case : os OU #)
 
-# Marcheurs blancs :
-- Un marcheur blanc apparait aléatoirement tous les x tours au centre ou sur un des côtés de la map
-- Quand un marcheur blanc tue un être vivant, il transmet son pouvoir, un second marcheur blanc apprait
+# Données : statistiques (nouveau : priorité moyenne | durée estimée : longue)
+- affichage en fin de partie
+- nouvelle classe de Gameplay - statFaction
+    - dégâts moyens par famille
+    - nombre de rencontres par famille
+    - nombre de combats par famille
+    - nombre de meurtres par famille
+    - nombre de ww tués par famille
+    - nombre de tours survécus par famille
+    - nombre de cases parcourues par famille
+    - ...
+- lancer des générations successives pour faire une moyenne sur plusieurs parties?
 
-Réfléchir à comment fonctionnent les fonctions avant de les coder
+# Affichage : unicode (amélioration sous condition : priorité basse | durée estimée : courte)
+- choisir les caractères d'affichage et tester le résultat
+    - affichage unicode ou ascii dépendant d'un booléen de map?
 
-Private : empiler les classes de l'instance (cloisonné)
-Protected : fusionner l'empilement de l'instance (accessible)
+# SafeZone : libération ? (amélioration : priorité basse | durée estimée : moyenne)
+- si dernier représentant d'une faction meurt, la safezone de la faction est désactivée et revient à la faction du premier humain qui s'y rend
+
+# Gameplay : équilibrage (amélioration : priorité basse | durée estimée : moyenne à longue)
+### s'aider des statistiques
+- vie, dégats
+- chance
+- niveau
+- taille map et safezone
+- ...

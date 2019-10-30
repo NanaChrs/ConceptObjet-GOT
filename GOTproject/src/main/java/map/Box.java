@@ -101,7 +101,7 @@ public class Box {
         if (character != null) {
             return (character instanceof Human)? character.getClass().getSimpleName().charAt(0) : 'M';
         }
-        return safeFor.toString().charAt(0);
+        return safeFor.toString().toLowerCase().charAt(0);
     }
 
     public char displayUnicodeBox() {

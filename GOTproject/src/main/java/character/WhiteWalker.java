@@ -26,9 +26,9 @@ public class WhiteWalker extends Character {
 
     //Méthodes protected - définition d'actions
     @Override
-    protected void movmentConsequences() {
+    protected void movmentConsequences() throws InterruptedException {
         //recupere pas de vie : pas réellement vivant
-        //instaure climat mortel sur case pour x tours
+        this.currentBox.setWhiteWalkerWeather();//instaure climat mortel sur case pour x tours
     }
     
     @Override
@@ -42,7 +42,7 @@ public class WhiteWalker extends Character {
 
     @Override
     protected void meet(Human character, int remainingBoxes) throws IOException, InterruptedException {
-        displayConsole("Le marcheur blanc attaque " + character.getFullName() + " lv" + character.level, westeros, 2);
+        displayConsole("Le marcheur blanc attaque " + character.getFullName() + " (lv" + character.level + "; vie : " + character.life + ")", westeros, 2);
     	FileManager.writeToLogFile("\n[MEET] A whitewalker met "+ character.name + " from House "+ character.getClass().getSimpleName() +".");
     	
     	do {

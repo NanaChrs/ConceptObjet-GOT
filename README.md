@@ -25,12 +25,6 @@ TO-DO List :
     - esquive réussie : prend la moitié des dégats (alternative : évite simplement l'attaque? perd de l'énergie?)
     - esquive échouée : prend les dégâts initialement prévus
 
-# Gameplay : climats (nouveau : priorité moyenne | durée estimée : moyenne)
-## WIP CLARA
-- région tempérée, neutre (bordure : |)
-- régions chaudes et froides, peu acueillantes pour les familles non originaires (bordure : soleil et flocon OU o et @)
-- sillage des ww, peu acueillant pour les êtres vivants sur x tours (case : os OU #)
-
 # Données : statistiques (nouveau : priorité moyenne | durée estimée : longue)
 - affichage en fin de partie
 - nouvelle classe de Gameplay - statFaction

@@ -44,7 +44,7 @@ public abstract class Character {
     }
     
     public void death() throws InterruptedException {
-        westeros.removeBody(this);
+        westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
         displayConsole((this instanceof Human? ((Human)this).getFullName() : "Le marcheur blanc") + 
                 " meurt", westeros, 3);
     }
@@ -64,16 +64,13 @@ public abstract class Character {
     }
     
     //  attributs
-    public void setLife(int life) {
-        this.life = (life > maxLife)? maxLife : life;
-    }
-    
     public void addLife(int life) {
-        this.setLife(this.life + life);
+        int newLife = this.life + life;
+        this.life = (newLife > maxLife)? maxLife : newLife;
     }
     
     public void reduceLife(int life) throws InterruptedException {
-        this.setLife(this.life - life);
+        this.life -= life;
         if (this.life <= 0) this.death();
     }
     
@@ -81,12 +78,9 @@ public abstract class Character {
         return this.life > 0;
     }
 
-    public void setPower(int power) {
-        this.power = (power < 0) ? 0 : (power > maxPower ? maxPower : power);
-    }
-
     public void addPower(int power) {
-        this.setPower(this.power + power);
+        int newPower = this.power + power;
+        this.power = (newPower > power)? maxPower : newPower;
     }
 
 /*
@@ -193,7 +187,7 @@ public abstract class Character {
             //si bouchées, ne se déplace pas (économise ses forces)
             
             //corner : duo de directions cardinales
-            Direction corner = ((Human)this).westeros.getSafeZone(this.getClass().getSimpleName()).getCorner();
+            Direction corner = ((Human)this).safeZoneDirection();
             if (isNextFree(corner)) {
                 list.add(corner);
             }
@@ -278,6 +272,19 @@ public abstract class Character {
         }
     }
     
+    private void moveMessage() throws InterruptedException {
+        String message1, message2;
+        if (this instanceof Human) {
+            message1 = ((Human)this).getFullName();
+            message2 = "; energie : " + ((Human)this).stamina + ")";
+        }
+        else {
+            message1 = "Un marcheur blanc";
+            message2 = ")";
+        }
+        displayConsole(message1 + " se déplace (vie : " + this.life + message2, westeros, 4);
+    }
+    
     //Méthodes protected - actions définies ou réutilisables en interne dans d'autres contextes
     /** 
     * Rolls a dice
@@ -298,7 +305,7 @@ public abstract class Character {
        }
     }
 
-    protected abstract void movmentConsequences();
+    protected abstract void movmentConsequences() throws InterruptedException;
 
     protected abstract void meet(Human character, int remainingBoxes) throws IOException, InterruptedException;
     
@@ -318,15 +325,16 @@ public abstract class Character {
             Direction takenDir = validDir.get((int)(Math.random() * validDir.size()));
             
             //tant que la case suivante est vide et à portée, le perso se déplace + action de se déplacer dans movmentConsequences (perte de stamina, gain de pv, xp...)
+            moveMessage();//etat initial
             do {//premiere case forcément vide
+                movmentConsequences();
+                if (!this.isAlive()) return;//humains qui perdent vie sur terrain inhospitaliers
+                
                 westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
                 currentBox = makeStep(takenDir);
                 westeros.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(this);
                 
-                displayConsole((this instanceof Human? ((Human)this).getFullName() : "Un marcheur blanc") +
-                        " se déplace" + (this instanceof Human? "(" + ((Human)this).stamina + ")" : ""), westeros, 4);
-                
-                movmentConsequences();
+                moveMessage();//etat final
             } while(--range > 0 && isNextFree(takenDir));
         }
 
@@ -353,6 +361,7 @@ public abstract class Character {
                     else {
                         meet((WhiteWalker) somebody,range);
                     }
+                    if (!this.isAlive()) return;
                 }
             }
         }

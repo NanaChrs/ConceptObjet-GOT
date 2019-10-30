@@ -7,10 +7,10 @@ import map.GameBoard;
 public class UserInterface {
     protected static final int M_CONSOLE_SIZE = 40;
     protected static String swipe;
-    private static final int LATENCY_MESSAGE_IMPORTANT = 1200;
-    private static final int LATENCY_MESSAGE_LONG = 800;
-    private static final int LATENCY_MESSAGE_SHORT = 600;
-    private static final int LATENCY_MESSAGE_REDUNDANT = 210;
+    private static final int LATENCY_MESSAGE_IMPORTANT = 1000;
+    private static final int LATENCY_MESSAGE_LONG = 1200;
+    private static final int LATENCY_MESSAGE_SHORT = 800;
+    private static final int LATENCY_MESSAGE_REDUNDANT = 250;
     
     public static void displayConsole(String message, GameBoard westeros, int deepness) throws InterruptedException {
         if (swipe == null) {//s'initialise au premier appel ~ lancement

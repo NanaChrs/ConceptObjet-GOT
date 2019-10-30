@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import gameplay.FileManager;
 import static gameplay.UserInterface.displayConsole;
+import map.Direction;
 import map.SafeZone;
 
 public abstract class Human extends Character {
@@ -45,16 +46,14 @@ public abstract class Human extends Character {
     }
     
     //  déplacement
-    public void setStamina(int stamina) {
-        this.stamina = (stamina < 0)? 0 : ((stamina > this.maxStamina)? this.maxStamina : stamina);
-    }
-    
     public void addStamina(int stamina) {
-        this.setStamina(this.stamina + stamina);
+        int newStamina = this.stamina + stamina;
+        this.stamina = (newStamina > maxStamina)? maxStamina : newStamina;
     }
     
     public void reduceStamina(int stamina) {
-        this.setStamina(this.stamina - stamina);
+        int newStamina = this.stamina - stamina;
+        this.stamina = (newStamina < 0)? 0 : newStamina;
     }
     
     //  expérience
@@ -72,10 +71,22 @@ public abstract class Human extends Character {
         }
     }
     
+    //  safeZone
+    public Direction safeZoneDirection() {
+        return this.westeros.getSafeZone(this.getClass().getSimpleName()).getCorner();
+    }
+    
     //Méthodes protected - définition d'actions
     @Override
-    protected void movmentConsequences() {
-        this.addLife(1);
+    protected void movmentConsequences() throws InterruptedException {
+        int fieldDamages = this.currentBox.getWeatherDamages();
+        if (fieldDamages == 0) {
+            this.addLife(1);//se soigne
+        }
+        else {
+            this.reduceLife(fieldDamages);
+        }
+        
         this.addXp(1);
         
         if (this.currentBox.isSafe() && this.currentBox.getSafeFor().toString().equals(this.getClass().getSimpleName())) {
@@ -88,7 +99,7 @@ public abstract class Human extends Character {
     
     @Override
     protected void meet(WhiteWalker ww, int remainingBoxes) throws IOException, InterruptedException {
-        displayConsole(this.getFullName() + " lv" + this.level + " attaque un marcheur blanc", westeros, 2);
+        displayConsole(this.getFullName() + " (lv" + this.level + "; vie : " + this.life + ") attaque un marcheur blanc", westeros, 2);
     	FileManager.writeToLogFile("\n[MEET] "+ this.name +" from House "+ this.getClass().getSimpleName() + " met a White Walker.");
     	
     	do {
@@ -109,7 +120,7 @@ public abstract class Human extends Character {
 
     @Override
     protected void meet(Human h, int remainingBoxes) throws IOException, InterruptedException {
-        displayConsole(this.getFullName() + " lv" + this.level + " rencontre " + h.name + " " + h.getFullName() + " lv" + h.level, westeros, 2);
+        displayConsole(this.getFullName() + " (lv" + this.level + "; vie : " + this.life + ") rencontre " + h.getFullName() + " (lv" + h.level + "; vie : " + h.life + ")", westeros, 2);
         FileManager.writeToLogFile("\n[MEET] "+ this.name +" from House "+ this.getClass().getSimpleName() + " met " + h.name + " from House "+ h.getClass().getSimpleName() +".");
 
         //amis (faction / région)

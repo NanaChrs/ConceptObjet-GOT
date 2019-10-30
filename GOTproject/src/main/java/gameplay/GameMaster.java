@@ -104,7 +104,7 @@ public class GameMaster {
     public void run() throws InterruptedException, IOException {
         //exécution de la simulation tour par tour
         turn = 0;
-        while (turn++ < MAX_TURN && !isFinished()) {
+        while (++turn < MAX_TURN && !isFinished()) {
             UserInterface.displayConsole("Nouveau tour", westeros, 1);
             FileManager.writeToLogFile("\n[GAME] TURN N°" + turn + " BEGIN");
             

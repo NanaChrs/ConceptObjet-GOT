@@ -7,10 +7,10 @@ import java.util.Arrays;
 
 public class GameBoard {
     private static GameBoard uniqueInstance;
-    protected static final int HEIGHT = 20;
-    protected static final int WIDTH = 20;
+    protected static final int HEIGHT = 21;
+    protected static final int WIDTH = 21;
     protected ArrayList<SafeZone> towns;
-    private Box[][] map;
+    private final Box[][] map;
 
     private static final double PROBA_OBSTACLE = 5;
 
@@ -18,12 +18,13 @@ public class GameBoard {
         //initialise map
         map = new Box[GameBoard.WIDTH][GameBoard.HEIGHT];
         
-        for(int i = 0; i < WIDTH; ++i) {
-            for (int j=0; j < HEIGHT; ++j) {
-                map[i][j] = new Box(i,j);
-                if (Math.random() > (1-(PROBA_OBSTACLE/100))) {
-                    map[i][j].setObstacle();
-                }
+        Weather weather = Weather.Warm;
+        for (int y=HEIGHT-1; y >= 0; --y) {
+            if (y == HEIGHT * 2 / 3) weather = Weather.Tempered;
+            else if (y == HEIGHT / 3) weather = Weather.Cool;
+            
+            for(int x = 0; x < WIDTH; ++x) {
+                map[x][y] = new Box(x,y,weather,Math.random() > (1-(PROBA_OBSTACLE/100)));
             }
         }
         
@@ -83,27 +84,30 @@ public class GameBoard {
         return null;
     }
     
-    public void removeBody(Character character) {
-    	map[character.getBox().getX()][character.getBox().getY()].free();
-    }
-    
-    
     public String displayMap() {
-        String result = "";
-        String vert = "-", horiz = "|";
+        String cool = "X", warm = "O", tempered = "~";
+        String result = " ";
         
-        for(int x = 0; x < WIDTH*2 + 2; x++) result+=vert;
+        for(int x = 0; x < WIDTH; x++) result += " " + warm;
         result += "\n";
         
+        String sides = warm;
         for (int y = HEIGHT-1; y >= 0; y-- ) {
-            result += horiz;
+            if (y == HEIGHT * 2 / 3) sides = tempered;
+            else if (y == HEIGHT / 3) sides = cool;
+            
+            result += sides + " ";
             for(int x = 0; x < WIDTH; x++) {
                 result += map[x][y].displayBox() + " ";//double la largeur pour equivaloir la hauteur
             }
-            result += horiz + "\n";
+            //result += (map[0][y].getWeather()==Weather.Cool? cool : map[0][y].getWeather()==Weather.Warm? warm : tempered) + "\n";//ligne de vérif
+            result += sides + "\n";
         }
         
-        for(int x = 0; x < WIDTH*2 + 2; x++) result+=vert;
+        result += " ";
+        for(int x = 0; x < WIDTH; x++) result += " " + cool;
+        result += "\n";
+        
         return (result + "\n");
     }
 }

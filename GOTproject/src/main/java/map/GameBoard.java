@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 public class GameBoard {
     private static GameBoard uniqueInstance;
-    protected static final int HEIGHT = 21;
-    protected static final int WIDTH = 21;
+    protected static final int HEIGHT = 15;
+    protected static final int WIDTH = 15;
     protected ArrayList<SafeZone> towns;
     private final Box[][] map;
 

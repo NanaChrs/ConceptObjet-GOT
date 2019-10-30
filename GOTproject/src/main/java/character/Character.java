@@ -16,7 +16,7 @@ public abstract class Character {
     //  sa position sur la map et la possibilité de s'y mouvoir
     protected GameBoard westeros;//agrégation
     protected Box currentBox;//agrégation
-    protected final static int MAX_RANGE = 5; //Attribut statique qui a du sens
+    protected final static int MAX_RANGE = 10;//Attribut statique qui a du sens
     
     //  sa vie et les dégâts qu'il fait
     protected final static int DEFAULT_STAT_VALUE = 100;

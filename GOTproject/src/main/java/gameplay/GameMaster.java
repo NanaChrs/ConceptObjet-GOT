@@ -24,7 +24,7 @@ public class GameMaster {
     private final GameBoard westeros;
 
     private final static int MAX_TURN = 15;
-    private final static int WHITEWALKER_COMMING = 2;
+    private final static int WHITEWALKER_COMING = 2;
     private final static int WHITEWALKER_FREQUENCY = 5;
     private final static int POP_BY_FACTION = 4;
     private static int turn;
@@ -124,8 +124,8 @@ public class GameMaster {
             Collections.copy(population, populationAlive);
             
             //doit être vu (affiché) au moins une fois avant de bouger et interagir avec les gens
-            if ((turn - WHITEWALKER_COMMING >= 0 && (turn - WHITEWALKER_COMMING) % WHITEWALKER_FREQUENCY == 0) ||//decalage de cycle
-                    turn == WHITEWALKER_COMMING) {//suffit d'un vrai : plus fréquent en premier
+            if ((turn - WHITEWALKER_COMING >= 0 && (turn - WHITEWALKER_COMING) % WHITEWALKER_FREQUENCY == 0) ||//decalage de cycle
+                    turn == WHITEWALKER_COMING) {//suffit d'un vrai : plus fréquent en premier
                 Character white = new WhiteWalker();
                 westeros.addCharacter(white);
                 population.add(white);

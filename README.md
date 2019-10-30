@@ -2,6 +2,9 @@
 
 TO-DO List :
 
+# Debut du jeu : afficher attributs statiques importants (nouveau : priorité haute | durée estimée : courte)
+- afficher les attributs statiques du package character
+
 # Fin du jeu : condition, affichage (nouveau : priorité haute | durée estimée : moyenne)
 - gérer conditions de victoire
     - reste que des ww

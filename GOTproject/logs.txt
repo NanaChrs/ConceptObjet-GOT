@@ -1,165 +1,189 @@
 [GAME] New simulation
 
-[GAME] TURN N�1 BEGIN
+[GAME] TURN N°1 BEGIN
 
-[MEET] Ned from House Stark met Bran from House Stark.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 0 xp.
+[MEET] Ned from House Stark met Lancel from House Lannister.
+[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
+[SUPERATTACK] A Lannister always pays his debts ! Lancel gave 1/3 of his life.
+[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
+[DEATH] Lancel from House Lannister is killed by Ned from House Stark.
 
-[MEET] Gilly from House Wilding met Daenerys from House Targaryen.
-[ATTACK] Gilly from House Wilding attacked successfully. Daenerysfrom House Targaryen lost 30and has now 70 hp.
-[ATTACK] Daenerys from House Targaryen attacked successfully. Gillyfrom House Wilding lost 20and has now 80 hp.
-[ATTACK] Gilly from House Wilding attacked successfully. Daenerysfrom House Targaryen lost 30and has now 40 hp.
+[MEET] Catelyn from House Stark met Osha from House Wilding.
+[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
+[ATTACK] Osha from House Wilding attacked successfully. Catelynfrom House Stark lost 30and has now 70 hp.
+[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
+[DEATH] Osha from House Wilding is killed by Catelyn from House Stark.
+
+[MEET] Daenerys from House Targaryen met Robb from House Stark.
 [ATTACK]Daenerys from House Targaryen missed his attack! Nothing happened.
-[ATTACK] Gilly from House Wilding attacked successfully. Daenerysfrom House Targaryen lost 30and has now 10 hp.
-[ATTACK] Daenerys from House Targaryen attacked successfully. Gillyfrom House Wilding lost 20and has now 60 hp.
-[ATTACK] Gilly from House Wilding attacked successfully. Daenerysfrom House Targaryen lost 30and has now -20 hp.
-[DEATH] Daenerys from House Targaryen is killed by Gilly from House Wilding.
-
-[MEET] Lancel from House Lannister met Sansa from House Stark.
-[SUPERATTACK] A Lannister always pays his debts ! Lancel gave 1/3 of his life.
+[ATTACK] Robb from House Stark attacked successfully. Daenerysfrom House Targaryen lost 30and has now 70 hp.
+[ATTACK] Daenerys from House Targaryen attacked successfully. Robbfrom House Stark lost 20and has now 80 hp.
 [SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[SUPERATTACK] A Lannister always pays his debts ! Lancel gave 1/3 of his life.
-[ATTACK] Sansa from House Stark attacked successfully. Lancelfrom House Lannister lost 30and has now -46 hp.
-[DEATH] Lancel from House Lannister is killed by Sansa from House Stark
-
-[GAME] TURN N�2 BEGIN
-
-[MEET] Viserys from House Targaryen met Kevan from House Lannister.
-[ATTACK] Viserys from House Targaryen attacked successfully. Kevanfrom House Lannister lost 20and has now 78 hp.
-[SUPERATTACK] A Lannister always pays his debts ! Kevan gave 1/3 of his life.
-[ATTACK] Viserys from House Targaryen attacked successfully. Kevanfrom House Lannister lost 20and has now 25 hp.
-[SUPERATTACK] A Lannister always pays his debts ! Kevan gave 1/3 of his life.
-[DEATH] Kevan from House Lannister is killed by Viserys from House Targaryen.
-
-[MEET] John from House Targaryen met Bran from House Stark.
-[ATTACK] John from House Targaryen attacked successfully. Branfrom House Stark lost 20and has now 80 hp.
-[ATTACK]Bran from House Stark missed his attack! Nothing happened.
-[ATTACK]John from House Targaryen missed his attack! Nothing happened.
-[ATTACK] Bran from House Stark attacked successfully. Johnfrom House Targaryen lost 30and has now 61 hp.
-[ATTACK] John from House Targaryen attacked successfully. Branfrom House Stark lost 20and has now 60 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK]John from House Targaryen missed his attack! Nothing happened.
-[ATTACK]Bran from House Stark missed his attack! Nothing happened.
-[ATTACK] John from House Targaryen attacked successfully. Branfrom House Stark lost 20and has now 40 hp.
-[ATTACK] Bran from House Stark attacked successfully. Johnfrom House Targaryen lost 30and has now -19 hp.
-[DEATH] John from House Targaryen is killed by Bran from House Stark
-
-[GAME] New WhiteWalker
-
-[GAME] TURN N�3 BEGIN
-
-[MEET] Tywin from House Lannister met Tormund from House Wilding.
-[ATTACK] Tywin from House Lannister attacked successfully. Tormundfrom House Wilding lost 20and has now 72 hp.
-[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[ATTACK] Tywin from House Lannister attacked successfully. Tormundfrom House Wilding lost 20and has now 62 hp.
-[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[DEATH] Tywin from House Lannister is killed by Tormund from House Wilding
-
-[MEET] Robb from House Stark met a White Walker.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK] The whitewalker missed his attack! Nothing happened.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK] The whitewalker missed his attack! Nothing happened.
-[ATTACK] Robb from House Stark attacked successfully. The whitewalker lost 30and has now 70 hp.
-[ATTACK] The whitewalker attacked successfully. Robb from House Stark lost 50 HP and has now 50 hp.
+[ATTACK] Daenerys from House Targaryen attacked successfully. Robbfrom House Stark lost 20and has now 60 hp.
 [ATTACK]Robb from House Stark missed his attack! Nothing happened.
-[ATTACK] The whitewalker attacked successfully. Robb from House Stark lost 50 HP and has now 0 hp.
-[DEATH] Robb from House Stark is killed by the whitewalker.
+[ATTACK]Daenerys from House Targaryen missed his attack! Nothing happened.
+[ATTACK] Robb from House Stark attacked successfully. Daenerysfrom House Targaryen lost 30and has now -10 hp.
+[DEATH] Daenerys from House Targaryen is killed by Robb from House Stark
 
-[GAME] TURN N�4 BEGIN
-
-[MEET] Osha from House Wilding met Mance from House Wilding.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 0 xp.
-
-[MEET] Bran from House Stark met Sansa from House Stark.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 0 xp.
-
-[GAME] TURN N�5 BEGIN
-
-[MEET] Aegon from House Targaryen met Viserys from House Targaryen.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 0 xp.
-
-[MEET] Sansa from House Stark met Bran from House Stark.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 3 xp.
-
-[MEET] A whitewalker met Ned from House Stark.
-[ATTACK] The whitewalker attacked successfully. Ned from House Stark lost 50 HP and has now 50 hp.
-[ATTACK]Ned from House Stark missed his attack! Nothing happened.
-[ATTACK] The whitewalker missed his attack! Nothing happened.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK] The whitewalker attacked successfully. Ned from House Stark lost 50 HP and has now 0 hp.
-[DEATH] The whitewalker killed Ned from House Stark.
-
-[GAME] TURN N�6 BEGIN
-
-[GAME] TURN N�7 BEGIN
-
-[MEET] Gilly from House Wilding met Aegon from House Targaryen.
+[MEET] Aegon from House Targaryen met Ygritte from House Wilding.
+[ATTACK] Aegon from House Targaryen attacked successfully. Ygrittefrom House Wilding lost 20and has now 80 hp.
+[ATTACK] Ygritte from House Wilding attacked successfully. Aegonfrom House Targaryen lost 30and has now 64 hp.
+[ATTACK] Aegon from House Targaryen attacked successfully. Ygrittefrom House Wilding lost 20and has now 60 hp.
+[ATTACK] Ygritte from House Wilding attacked successfully. Aegonfrom House Targaryen lost 30and has now 34 hp.
+[ATTACK] Aegon from House Targaryen attacked successfully. Ygrittefrom House Wilding lost 20and has now 40 hp.
 [SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[ATTACK] Aegon from House Targaryen attacked successfully. Gillyfrom House Wilding lost 20and has now 80 hp.
-[ATTACK]Gilly from House Wilding missed his attack! Nothing happened.
-[ATTACK]Aegon from House Targaryen missed his attack! Nothing happened.
-[ATTACK] Gilly from House Wilding attacked successfully. Aegonfrom House Targaryen lost 30and has now 10 hp.
-[ATTACK] Aegon from House Targaryen attacked successfully. Gillyfrom House Wilding lost 20and has now 60 hp.
-[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[DEATH] Aegon from House Targaryen is killed by Gilly from House Wilding.
+[DEATH] Aegon from House Targaryen is killed by Ygritte from House Wilding
 
-[MEET] Tormund from House Wilding met Mance from House Wilding.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 2 xp.
+[MEET] Aerys from House Targaryen met Kevan from House Lannister.
+[ATTACK] Aerys from House Targaryen attacked successfully. Kevanfrom House Lannister lost 20and has now 80 hp.
+[ATTACK] Kevan from House Lannister attacked successfully. Aerysfrom House Targaryen lost 20and has now 74 hp.
+[ATTACK]Aerys from House Targaryen missed his attack! Nothing happened.
+[ATTACK] Kevan from House Lannister attacked successfully. Aerysfrom House Targaryen lost 20and has now 54 hp.
+[ATTACK]Aerys from House Targaryen missed his attack! Nothing happened.
+[ATTACK]Kevan from House Lannister missed his attack! Nothing happened.
+[ATTACK] Aerys from House Targaryen attacked successfully. Kevanfrom House Lannister lost 20and has now 60 hp.
+[ATTACK] Kevan from House Lannister attacked successfully. Aerysfrom House Targaryen lost 20and has now 34 hp.
+[ATTACK]Aerys from House Targaryen missed his attack! Nothing happened.
+[SUPERATTACK] A Lannister always pays his debts ! Kevan gave 1/3 of his life.
+[ATTACK] Aerys from House Targaryen attacked successfully. Kevanfrom House Lannister lost 20and has now 7 hp.
+[ATTACK] Kevan from House Lannister attacked successfully. Aerysfrom House Targaryen lost 20and has now -19 hp.
+[DEATH] Aerys from House Targaryen is killed by Kevan from House Lannister
+
+[MEET] Mance from House Wilding met Ned from House Stark.
+[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
+[ATTACK] Ned from House Stark attacked successfully. Mancefrom House Wilding lost 30and has now 70 hp.
+[ATTACK] Mance from House Wilding attacked successfully. Nedfrom House Stark lost 30and has now -23 hp.
+[DEATH] Ned from House Stark is killed by Mance from House Wilding.
+
+[GAME] TURN N°2 BEGIN
+
+[MEET] Cersei from House Lannister met Tormund from House Wilding.
+[SUPERATTACK] A Lannister always pays his debts ! Cersei gave 1/3 of his life.
+[ATTACK] Tormund from House Wilding attacked successfully. Cerseifrom House Lannister lost 30and has now 37 hp.
+[SUPERATTACK] A Lannister always pays his debts ! Cersei gave 1/3 of his life.
+[ATTACK]Tormund from House Wilding missed his attack! Nothing happened.
+[ATTACK] Cersei from House Lannister attacked successfully. Tormundfrom House Wilding lost 20and has now 14 hp.
+[ATTACK] Tormund from House Wilding attacked successfully. Cerseifrom House Lannister lost 30and has now -26 hp.
+[DEATH] Cersei from House Lannister is killed by Tormund from House Wilding
 
 [GAME] New WhiteWalker
 
-[GAME] TURN N�8 BEGIN
+[GAME] TURN N°3 BEGIN
 
-[MEET] Mance from House Wilding met Tormund from House Wilding.
+[MEET] Mance from House Wilding met Jaime from House Lannister.
+[ATTACK] Mance from House Wilding attacked successfully. Jaimefrom House Lannister lost 30and has now 70 hp.
+[ATTACK] Jaime from House Lannister attacked successfully. Mancefrom House Wilding lost 20and has now 47 hp.
+[ATTACK] Mance from House Wilding attacked successfully. Jaimefrom House Lannister lost 30and has now 40 hp.
+[ATTACK] Jaime from House Lannister attacked successfully. Mancefrom House Wilding lost 20and has now 27 hp.
+[ATTACK] Mance from House Wilding attacked successfully. Jaimefrom House Lannister lost 30and has now 10 hp.
+[SUPERATTACK] A Lannister always pays his debts ! Jaime gave 1/3 of his life.
+[DEATH] Mance from House Wilding is killed by Jaime from House Lannister
+
+[GAME] TURN N°4 BEGIN
+
+[MEET] Bran from House Stark met Catelyn from House Stark.
 [MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 0 xp.
+[MEET] They both gained 4 xp.
 
-[MEET] Gilly from House Wilding met Viserys from House Targaryen.
-[ATTACK] Gilly from House Wilding attacked successfully. Viserysfrom House Targaryen lost 100and has now -24 hp.
-[DEATH] Viserys from House Targaryen is killed by Gilly from House Wilding.
-
-[MEET] Cersei from House Lannister met Osha from House Wilding.
-[SUPERATTACK] A Lannister always pays his debts ! Cersei gave 1/3 of his life.
-[ATTACK] Osha from House Wilding attacked successfully. Cerseifrom House Lannister lost 30and has now 37 hp.
-[ATTACK] Cersei from House Lannister attacked successfully. Oshafrom House Wilding lost 20and has now 47 hp.
-[ATTACK] Osha from House Wilding attacked successfully. Cerseifrom House Lannister lost 30and has now 7 hp.
-[ATTACK] Cersei from House Lannister attacked successfully. Oshafrom House Wilding lost 20and has now 27 hp.
-[ATTACK]Osha from House Wilding missed his attack! Nothing happened.
-[ATTACK] Cersei from House Lannister attacked successfully. Oshafrom House Wilding lost 20and has now 7 hp.
-[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[DEATH] Cersei from House Lannister is killed by Osha from House Wilding
-
-[GAME] TURN N�9 BEGIN
-
-[MEET] Tormund from House Wilding met Mance from House Wilding.
+[MEET] Robb from House Stark met Bran from House Stark.
 [MEET] They both restored 1/4 of their HP.
 [MEET] They both gained 1 xp.
 
-[GAME] TURN N�10 BEGIN
+[GAME] TURN N°5 BEGIN
 
-[MEET] Tormund from House Wilding met Osha from House Wilding.
+[MEET] Bran from House Stark met Robb from House Stark.
 [MEET] They both restored 1/4 of their HP.
 [MEET] They both gained 2 xp.
 
-[MEET] Gilly from House Wilding met Osha from House Wilding.
+[MEET] Catelyn from House Stark met Robb from House Stark.
+[MEET] They both restored 1/4 of their HP.
+[MEET] They both gained 0 xp.
+
+[MEET] Ygritte from House Wilding met Tormund from House Wilding.
+[MEET] They both restored 1/4 of their HP.
+[MEET] They both gained 0 xp.
+
+[MEET] Bran from House Stark met Catelyn from House Stark.
+[MEET] They both restored 1/4 of their HP.
+[MEET] They both gained 0 xp.
+
+[MEET] Bran from House Stark met Catelyn from House Stark.
+[MEET] They both restored 1/4 of their HP.
+[MEET] They both gained 0 xp.
+
+[GAME] TURN N°6 BEGIN
+
+[MEET] Robb from House Stark met Catelyn from House Stark.
+[MEET] They both restored 1/4 of their HP.
+[MEET] They both gained 0 xp.
+
+[GAME] TURN N°7 BEGIN
+
+[MEET] Robb from House Stark met Catelyn from House Stark.
+[MEET] They both restored 1/4 of their HP.
+[MEET] They both gained 0 xp.
+
+[MEET] Robb from House Stark met Catelyn from House Stark.
+[MEET] They both restored 1/4 of their HP.
+[MEET] They both gained 0 xp.
+
+[GAME] New WhiteWalker
+
+[GAME] TURN N°8 BEGIN
+
+[MEET] Robb from House Stark met Catelyn from House Stark.
+[MEET] They both restored 1/4 of their HP.
+[MEET] They both gained 3 xp.
+
+[MEET] Bran from House Stark met Rhaegar from House Targaryen.
+[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
+[SUPERATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.
+[DEATH] Bran from House Stark is killed by Rhaegar from House Targaryen
+
+[MEET] Robb from House Stark met Catelyn from House Stark.
+[MEET] They both restored 1/4 of their HP.
+[MEET] They both gained 0 xp.
+
+[MEET] Robb from House Stark met Catelyn from House Stark.
 [MEET] They both restored 1/4 of their HP.
 [MEET] They both gained 2 xp.
 
-[MEET] Mance from House Wilding met Sansa from House Stark.
-[ATTACK] Mance from House Wilding attacked successfully. Sansafrom House Stark lost 30and has now 70 hp.
-[ATTACK]Sansa from House Stark missed his attack! Nothing happened.
-[ATTACK] Mance from House Wilding attacked successfully. Sansafrom House Stark lost 30and has now 40 hp.
-[ATTACK]Sansa from House Stark missed his attack! Nothing happened.
+[GAME] TURN N°9 BEGIN
+
+[MEET] Kevan from House Lannister met Tormund from House Wilding.
+[SUPERATTACK] A Lannister always pays his debts ! Kevan gave 1/3 of his life.
+[ATTACK] Tormund from House Wilding attacked successfully. Kevanfrom House Lannister lost 100and has now -85 hp.
+[DEATH] Kevan from House Lannister is killed by Tormund from House Wilding
+
+[GAME] TURN N°10 BEGIN
+
+[MEET] Robb from House Stark met Catelyn from House Stark.
+[MEET] They both restored 1/4 of their HP.
+[MEET] They both gained 3 xp.
+
+[GAME] TURN N°11 BEGIN
+
+[MEET] Rhaegar from House Targaryen met a White Walker.
+[ATTACK] Rhaegar from House Targaryen attacked successfully. The whitewalker lost 120and has now 80 hp.
+[ATTACK] The whitewalker attacked successfully. Rhaegar from House Targaryen lost 50 HP and has now 16 hp.
+[ATTACK] Rhaegar from House Targaryen attacked successfully. The whitewalker lost 120and has now -40 hp.
+[DEATH] The whitewalker is killed by Rhaegar from House Targaryen.
+
+[GAME] TURN N°12 BEGIN
+
+[MEET] A whitewalker met Ygritte from House Wilding.
+[ATTACK] The whitewalker missed his attack! Nothing happened.
+[ATTACK] Ygritte from House Wilding attacked successfully. The whitewalker lost 100and has now 100 hp.
+[ATTACK] The whitewalker attacked successfully. Ygritte from House Wilding lost 50 HP and has now 51 hp.
 [SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[DEATH] Sansa from House Stark is killed by Mance from House Wilding.
+[DEATH] The whitewalker is dead and Ygritte from House Wilding gained 100 XP and 25 HP.
 
-[GAME] TURN N�11 BEGIN
+[GAME] New WhiteWalker
 
-[GAME] TURN N�12 BEGIN
+[GAME] TURN N°13 BEGIN
+
+[GAME] TURN N°14 BEGIN
+
+[MEET] Robb from House Stark met Ygritte from House Wilding.
+[ATTACK] Robb from House Stark attacked successfully. Ygrittefrom House Wilding lost 100and has now -37 hp.
+[DEATH] Ygritte from House Wilding is killed by Robb from House Stark.

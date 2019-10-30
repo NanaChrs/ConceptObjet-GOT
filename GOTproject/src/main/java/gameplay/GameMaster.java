@@ -14,6 +14,7 @@ import factions.StarkName;
 import character.Character;
 import character.Human;
 import character.Lannister;
+import character.Northerner;
 import character.Southerner;
 import character.Stark;
 import character.Targaryen;
@@ -33,6 +34,7 @@ public class GameMaster {
     private final static int WHITEWALKER_FREQUENCY = 5;
     private final static int POP_BY_FACTION = 4;
     private static int turn;
+    private static String endReason;
     
     
     public static GameMaster getInstance() throws InterruptedException {
@@ -109,7 +111,8 @@ public class GameMaster {
     public void run() throws InterruptedException, IOException {
         //exécution de la simulation tour par tour
         turn = 0;
-        while (++turn < MAX_TURN && !isFinished()) {
+        boolean end = false;
+        while (++turn < MAX_TURN && !end) {
             UserInterface.displayConsole("Nouveau tour", westeros, 1);
             FileManager.writeToLogFile("\n[GAME] TURN N°" + turn + " BEGIN");
             
@@ -126,7 +129,7 @@ public class GameMaster {
                     }
                 }
             }
-            Collections.copy(population, populationAlive);
+            population = populationAlive;
             
             //doit être vu (affiché) au moins une fois avant de bouger et interagir avec les gens
             if ((turn - WHITEWALKER_COMING >= 0 && (turn - WHITEWALKER_COMING) % WHITEWALKER_FREQUENCY == 0) ||//decalage de cycle
@@ -138,35 +141,56 @@ public class GameMaster {
                 FileManager.writeToLogFile("\n[GAME] New WhiteWalker");
                 UserInterface.displayConsole("Un white walker arrive !", westeros, 3);
             }
+            end = this.isFinished();
         }
     }
     
     private boolean isFinished() {
         //vérifie conditions de fin (famille/faction gagnante, paix ou toutes les factions mortes)
     	Map<String, Integer> dic = new HashMap<>();
+    	dic.put("Human", 0);
+    	dic.put("Southerner", 0);
+    	dic.put("Northerner", 0);
+    	dic.put("WhiteWalker", 0);
     	
     	for (Character character : population) {
-    		if(character instanceof Human) {
-    			dic.put("Human", dic.get("Human")==null?1: dic.get("Human")+1);
-    			if(character instanceof Southerner) {
-    				
-    			}
-    		}
-    		else {
-    			dic.put("WhiteWalker", dic.get("WhiteWalker")==null?1: dic.get("WhiteWalker")+1);
+    		if(character.isAlive()) {
+	    		if(character instanceof Human) {
+	    			dic.put("Human", dic.get("Human")+1);
+	    			if(character instanceof Southerner) {
+	    				dic.put("Southerner", dic.get("Southerner")+1);
+	    				
+	    			}
+	    			if(character instanceof Northerner) {
+	    				dic.put("Northerner", dic.get("Northerner")+1);		
+	    		}
+	    		else {
+	    			dic.put("WhiteWalker", dic.get("WhiteWalker")+1);
+	    		}
     		}
 		}
-    	try {
-			FileManager.writeToLogFile("DICTIO:"+population.size());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        return population.isEmpty();
+    	}
+    
+    	if(dic.get("Human") == 0) {
+    		endReason = "Plus aucun humains sur le terrain. Les marcheurs blancs ont gagné !";
+    		return true;
+    	}
+    	if(dic.get("Southerner") == population.size()) {
+    		endReason = "Il ne reste plus que des gens du sud sur le plateau. La guerre est finie : les sudistes ont gagné !";
+    		return true;
+    	}
+    	if(dic.get("Northerner") == population.size()) {
+    		endReason = "Il ne reste plus que des gens du nord sur le plateau. La guerre est finie : les nordistes ont gagné !";
+    		return true;
+    	}
+    	return false;
+    		
     }
     
     public void displayEnd() {
         //affiche fin correcte
+    	if(endReason != null) {
+    	System.out.println(endReason);}
         System.out.println("Fin de la démo en "+turn+" tours - merci d'avoir joué");
     }
     

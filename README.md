@@ -41,6 +41,7 @@
 
 ## Gameplay : équilibrage (amélioration : priorité basse | durée estimée : moyenne à longue)
 ### s'aider des statistiques
+
 - vie, dégats
 - chance
 - niveau

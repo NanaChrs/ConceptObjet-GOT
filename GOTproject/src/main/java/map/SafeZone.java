@@ -1,6 +1,8 @@
 package map;
 
 import factions.Faction;
+import static gameplay.GameMaster.getTurn;
+import gameplay.Statistics;
 import static gameplay.UserInterface.displayConsole;
 
 public class SafeZone {
@@ -25,6 +27,21 @@ public class SafeZone {
     
     public void removeFactionMember() throws InterruptedException {
         if (--factionSize == 0) {
+            switch(safeFor) {
+                case Lannister:
+                    Statistics.endOfLannister(getTurn());
+                    break;
+                case Targaryen:
+                    Statistics.endOfTargaryen(getTurn());
+                    break;
+                case Stark:
+                    Statistics.endOfStark(getTurn());
+                    break;
+                case Wilding:
+                    Statistics.endOfWildings(getTurn());
+                    break;
+            }
+            
             String name = safeFor.toString();
             safeFor = null;
             applySafeZone(false);//affichage carte

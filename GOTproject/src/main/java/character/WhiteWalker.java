@@ -3,6 +3,7 @@ package character;
 import java.io.IOException;
 
 import gameplay.FileManager;
+import gameplay.Statistics;
 import static gameplay.UserInterface.displayConsole;
 
 public class WhiteWalker extends Character {
@@ -54,9 +55,23 @@ public class WhiteWalker extends Character {
             FileManager.writeToLogFile("[DEATH] The whitewalker is dead and "+ character.name+" from House "+ character.getClass().getSimpleName()+" gained 100 XP and 25 HP.");
             character.addXp(100);
             character.addLife(25);
+            
+            if (character instanceof Lannister) {
+                Statistics.WWKilledByLannister();
+            }
+            else if (character instanceof Targaryen) {
+                Statistics.WWKilledByTargaryen();
+            }
+            else if (character instanceof Stark) {
+                Statistics.WWKilledByStark();
+            }
+            else /*if (this instanceof Wilding)*/ {
+                Statistics.WWKilledByWildings();
+            }
     	}
     	else {
             FileManager.writeToLogFile("[DEATH] The whitewalker killed "+ character.name+" from House "+ character.getClass().getSimpleName()+".");
+            Statistics.humanKilledByWW();
     	}
     }
 

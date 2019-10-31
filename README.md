@@ -19,18 +19,9 @@
   - esquive échouée : prend les dégâts initialement prévus
 
 
-## Données : statistiques (nouveau : priorité moyenne | durée estimée : longue)
+## Données : statistiques (nouveau : priorité moyenne | durée estimée : moyenne)
 ### Clara
-- affichage en fin de partie
-- nouvelle classe de Gameplay - statFaction
-  - dégâts moyens par famille
-  - nombre de rencontres par famille
-  - nombre de combats par famille
-  - nombre de meurtres par famille
-  - nombre de ww tués par famille
-  - nombre de tours survécus par famille
-  - nombre de cases parcourues par famille
-  - ...
+- partie 1 faite
 - lancer des générations successives pour faire une moyenne sur plusieurs parties?
 
 
@@ -41,7 +32,6 @@
 
 ## Gameplay : équilibrage (amélioration : priorité basse | durée estimée : moyenne à longue)
 ### s'aider des statistiques
-
 - vie, dégats
 - chance
 - niveau

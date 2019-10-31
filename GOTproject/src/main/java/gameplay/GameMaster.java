@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 import factions.WildingsName;
@@ -27,7 +26,7 @@ import map.GameBoard;
 public class GameMaster {
     private static GameMaster uniqueInstance;
     private ArrayList<Character> population;
-    private GameBoard westeros;
+    private final GameBoard westeros;
     private static int turn;
     private static String endReason;
     private static int displayLevel;//0 : rien, 1 à 4 : comme frequency
@@ -230,7 +229,8 @@ public class GameMaster {
             endReason = "Et la guerre continua indéfiniment...";
             FileManager.writeToLogFile("\n[GAME] No victory");
         }
-        UserInterface.displayConsole(endReason + "\nFin de la simulation",this.westeros,1);
+        UserInterface.displayConsole(endReason + "\nFin de la simulation",1);
+        Statistics.displayStats();
     }
     
 }

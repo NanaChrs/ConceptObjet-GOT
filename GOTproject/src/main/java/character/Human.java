@@ -3,6 +3,7 @@ package character;
 import java.io.IOException;
 
 import gameplay.FileManager;
+import gameplay.Statistics;
 import static gameplay.UserInterface.displayConsole;
 import map.Direction;
 import map.SafeZone;
@@ -90,13 +91,30 @@ public abstract class Human extends Character {
             this.reduceLife(fieldDamages);
         }
         
-        this.addXp(1);
-        
-        if (this.currentBox.isSafe() && this.currentBox.getSafeFor().toString().equals(this.getClass().getSimpleName())) {
-            this.addStamina(SafeZone.getRecovery());
+        if (this.isAlive()) {
+            this.addXp(1);
+
+            if (this.currentBox.isSafe() && this.currentBox.getSafeFor().toString().equals(this.getClass().getSimpleName())) {
+                this.addStamina(SafeZone.getRecovery());
+            }
+            else {
+                this.reduceStamina(1);
+            }
         }
-        else {
-            this.reduceStamina(1);
+        
+        if (!this.isAlive()) {//stamina reduction can kill
+            if (this instanceof Lannister) {
+                Statistics.LannisterDeadOnMove();
+            }
+            else if (this instanceof Targaryen) {
+                Statistics.TargaryenDeadOnMove();
+            }
+            else if (this instanceof Stark) {
+                Statistics.StarkDeadOnMove();
+            }
+            else /*if (this instanceof Wilding)*/ {
+                Statistics.WildingDeadOnMove();
+            }
         }
     }
     
@@ -113,11 +131,25 @@ public abstract class Human extends Character {
     	if(!this.isAlive()) {
             FileManager.writeToLogFile("[DEATH] " + this.name + " from House " + this.getClass().getSimpleName() + " is killed by the whitewalker.");
             ww.addLife(25);
+            Statistics.humanKilledByWW();
     	}
     	else {
             FileManager.writeToLogFile("[DEATH] The whitewalker is killed by "+ this.name+" from House "+ this.getClass().getSimpleName()+".");
             this.addXp(100);
             this.addLife(25);
+            
+            if (this instanceof Lannister) {
+                Statistics.WWKilledByLannister();
+            }
+            else if (this instanceof Targaryen) {
+                Statistics.WWKilledByTargaryen();
+            }
+            else if (this instanceof Stark) {
+                Statistics.WWKilledByStark();
+            }
+            else /*if (this instanceof Wilding)*/ {
+                Statistics.WWKilledByWildings();
+            }
     	}
     }
 
@@ -156,10 +188,36 @@ public abstract class Human extends Character {
             if(this.stamina == 0) {
                 FileManager.writeToLogFile("[MEET] "+ this.name + " is exhausted (0 Stamina). "+ h.name + " killed him/her.");
                 this.reduceLife(this.life);
+                
+                if (h instanceof Lannister) {
+                    Statistics.northernerKilledByLannister();
+                }
+                else if (h instanceof Targaryen) {
+                    Statistics.northernerKilledByTargaryen();
+                }
+                else if (h instanceof Stark) {
+                    Statistics.southernerKilledByStark();
+                }
+                else /*if (this instanceof Wilding)*/ {
+                    Statistics.southernerKilledByWildings();
+                }
             }
             else if (h.stamina == 0) {
                 FileManager.writeToLogFile("[MEET] "+ h.name + " is exhausted (0 Stamina). "+ this.name + " killed him/her.");
                 h.reduceLife(h.life);
+                
+                if (this instanceof Lannister) {
+                    Statistics.northernerKilledByLannister();
+                }
+                else if (this instanceof Targaryen) {
+                    Statistics.northernerKilledByTargaryen();
+                }
+                else if (this instanceof Stark) {
+                    Statistics.southernerKilledByStark();
+                }
+                else /*if (this instanceof Wilding)*/ {
+                    Statistics.southernerKilledByWildings();
+                }
             }
             else {
                 do {
@@ -170,10 +228,36 @@ public abstract class Human extends Character {
                 if(!this.isAlive()) {
                     h.addXp(this.xp);
                     FileManager.writeToLogFile("[DEATH] " + this.name + " from House " + this.getClass().getSimpleName() + " is killed by "+ h.name + " from House "+ h.getClass().getSimpleName());
+                    
+                    if (h instanceof Lannister) {
+                        Statistics.northernerKilledByLannister();
+                    }
+                    else if (h instanceof Targaryen) {
+                        Statistics.northernerKilledByTargaryen();
+                    }
+                    else if (h instanceof Stark) {
+                        Statistics.southernerKilledByStark();
+                    }
+                    else /*if (this instanceof Wilding)*/ {
+                        Statistics.southernerKilledByWildings();
+                    }
                 }
                 else {
                     FileManager.writeToLogFile("[DEATH] "+ h.name +" from House "+ h.getClass().getSimpleName()+" is killed by "+ this.name+" from House "+ this.getClass().getSimpleName()+".");
                     this.addXp(h.xp);
+                    
+                    if (this instanceof Lannister) {
+                        Statistics.northernerKilledByLannister();
+                    }
+                    else if (this instanceof Targaryen) {
+                        Statistics.northernerKilledByTargaryen();
+                    }
+                    else if (this instanceof Stark) {
+                        Statistics.southernerKilledByStark();
+                    }
+                    else /*if (this instanceof Wilding)*/ {
+                        Statistics.southernerKilledByWildings();
+                    }
                 }
             }
         }

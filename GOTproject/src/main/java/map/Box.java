@@ -103,8 +103,8 @@ public class Box {
     }
     
     //  safezone
-    public void setLimitSafeZone() {
-        limitSafeZone = true;
+    public void setLimitSafeZone(boolean setSafeZone) {
+        limitSafeZone = setSafeZone;
     }
     
     public void setSafeFor(Faction population) {

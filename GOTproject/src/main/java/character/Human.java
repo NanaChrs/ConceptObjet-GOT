@@ -22,7 +22,7 @@ public abstract class Human extends Character {
     //  son expérience
     protected final static int GAIN_BY_LEVEL = 5; //Attribut statique qui a du sens
     protected int level; //augmentation des stats
-    protected final static int XP_THRESHOLD = 60; //Attribut statique qui a du sens
+    protected final static int XP_THRESHOLD = 40; //Attribut statique qui a du sens
     protected int xp;
     
     //Constructeur - naissance de l'instance
@@ -51,9 +51,12 @@ public abstract class Human extends Character {
         this.stamina = (newStamina > maxStamina)? maxStamina : newStamina;
     }
     
-    public void reduceStamina(int stamina) {
+    public void reduceStamina(int stamina) throws InterruptedException {
         int newStamina = this.stamina - stamina;
         this.stamina = (newStamina < 0)? 0 : newStamina;
+        if (this.stamina == 0) {
+            this.reduceLife(this.life);
+        }
     }
     
     //  expérience
@@ -149,7 +152,7 @@ public abstract class Human extends Character {
             }
         }
         //ennemis
-        else {
+        else if (!this.currentBox.isSafe() && !h.currentBox.isSafe()) {
             if(this.stamina == 0) {
                 FileManager.writeToLogFile("[MEET] "+ this.name + " is exhausted (0 Stamina). "+ h.name + " killed him/her.");
                 this.reduceLife(this.life);
@@ -173,6 +176,9 @@ public abstract class Human extends Character {
                     this.addXp(h.xp);
                 }
             }
+        }
+        else {
+        	FileManager.writeToLogFile("[MEET] One of the character is inside a safezone ! No fight allowed.");
         }
     }
     

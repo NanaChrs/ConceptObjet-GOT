@@ -7,18 +7,9 @@ import java.io.IOException;
 public class Application {
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        /*
-        //unicode?
-        System.out.println("💀");
-        System.out.println("\u2654");
+        //GameMaster notreSuperSimulateur = GameMaster.getInstance(9, 2);
+        //notreSuperSimulateur.runSimulation(4,20,2,4,6);
         
-        System.out.println("✰☆★👌👍🙏☞☛👉❸➂❤♡💛🎔💕💋💍📷✉🖂")
-        */
-        
-        GameMaster nomDuJeu = GameMaster.getInstance();
-        
-        nomDuJeu.initialize();
-        nomDuJeu.run();
-        nomDuJeu.displayEnd();
+        GameMaster.getInstance(21,4).runSimulation(1,40,6,4,6);//scénario alternatif
     }
 }

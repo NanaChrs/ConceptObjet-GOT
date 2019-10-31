@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 import map.GameBoard;
 
 public class UserInterface {
-    protected static final int M_CONSOLE_SIZE = 40;
+    protected static final int M_CONSOLE_SIZE = 20;
     protected static String swipe;
     private static final int LATENCY_MESSAGE_IMPORTANT = 1000;
     private static final int LATENCY_MESSAGE_LONG = 1200;

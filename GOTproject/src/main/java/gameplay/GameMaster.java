@@ -3,13 +3,18 @@ package gameplay;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import factions.WildingsName;
 import factions.TargaryenName;
 import factions.LannisterName;
 import factions.StarkName;
 import character.Character;
+import character.Human;
 import character.Lannister;
+import character.Northerner;
+import character.Southerner;
 import character.Stark;
 import character.Targaryen;
 import character.WhiteWalker;
@@ -21,25 +26,22 @@ import map.GameBoard;
 public class GameMaster {
     private static GameMaster uniqueInstance;
     private ArrayList<Character> population;
-    private final GameBoard westeros;
-
-    private final static int MAX_TURN = 15;
-    private final static int WHITEWALKER_COMING = 2;
-    private final static int WHITEWALKER_FREQUENCY = 5;
-    private final static int POP_BY_FACTION = 4;
+    private GameBoard westeros;
     private static int turn;
+    private static String endReason;
+    private static int displayLevel;//0 : rien, 1 à 4 : comme frequency
     
     
-    public static GameMaster getInstance() throws InterruptedException {
+    public static GameMaster getInstance(int mapSize, int safezoneSize) throws InterruptedException {
         if (uniqueInstance == null) {
-            uniqueInstance = new GameMaster();
+            uniqueInstance = new GameMaster(mapSize, safezoneSize);
         }
         return uniqueInstance;
     }
     
-    private GameMaster() throws InterruptedException {
-        FileManager.createLogFile();
-        westeros = GameBoard.getInstance();
+    private GameMaster(int mapSize, int safezoneSize) throws InterruptedException {
+        FileManager.createLogFile();       
+        westeros = GameBoard.getInstance(mapSize, safezoneSize);
         UserInterface.displayConsole("Génération du plateau", westeros, 2);
     }
     
@@ -47,7 +49,7 @@ public class GameMaster {
         return turn;
     }
 
-    protected void addFaction(Faction faction) {
+    private void addFaction(Faction faction, int popByFaction) {
         //load enum content
         ArrayList<String> names = new ArrayList<>();
         switch(faction) {
@@ -66,7 +68,7 @@ public class GameMaster {
         }
         
         //normalize
-        while (names.size() > POP_BY_FACTION) names.remove((int)(Math.random() * names.size()));
+        while (names.size() > popByFaction) names.remove((int)(Math.random() * names.size()));
         
         //generate factions
         switch(faction) {
@@ -85,33 +87,121 @@ public class GameMaster {
         }
     }
     
-    public void initialize(/*int popByFaction, int maxTurn, int latency, int WWfrequency...*/) throws InterruptedException, IOException {
+    private void initialize(int popByFaction) throws InterruptedException, IOException {
+        turn = 0;
+        
         //lance une nouvelle partie
     	FileManager.cleanLogFile();
         FileManager.writeToLogFile("[GAME] New simulation");
-        turn = 0;
         
         //Génère les familles avec génération de noms aléatoires
         population = new ArrayList<>();
         for (Faction faction : Faction.values()) {
-            addFaction(faction);
+            addFaction(faction, popByFaction);
         }
         westeros.addCharacters(population);
         
         UserInterface.displayConsole("Positionnement des personnages", westeros, 2);
     }
     
-    public void run() throws InterruptedException, IOException {
-        //exécution de la simulation tour par tour
-        turn = 0;
-        while (++turn < MAX_TURN && !isFinished()) {
-            UserInterface.displayConsole("Nouveau tour", westeros, 1);
-            FileManager.writeToLogFile("\n[GAME] TURN N°" + turn + " BEGIN");
+    private boolean isFinished() throws IOException {
+        //vérifie conditions de fin (famille/faction gagnante, paix ou toutes les factions mortes)
+    	Map<String, Integer> dic = new HashMap<>();
+    	dic.put("Human", 0);
+    	dic.put("Lannister", 0);
+    	dic.put("Targaryen", 0);
+    	dic.put("Stark", 0);
+    	dic.put("Wildings", 0);
+    	dic.put("Southerner", 0);
+    	dic.put("Northerner", 0);
+    	dic.put("WhiteWalker", 0);
+    	
+    	for (Character character : population) {
+            if(character.isAlive()) {
+                if(character instanceof Human) {
+                    dic.put("Human", dic.get("Human")+1);
+                    if(character instanceof Southerner) {
+                        dic.put("Southerner", dic.get("Southerner")+1);
+                        if (character instanceof Lannister) {
+                            dic.put("Lannister", dic.get("Lannister")+1);
+                        }
+                        else {
+                            dic.put("Targaryen", dic.get("Targaryen")+1);
+                        }
+                    }
+                    else if(character instanceof Northerner) {
+                        dic.put("Northerner", dic.get("Northerner")+1);	
+                        if (character instanceof Stark) {
+                            dic.put("Stark", dic.get("Stark")+1);
+                        }
+                        else {
+                            dic.put("Wildings", dic.get("Wildings")+1);
+                        }	
+                    }
+                }
+                else {
+                    dic.put("WhiteWalker", dic.get("WhiteWalker")+1);
+                }
+            }
+    	}
+    
+    	if(dic.get("Human") == 0) {
+            endReason = "Plus aucun humains sur le terrain. Les marcheurs blancs ont gagné !";
             
-            Collections.shuffle(population);
+            FileManager.writeToLogFile("\n[GAME] Victory of WhiteWalker");
+            return true;
+    	}
+    	if(dic.get("Southerner") == population.size()) {
+            endReason = "Il ne reste plus que des gens du sud sur le plateau.\nLa guerre est finie : les sudistes ont gagné et les ";
+            
+            if (dic.get("Lannister") > dic.get("Targaryen")) {
+                endReason += "Lannister sont sur le trône !";
+                FileManager.writeToLogFile("\n[GAME] Victory of Lannister");
+            }
+            else if (dic.get("Lannister") < dic.get("Targaryen")) {
+                endReason += "Targaryen sont sur le trône !";
+                FileManager.writeToLogFile("\n[GAME] Victory of Targaryen");
+            }
+            else {
+                endReason += "deux familles se disputent le trône !";
+                FileManager.writeToLogFile("\n[GAME] Victory of South");
+            }
+            return true;
+    	}
+    	if(dic.get("Northerner") == population.size()) {
+            endReason = "Il ne reste plus que des gens du nord sur le plateau.\nLa guerre est finie : les nordistes ont gagné et les ";
+            if (dic.get("Stark") > dic.get("Wildings")) {
+                endReason += "Stark sont sur le trône !";
+                FileManager.writeToLogFile("\n[GAME] Victory of Stark");
+            }
+            else if (dic.get("Stark") < dic.get("Wildings")) {
+                endReason += "Sauvageons sont sur le trône !";
+                FileManager.writeToLogFile("\n[GAME] Victory of Wildings");
+            }
+            else {
+                endReason += "deux familles se disputent le trône !";
+                FileManager.writeToLogFile("\n[GAME] Victory of North");
+            }
+            return true;
+    	}
+    	return false;
+    		
+    }
 
-            //1 seule opération si vivant (pas add + remove)
+    public void runSimulation(int displayLevel, int maxTurn, int popByFaction, int firstWW, int wwFrequency) throws InterruptedException, IOException {
+        GameMaster.displayLevel = displayLevel;
+        
+        //prépare jeu
+        this.initialize(popByFaction);
+        
+        //exécution de la simulation tour par tour
+        do {
+            FileManager.writeToLogFile("\n[GAME] TURN N°" + ++turn + " BEGIN");
+            UserInterface.displayConsole("Nouveau tour", westeros, 1);
+            
+            //fait jouer chaque personnage dans un ordre aléatoire s'il est vivant
             ArrayList<Character> populationAlive = new ArrayList<>();
+            Collections.shuffle(population);
             for (Character character : population) {
                 if (character.isAlive()) {//n'a pas été tué pendant un combat
                     character.move();
@@ -121,28 +211,25 @@ public class GameMaster {
                     }
                 }
             }
-            Collections.copy(population, populationAlive);
+            population = populationAlive;
             
-            //doit être vu (affiché) au moins une fois avant de bouger et interagir avec les gens
-            if ((turn - WHITEWALKER_COMING >= 0 && (turn - WHITEWALKER_COMING) % WHITEWALKER_FREQUENCY == 0) ||//decalage de cycle
-                    turn == WHITEWALKER_COMING) {//suffit d'un vrai : plus fréquent en premier
-                Character white = new WhiteWalker();
-                westeros.addCharacter(white);
-                population.add(white);
+            //affiche l'arrivée du white walker
+            if (turn == firstWW ||//premier arrivé
+                (turn - firstWW >= 0 && (turn - firstWW) % wwFrequency == 0)) {//suivants (cyclique)
+                population.add(new WhiteWalker());
+                westeros.addCharacter(population.get(population.size()-1));
                 
                 FileManager.writeToLogFile("\n[GAME] New WhiteWalker");
-                UserInterface.displayConsole("Un white walker arrive !", westeros, 3);
+                UserInterface.displayConsole("Un marcheur blanc arrive !", westeros, 3);
             }
+        } while (turn < maxTurn && !this.isFinished());
+        
+        //fin du jeu
+        if (endReason == null) {
+            endReason = "Et la guerre continua indéfiniment...";
+            FileManager.writeToLogFile("\n[GAME] No victory");
         }
+        UserInterface.displayConsole(endReason + "\nFin de la simulation",this.westeros,1);
     }
     
-    private boolean isFinished() {
-        //vérifie conditions de fin (famille/faction gagnante, paix ou toutes les factions mortes)
-        return population.isEmpty();
-    }
-    
-    public void displayEnd() {
-        //affiche fin correcte
-        System.out.println("Fin de la démo en "+turn+" tours - merci d'avoir joué");
-    }
 }

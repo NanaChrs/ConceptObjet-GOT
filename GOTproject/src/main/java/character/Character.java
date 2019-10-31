@@ -16,7 +16,7 @@ public abstract class Character {
     //  sa position sur la map et la possibilité de s'y mouvoir
     protected GameBoard westeros;//agrégation
     protected Box currentBox;//agrégation
-    protected final static int MAX_RANGE = 5; //Attribut statique qui a du sens
+    protected final static int MAX_RANGE = 10;//Attribut statique qui a du sens
     
     //  sa vie et les dégâts qu'il fait
     protected final static int DEFAULT_STAT_VALUE = 100;
@@ -47,6 +47,10 @@ public abstract class Character {
         westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
         displayConsole((this instanceof Human? ((Human)this).getFullName() : "Le marcheur blanc") + 
                 " meurt", westeros, 3);
+
+        if (this instanceof Human) {
+            this.westeros.getSafeZone(this.getClass().getSimpleName()).removeFactionMember();
+        }
     }
     
     //Getters & setters utiles
@@ -108,7 +112,7 @@ public abstract class Character {
     
     private boolean isNextFree(Direction takenDirection) {
         int posX = this.currentBox.getX(), posY = this.currentBox.getY();
-        int xMax = GameBoard.getWidth(), yMax = GameBoard.getHeight();
+        int xMax = GameBoard.getSize(), yMax = GameBoard.getSize();
         
         switch(takenDirection) {//bas gauche: (0,0) ; haut droite : (max,max)
             case NorthWest :
@@ -182,7 +186,7 @@ public abstract class Character {
         ArrayList<Direction> list = new ArrayList<>();
         
         //si humain bientot à court d'énergie, cherche safezone
-        if (this instanceof Human && ((Human)this).stamina <= Human.LOW_STAMINA) {
+        if (this instanceof Human && !currentBox.isSafe() && ((Human)this).stamina <= Human.LOW_STAMINA) {
             //les 3 directions qui rapprochent de la safezone en verifiant qu'elles ne sont pas bouchées
             //si bouchées, ne se déplace pas (économise ses forces)
             
@@ -197,8 +201,8 @@ public abstract class Character {
             //une coordonnée au niveau de safezone : déplacement en "+"
             if ((corner.equals(Direction.NorthWest) && posX < SafeZone.getSize()) || 
                 (corner.equals(Direction.SouthWest) && posY < SafeZone.getSize()) || 
-                (corner.equals(Direction.SouthEast) && posX > GameBoard.getWidth() - SafeZone.getSize()) || 
-                (corner.equals(Direction.NorthEast) && posY > GameBoard.getHeight() - SafeZone.getSize())) {
+                (corner.equals(Direction.SouthEast) && posX > GameBoard.getSize() - SafeZone.getSize()) || 
+                (corner.equals(Direction.NorthEast) && posY > GameBoard.getSize() - SafeZone.getSize())) {
                 Direction diagoRight = diagoRight(corner);
                 if (isNextFree(diagoRight)) {
                     list.add(diagoRight);
@@ -211,8 +215,8 @@ public abstract class Character {
             //l'autre coordonnée au niveau de safezone : déplacement en "+"
             else if ((corner.equals(Direction.SouthWest) && posX < SafeZone.getSize()) || 
                     (corner.equals(Direction.SouthEast) && posY < SafeZone.getSize()) || 
-                    (corner.equals(Direction.NorthEast) && posX > GameBoard.getWidth() - SafeZone.getSize()) || 
-                    (corner.equals(Direction.NorthWest) && posY > GameBoard.getHeight() - SafeZone.getSize())) {
+                    (corner.equals(Direction.NorthEast) && posX > GameBoard.getSize() - SafeZone.getSize()) || 
+                    (corner.equals(Direction.NorthWest) && posY > GameBoard.getSize() - SafeZone.getSize())) {
                 Direction diagoLeft = diagoLeft(corner);
                 if (isNextFree(diagoLeft)) {
                     list.add(diagoLeft);
@@ -285,6 +289,41 @@ public abstract class Character {
         displayConsole(message1 + " se déplace (vie : " + this.life + message2, westeros, 4);
     }
     
+    private boolean foundSomeoneInSurroundings(int range) throws IOException, InterruptedException {
+        //scan des environs dans carte et interaction avec persos des cases juxtaposées
+        boolean foundSomeone = false;
+        
+        //diminutifs
+        int limXInf = currentBox.getX()-1,
+            limXSup = currentBox.getX()+1,
+            xMax = GameBoard.getSize(),
+            limYInf = currentBox.getY()-1,
+            limYSup = currentBox.getY()+1,
+            yMax = GameBoard.getSize();
+        
+        //test des limites de map dans boucle for (moins de test au total)
+        this.currentBox.displayBox();
+        for (int x = limXInf+(limXInf<0 ? 1 : 0); x <= limXSup-(limXSup>=xMax ? 1 : 0); ++x) {
+            for (int y = limYInf+(limYInf<0 ? 1 : 0); y <= limYSup-(limYSup>=yMax? 1 : 0); ++y) {
+                //si être vivant présent autour du perso
+                Character somebody = westeros.getMap()[x][y].getCharacter();
+                if (somebody != null && !(x == currentBox.getX() && y == currentBox.getY())) {
+                    foundSomeone = true;
+                    //va a sa rencontre
+                    if (somebody instanceof Human) {
+                        meet((Human) somebody,range);
+                    }
+                    else {
+                        meet((WhiteWalker) somebody,range);
+                    }
+                    if (!this.isAlive()) return true;
+                }
+            }
+        }
+        
+        return foundSomeone;
+    }
+    
     //Méthodes protected - actions définies ou réutilisables en interne dans d'autres contextes
     /** 
     * Rolls a dice
@@ -335,35 +374,11 @@ public abstract class Character {
                 westeros.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(this);
                 
                 moveMessage();//etat final
-            } while(--range > 0 && isNextFree(takenDir));
+                foundSomeoneInSurroundings(range);
+            } while(/*!foundSomeoneInSurroundings(range) && */this.isAlive() && --range > 0 && isNextFree(takenDir));
         }
-
-        //etape 3 : scan des environs dans carte et interaction avec persos des cases juxtaposées
-        //diminutifs
-        int limXInf = currentBox.getX()-1,
-            limXSup = currentBox.getX()+1,
-            xMax = GameBoard.getWidth(),
-            limYInf = currentBox.getY()-1,
-            limYSup = currentBox.getY()+1,
-            yMax = GameBoard.getHeight();
-        
-        //test des limites de map dans boucle for (moins de test au total)
-        this.currentBox.displayBox();
-        for (int x = limXInf+(limXInf<0 ? 1 : 0); x <= limXSup-(limXSup>=xMax ? 1 : 0); ++x) {
-            for (int y = limYInf+(limYInf<0 ? 1 : 0); y <= limYSup-(limYSup>=yMax? 1 : 0); ++y) {
-                //si être vivant présent autour du perso
-                Character somebody = westeros.getMap()[x][y].getCharacter();
-                if (somebody != null && !(x == currentBox.getX() && y == currentBox.getY())) {
-                    //va a sa rencontre
-                    if (somebody instanceof Human) {
-                        meet((Human) somebody,range);
-                    }
-                    else {
-                        meet((WhiteWalker) somebody,range);
-                    }
-                    if (!this.isAlive()) return;
-                }
-            }
+        else {
+            foundSomeoneInSurroundings(range);
         }
     }
 }

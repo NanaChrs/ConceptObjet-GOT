@@ -1,20 +1,36 @@
 package map;
 
 import factions.Faction;
+import static gameplay.UserInterface.displayConsole;
 
 public class SafeZone {
+    protected int factionSize;
     protected Faction safeFor;
     protected Direction corner;//par rapport au centre
     protected GameBoard westeros;//aggrégation
     
-    protected final static int SIZE = 5;
+    protected final static int SIZE = GameBoard.getSize()/4;
     protected final static int RECOVERY = 10;//stamina récupérée
     
-    public SafeZone(GameBoard map, Faction population, Direction orientation) {
+    public SafeZone(int size, GameBoard map, Faction population, Direction orientation) {
         this.westeros = map;
         this.corner = orientation;
         this.safeFor = population;
-        applySafeZone();
+        applySafeZone(true);
+    }
+    
+    public void addFactionMember() {
+        factionSize++;
+    }
+    
+    public void removeFactionMember() throws InterruptedException {
+        if (--factionSize == 0) {
+            String name = safeFor.toString();
+            safeFor = null;
+            applySafeZone(false);//affichage carte
+            westeros.towns.remove(this);//enregistrement safezone
+            displayConsole("Les " + name + " sont morts : leur zone d'influence disparaît", westeros, 2);
+        }
     }
     
     public Direction getCorner() {
@@ -32,14 +48,9 @@ public class SafeZone {
     public Faction getSafeFor() {
         return safeFor;
     }
-    /*
-    public void setSafeFor(Faction population) {
-        this.safeFor = population;
-        applySafeZone();
-    }*/
     
-    private void applySafeZone() {
-        int xMax = GameBoard.getWidth()-1, yMax = GameBoard.getHeight()-1;
+    private void applySafeZone(boolean setSafeZone) {
+        int xMax = GameBoard.getSize()-1, yMax = GameBoard.getSize()-1;
         switch(corner) {
             case NorthWest:
                 for (int x = 0; x < SIZE; ++x) {
@@ -47,7 +58,7 @@ public class SafeZone {
                         westeros.getMap()[x][y].removeObstacle();
                         westeros.getMap()[x][y].setSafeFor(safeFor);
                         if (x == SIZE-1 || y == yMax-SIZE+1) {
-                            westeros.getMap()[x][y].setLimitSafeZone();
+                            westeros.getMap()[x][y].setLimitSafeZone(setSafeZone);
                         }
                     }
                 }
@@ -58,7 +69,7 @@ public class SafeZone {
                         westeros.getMap()[x][y].removeObstacle();
                         westeros.getMap()[x][y].setSafeFor(safeFor);
                         if (x == xMax-SIZE+1 || y == yMax-SIZE+1) {
-                            westeros.getMap()[x][y].setLimitSafeZone();
+                            westeros.getMap()[x][y].setLimitSafeZone(setSafeZone);
                         }
                     }
                 }
@@ -69,7 +80,7 @@ public class SafeZone {
                         westeros.getMap()[x][y].removeObstacle();
                         westeros.getMap()[x][y].setSafeFor(safeFor);
                         if (x == xMax-SIZE+1 || y == SIZE-1) {
-                            westeros.getMap()[x][y].setLimitSafeZone();
+                            westeros.getMap()[x][y].setLimitSafeZone(setSafeZone);
                         }
                     }
                 }
@@ -80,11 +91,12 @@ public class SafeZone {
                         westeros.getMap()[x][y].removeObstacle();
                         westeros.getMap()[x][y].setSafeFor(safeFor);
                         if (x == SIZE-1 || y == SIZE-1) {
-                            westeros.getMap()[x][y].setLimitSafeZone();
+                            westeros.getMap()[x][y].setLimitSafeZone(setSafeZone);
                         }
                     }
                 }
                 break;
         }
     }
+    
 }

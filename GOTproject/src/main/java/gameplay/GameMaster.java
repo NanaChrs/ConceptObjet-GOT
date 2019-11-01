@@ -42,7 +42,7 @@ public class GameMaster {
     
     private GameMaster() throws InterruptedException {
         FileManager.createLogFile();
-        westeros = GameBoard.getInstance();//fortement lié plutot que agregation?
+        westeros = GameBoard.getInstance(); //composition
     }
     
     public static int getTurn() {
@@ -192,10 +192,9 @@ public class GameMaster {
     		
     }
 
-    public void runSimulation(int displayLevel, int mapSize, int safezoneSize, int maxTurn, int popByFaction, int firstWW, int wwFrequency) throws InterruptedException, IOException {
-        GameMaster.displayLevel = displayLevel;
+    public void runSimulation(int mapSize, int safezoneSize, int maxTurn, int popByFaction, int firstWW, int wwFrequency) throws InterruptedException, IOException {        
         
-        //prépare jeu
+    	//prépare jeu
         this.initialize(mapSize, safezoneSize, popByFaction);
         
         //exécution de la simulation tour par tour
@@ -238,8 +237,8 @@ public class GameMaster {
         UserInterface.displayConsole(false,endReason,1);
         Statistics.displayStats();
         
-        UserInterface.displayConsole(false,"\nFin de la simulation - appuyez sur une touche pour revenir au menu");
-        new Scanner(System.in).next();
+        UserInterface.displayConsole(false,"\nFin de la simulation");// - appuyez sur une touche pour revenir au menu");
+        //new Scanner(System.in).next();
     }
     
 }

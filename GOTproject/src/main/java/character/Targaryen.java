@@ -10,7 +10,7 @@ public class Targaryen extends Southerner {
     
     //Attributs - Instance définie par :
     //  sa chance
-    protected final static int CRITICAL_SUCCESS_THRESHOLD= 95;
+    protected final static int CRITICAL_SUCCESS_THRESHOLD= 93;
     protected final static int FAILURE_THRESHOLD = 25;
 
     //Constructeur - naissance de l'instance

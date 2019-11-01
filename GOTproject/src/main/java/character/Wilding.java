@@ -23,7 +23,7 @@ public class Wilding extends Northerner {
     @Override
     protected void superAttack(Character character) throws IOException, InterruptedException {		
         this.addLife(10);
-        character.reduceLife(2*this.power,DamageSource.Battle,this);
+        character.reduceLife((int)1.5*this.power,DamageSource.Battle,this);
 
         FileManager.writeToLogFile("[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !");
     }

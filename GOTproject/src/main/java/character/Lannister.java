@@ -22,9 +22,9 @@ public class Lannister extends Southerner {
     //Méthodes protected - définition d'actions
     @Override
     protected void superAttack(Character c) throws IOException, InterruptedException {
-        c.reduceLife((int)(this.maxLife/3),DamageSource.Battle,this);
-        this.reduceLife((int)(this.life/3),DamageSource.Battle,this);//pas mortel
+        c.reduceLife((int)(this.maxLife/2),DamageSource.Battle,this);
+        this.reduceLife((int)(this.life/6),DamageSource.Battle,this);//pas mortel
 
-        FileManager.writeToLogFile("[SUPERATTACK] A Lannister always pays his debts ! "+ this.name+" gave 1/3 of his life.");
+        FileManager.writeToLogFile("[SUPERATTACK] A Lannister always pays his debts ! "+ this.name+" gave 1/6 of his life.");
     }
 }

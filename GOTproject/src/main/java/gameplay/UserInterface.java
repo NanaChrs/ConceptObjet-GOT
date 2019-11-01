@@ -1,6 +1,8 @@
 package gameplay;
 
 import static gameplay.GameMaster.getTurn;
+
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import map.GameBoard;
 
@@ -42,5 +44,33 @@ public class UserInterface {
     
     public static void displayConsole(String message, GameBoard westeros, int deepness) throws InterruptedException {
         displayConsole(true, "Tour n°" + getTurn() + " \n" + message + "\n" + westeros.displayMap(), deepness);
+    }
+    
+    public static int userChoice(boolean clean, String message, int nbChoices) {
+        displayConsole(clean,message);
+        
+        Scanner keyboard = new Scanner(System.in);
+        int choice = 0;
+
+        do {
+            try {
+                System.out.printf("\tVotre choix : ");
+                choice = keyboard.nextInt();
+            } 
+            catch (Exception e) {
+                keyboard.next();//if incorrect : try again
+            }
+        } while (choice < 0 || choice > nbChoices);
+        
+        return choice;
+    }
+    
+    public static int userChoice(boolean clean, String message, int choixMin, int choixMax) {
+        displayConsole(clean,message);
+        
+        int choice;
+        do choice = userChoice(false,"", choixMax); while (choice < choixMin);
+        
+        return choice;
     }
 }

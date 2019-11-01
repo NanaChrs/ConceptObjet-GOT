@@ -10,7 +10,7 @@ public class Stark extends Northerner {
     
     //Attributs - Instance définie par :
     //  sa chance
-    protected final static int CRITICAL_SUCCESS_THRESHOLD= 60;
+    protected final static int CRITICAL_SUCCESS_THRESHOLD= 73;
     protected final static int FAILURE_THRESHOLD = 15;
 
     //Constructeur - naissance de l'instance
@@ -22,7 +22,7 @@ public class Stark extends Northerner {
     //Méthodes protected - définition d'actions
     @Override
     protected void superAttack(Character character) throws IOException, InterruptedException {
-        character.reduceLife((int)(this.maxLife/2),DamageSource.Battle,this);
-        FileManager.writeToLogFile("[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP");
+        character.reduceLife((int)(this.maxLife/3),DamageSource.Battle,this);
+        FileManager.writeToLogFile("[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP");
     }
 }

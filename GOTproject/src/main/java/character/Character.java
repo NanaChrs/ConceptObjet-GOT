@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import gameplay.DiceResult;
+import gameplay.Statistics;
 import static gameplay.UserInterface.displayConsole;
 import map.Box;
 import map.Direction;
@@ -43,13 +44,73 @@ public abstract class Character {
         this.failureThreshold           = failureThreshold < 0          ? DEFAULT_THRESHOLD_VALUE   : (failureThreshold         > THRESHOLD_MAX ? THRESHOLD_MAX : failureThreshold);
     }
     
-    public void death() throws InterruptedException {
+    public void death(DamageSource cause, Character character) throws InterruptedException {
         westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
-        displayConsole((this instanceof Human? ((Human)this).getFullName() : "Le marcheur blanc") + 
-                " meurt", westeros, 3);
+        displayConsole((this instanceof Human? ((Human)this).getFullName() : "Le marcheur blanc") + " meurt", westeros, 3);
 
         if (this instanceof Human) {
             this.westeros.getSafeZone(this.getClass().getSimpleName()).removeFactionMember();
+            
+            if (cause.equals(DamageSource.Nature)) {
+                if (this instanceof Lannister) {
+                    Statistics.LannisterDeadAlone();
+                }
+                else if (this instanceof Targaryen) {
+                    Statistics.TargaryenDeadAlone();
+                }
+                else if (this instanceof Stark) {
+                    Statistics.StarkDeadAlone();
+                }
+                else /*if (this instanceof Wilding)*/ {
+                    Statistics.WildingDeadAlone();
+                }
+            }
+            else {
+                if (this instanceof Lannister) {
+                    Statistics.LannisterDeadInBattle();
+                }
+                else if (this instanceof Targaryen) {
+                    Statistics.TargaryenDeadInBattle();
+                }
+                else if (this instanceof Stark) {
+                    Statistics.StarkDeadInBattle();
+                }
+                else /*if (this instanceof Wilding)*/ {
+                    Statistics.WildingDeadInBattle();
+                }
+                
+                if (character instanceof Lannister) {
+                    Statistics.northernerKilledByLannister();
+                }
+                else if (character instanceof Targaryen) {
+                    Statistics.northernerKilledByTargaryen();
+                }
+                else if (character instanceof Stark) {
+                    Statistics.southernerKilledByStark();
+                }
+                else if (character instanceof Wilding) {
+                    Statistics.southernerKilledByWildings();
+                }
+                else {
+                    Statistics.humanKilledByWW();
+                }
+            }
+        }
+        else {
+            Statistics.WWDeadInBattle();
+            
+            if (character instanceof Lannister) {
+                Statistics.WWKilledByLannister();
+            }
+            else if (character instanceof Targaryen) {
+                Statistics.WWKilledByTargaryen();
+            }
+            else if (character instanceof Stark) {
+                Statistics.WWKilledByStark();
+            }
+            else /*if (this instanceof Wilding)*/ {
+                Statistics.WWKilledByWildings();
+            }
         }
     }
     
@@ -69,13 +130,13 @@ public abstract class Character {
     
     //  attributs
     public void addLife(int life) {
-        int newLife = this.life + life;
-        this.life = (newLife > maxLife)? maxLife : newLife;
+        this.life += life;
+        if (this.life > maxLife) this.life = maxLife;
     }
     
-    public void reduceLife(int life) throws InterruptedException {
+    public void reduceLife(int life, DamageSource cause, Character character) throws InterruptedException {
         this.life -= life;
-        if (this.life <= 0) this.death();
+        if (this.life <= 0) this.death(cause,character);
     }
     
     public boolean isAlive() {
@@ -83,8 +144,8 @@ public abstract class Character {
     }
 
     public void addPower(int power) {
-        int newPower = this.power + power;
-        this.power = (newPower > power)? maxPower : newPower;
+        this.power += power;
+        if (this.power > maxPower) this.power = maxPower;
     }
 
 /*
@@ -94,9 +155,12 @@ public abstract class Character {
 */
     
     //Méthodes private - actions spécifiques
-    private int currentRange() {
+    private int currentRange() throws InterruptedException {
         //si humain à court d'energie, bouge plus
         if (this instanceof Human && ((Human)this).stamina == 0) {
+            if (((Human)this).turnsWithoutStamina++ >= Human.MAX_TURNS_WITHOUT_STAMINA) {//not found : no rescue
+                this.reduceLife(this.life,DamageSource.Nature,null);
+            }
             return 0;
         }
         
@@ -307,7 +371,7 @@ public abstract class Character {
             for (int y = limYInf+(limYInf<0 ? 1 : 0); y <= limYSup-(limYSup>=yMax? 1 : 0); ++y) {
                 //si être vivant présent autour du perso
                 Character somebody = westeros.getMap()[x][y].getCharacter();
-                if (somebody != null && !(x == currentBox.getX() && y == currentBox.getY())) {
+                if (somebody != null && somebody.isAlive() && !(x == currentBox.getX() && y == currentBox.getY())) {
                     foundSomeone = true;
                     //va a sa rencontre
                     if (somebody instanceof Human) {
@@ -354,31 +418,33 @@ public abstract class Character {
     
     //Méthodes public - actions que peut réaliser l'instance
     public void move() throws IOException, InterruptedException {
-        //etape 1 : recuperer les directions de deplacement envisageables
-        ArrayList<Direction> validDir = potentialDirections();
-        
-        //etape 2 : se deplacer le long d'une direction
+        //etape 1 : connaitre la portée
         int range = currentRange();
-        if (!validDir.isEmpty() && range > 0) {
-            //choisir une direction au hasard
-            Direction takenDir = validDir.get((int)(Math.random() * validDir.size()));
-            
-            //tant que la case suivante est vide et à portée, le perso se déplace + action de se déplacer dans movmentConsequences (perte de stamina, gain de pv, xp...)
-            moveMessage();//etat initial
-            do {//premiere case forcément vide
-                movmentConsequences();
-                if (!this.isAlive()) return;//humains qui perdent vie sur terrain inhospitaliers
-                
-                westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
-                currentBox = makeStep(takenDir);
-                westeros.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(this);
-                
-                moveMessage();//etat final
-                foundSomeoneInSurroundings(range);
-            } while(/*!foundSomeoneInSurroundings(range) && */this.isAlive() && --range > 0 && isNextFree(takenDir));
+        
+        if (range > 0) {
+            //etape 2 : recuperer les directions de deplacement envisageables
+            ArrayList<Direction> validDir = potentialDirections();
+
+            if (!validDir.isEmpty()) {
+                //etape 3 : se deplacer le long d'une direction choisie au hasard
+                Direction takenDir = validDir.get((int)(Math.random() * validDir.size()));
+
+                //tant que la case suivante est vide et à portée, le perso se déplace + action de se déplacer dans movmentConsequences (perte de stamina, gain de pv, xp...)
+                moveMessage();//etat initial
+                do {//premiere case forcément vide
+                    movmentConsequences();
+                    if (!this.isAlive()) return;//humains qui perdent vie sur terrain inhospitaliers
+
+                    westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
+                    currentBox = makeStep(takenDir);
+                    westeros.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(this);
+
+                    moveMessage();//etat final
+                } while(!foundSomeoneInSurroundings(range) && this.isAlive() && --range > 0 && isNextFree(takenDir));
+            }
         }
-        else {
-            foundSomeoneInSurroundings(range);
+        else if (this.isAlive()) {//mort par manque de stamina et de secours
+            foundSomeoneInSurroundings(0);
         }
     }
 }

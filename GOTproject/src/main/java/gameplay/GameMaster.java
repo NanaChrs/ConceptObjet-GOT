@@ -20,6 +20,7 @@ import character.Targaryen;
 import character.WhiteWalker;
 import character.Wilding;
 import factions.Faction;
+import java.util.Scanner;
 import map.GameBoard;
 
 
@@ -29,20 +30,19 @@ public class GameMaster {
     private final GameBoard westeros;
     private static int turn;
     private static String endReason;
-    private static int displayLevel;//0 : rien, 1 à 4 : comme frequency
+    private static int displayLevel;//0 : rien sauf stat, 1 à 4 : comme frequency
     
     
-    public static GameMaster getInstance(int mapSize, int safezoneSize) throws InterruptedException {
+    public static GameMaster getInstance() throws InterruptedException {
         if (uniqueInstance == null) {
-            uniqueInstance = new GameMaster(mapSize, safezoneSize);
+            uniqueInstance = new GameMaster();
         }
         return uniqueInstance;
     }
     
-    private GameMaster(int mapSize, int safezoneSize) throws InterruptedException {
-        FileManager.createLogFile();       
-        westeros = GameBoard.getInstance(mapSize, safezoneSize);
-        UserInterface.displayConsole("Génération du plateau", westeros, 2);
+    private GameMaster() throws InterruptedException {
+        FileManager.createLogFile();
+        westeros = GameBoard.getInstance();//fortement lié plutot que agregation?
     }
     
     public static int getTurn() {
@@ -87,24 +87,28 @@ public class GameMaster {
         }
     }
     
-    private void initialize(int popByFaction) throws InterruptedException, IOException {
-        turn = 0;
-        
+    private void initialize(int mapSize, int safezoneSize, int popByFaction) throws InterruptedException, IOException {
         //lance une nouvelle partie
+        turn = 0;
     	FileManager.cleanLogFile();
         FileManager.writeToLogFile("[GAME] New simulation");
         
-        //Génère les familles avec génération de noms aléatoires
+        //crée plateau
+        westeros.initialize(mapSize, safezoneSize);
+        UserInterface.displayConsole("Génération du plateau", westeros, 2);
+        
+        //Génère les familles avec noms aléatoires
         population = new ArrayList<>();
         for (Faction faction : Faction.values()) {
             addFaction(faction, popByFaction);
         }
         westeros.addCharacters(population);
-        
         UserInterface.displayConsole("Positionnement des personnages", westeros, 2);
     }
     
     private boolean isFinished() throws IOException {
+        //peut utiliser statistics pour déterminer gagnant
+        
         //vérifie conditions de fin (famille/faction gagnante, paix ou toutes les factions mortes)
     	Map<String, Integer> dic = new HashMap<>();
     	dic.put("Human", 0);
@@ -188,11 +192,11 @@ public class GameMaster {
     		
     }
 
-    public void runSimulation(int displayLevel, int maxTurn, int popByFaction, int firstWW, int wwFrequency) throws InterruptedException, IOException {
+    public void runSimulation(int displayLevel, int mapSize, int safezoneSize, int maxTurn, int popByFaction, int firstWW, int wwFrequency) throws InterruptedException, IOException {
         GameMaster.displayLevel = displayLevel;
         
         //prépare jeu
-        this.initialize(popByFaction);
+        this.initialize(mapSize, safezoneSize, popByFaction);
         
         //exécution de la simulation tour par tour
         do {
@@ -217,20 +221,25 @@ public class GameMaster {
             if (turn == firstWW ||//premier arrivé
                 (turn - firstWW >= 0 && (turn - firstWW) % wwFrequency == 0)) {//suivants (cyclique)
                 population.add(new WhiteWalker());
-                westeros.addCharacter(population.get(population.size()-1));
+                if (!westeros.addCharacter(population.get(population.size()-1))) {
+                    population.remove(population.size()-1);//plus de place
+                }
                 
                 FileManager.writeToLogFile("\n[GAME] New WhiteWalker");
                 UserInterface.displayConsole("Un marcheur blanc arrive !", westeros, 3);
             }
-        } while (turn < maxTurn && !this.isFinished());
+        } while (!this.isFinished() && turn < maxTurn);
         
         //fin du jeu
         if (endReason == null) {
             endReason = "Et la guerre continua indéfiniment...";
             FileManager.writeToLogFile("\n[GAME] No victory");
         }
-        UserInterface.displayConsole(endReason + "\nFin de la simulation",1);
+        UserInterface.displayConsole(false,endReason,1);
         Statistics.displayStats();
+        
+        UserInterface.displayConsole(false,"\nFin de la simulation - appuyez sur une touche pour revenir au menu");
+        new Scanner(System.in).next();
     }
     
 }

@@ -22,7 +22,7 @@ public class Targaryen extends Southerner {
     //Méthodes protected - définition d'actions
     @Override
     protected void superAttack(Character character) throws IOException, InterruptedException {		
-        character.reduceLife(character.life);
+        character.reduceLife(character.life,DamageSource.Battle,this);
         FileManager.writeToLogFile("[SUPERATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.");
     }
 }

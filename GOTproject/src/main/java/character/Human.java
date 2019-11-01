@@ -3,7 +3,6 @@ package character;
 import java.io.IOException;
 
 import gameplay.FileManager;
-import gameplay.Statistics;
 import static gameplay.UserInterface.displayConsole;
 import map.Direction;
 import map.SafeZone;
@@ -17,8 +16,10 @@ public abstract class Human extends Character {
     //  ses capacités de déplacement
     private final int maxStamina;
     protected int stamina;
-    static protected int LOW_STAMINA = 20; //Attribut statique qui a du sens
+    protected final static int LOW_STAMINA = 20; //Attribut statique qui a du sens
     protected SafeZone safezone;//agrégation
+    protected final static int MAX_TURNS_WITHOUT_STAMINA = 2; //Attribut statique qui a du sens
+    protected int turnsWithoutStamina;
     
     //  son expérience
     protected final static int GAIN_BY_LEVEL = 5; //Attribut statique qui a du sens
@@ -48,16 +49,13 @@ public abstract class Human extends Character {
     
     //  déplacement
     public void addStamina(int stamina) {
-        int newStamina = this.stamina + stamina;
-        this.stamina = (newStamina > maxStamina)? maxStamina : newStamina;
+        this.stamina += stamina;
+        if (this.stamina > maxStamina) this.stamina = maxStamina;
     }
     
     public void reduceStamina(int stamina) throws InterruptedException {
-        int newStamina = this.stamina - stamina;
-        this.stamina = (newStamina < 0)? 0 : newStamina;
-        if (this.stamina == 0) {
-            this.reduceLife(this.life);
-        }
+        this.stamina -= stamina;
+        if (this.stamina < 0) this.stamina = 0;
     }
     
     //  expérience
@@ -69,7 +67,7 @@ public abstract class Human extends Character {
     }
     
     public void addXp(int xp) {
-        this.xp += xp > 0 ? xp : 0;
+        this.xp += (xp > 0 ? xp : 0);
         if (this.xp >= XP_THRESHOLD) {
             this.newLevel();
         }
@@ -88,7 +86,7 @@ public abstract class Human extends Character {
             this.addLife(1);//se soigne
         }
         else {
-            this.reduceLife(fieldDamages);
+            this.reduceLife(fieldDamages,DamageSource.Nature,null);
         }
         
         if (this.isAlive()) {
@@ -101,26 +99,11 @@ public abstract class Human extends Character {
                 this.reduceStamina(1);
             }
         }
-        
-        if (!this.isAlive()) {//stamina reduction can kill
-            if (this instanceof Lannister) {
-                Statistics.LannisterDeadOnMove();
-            }
-            else if (this instanceof Targaryen) {
-                Statistics.TargaryenDeadOnMove();
-            }
-            else if (this instanceof Stark) {
-                Statistics.StarkDeadOnMove();
-            }
-            else /*if (this instanceof Wilding)*/ {
-                Statistics.WildingDeadOnMove();
-            }
-        }
     }
     
     @Override
     protected void meet(WhiteWalker ww, int remainingBoxes) throws IOException, InterruptedException {
-        displayConsole(this.getFullName() + " (lv" + this.level + "; vie : " + this.life + ") attaque un marcheur blanc", westeros, 2);
+        displayConsole(this.getFullName() + " lv" + this.level + " (vie : " + this.life + ") attaque un marcheur blanc", westeros, 2);
     	FileManager.writeToLogFile("\n[MEET] "+ this.name +" from House "+ this.getClass().getSimpleName() + " met a White Walker.");
     	
     	do {
@@ -131,35 +114,21 @@ public abstract class Human extends Character {
     	if(!this.isAlive()) {
             FileManager.writeToLogFile("[DEATH] " + this.name + " from House " + this.getClass().getSimpleName() + " is killed by the whitewalker.");
             ww.addLife(25);
-            Statistics.humanKilledByWW();
     	}
     	else {
             FileManager.writeToLogFile("[DEATH] The whitewalker is killed by "+ this.name+" from House "+ this.getClass().getSimpleName()+".");
             this.addXp(100);
             this.addLife(25);
-            
-            if (this instanceof Lannister) {
-                Statistics.WWKilledByLannister();
-            }
-            else if (this instanceof Targaryen) {
-                Statistics.WWKilledByTargaryen();
-            }
-            else if (this instanceof Stark) {
-                Statistics.WWKilledByStark();
-            }
-            else /*if (this instanceof Wilding)*/ {
-                Statistics.WWKilledByWildings();
-            }
     	}
     }
 
     @Override
     protected void meet(Human h, int remainingBoxes) throws IOException, InterruptedException {
-        displayConsole(this.getFullName() + " (lv" + this.level + "; vie : " + this.life + ") rencontre " + h.getFullName() + " (lv" + h.level + "; vie : " + h.life + ")", westeros, 2);
+        displayConsole(this.getFullName() + " lv" + this.level + " (vie : " + this.life + ") rencontre " + h.getFullName() + " lv" + h.level + " (vie : " + h.life + ")", westeros, 2);
         FileManager.writeToLogFile("\n[MEET] "+ this.name +" from House "+ this.getClass().getSimpleName() + " met " + h.name + " from House "+ h.getClass().getSimpleName() +".");
 
         //amis (faction / région)
-        if(this.getClass() == h.getClass()) {
+        if(this.getClass().getSuperclass() == h.getClass().getSuperclass()) {
             if(this.stamina == 0) {
                 FileManager.writeToLogFile("[MEET] "+ this.name + " is exhausted (0 Stamina). "+ h.name + " gave him/her half of his/her : "+ h.stamina/2 + ".");
                 this.addStamina(h.stamina/2);
@@ -174,7 +143,7 @@ public abstract class Human extends Character {
                 h.addLife(h.maxLife/4);
                 
                 //même faction
-                if (this.getClass().getSuperclass() == h.getClass().getSuperclass()) {
+                if (this.getClass() == h.getClass()) {
                     int gainXp = remainingBoxes < 0 ? 1 : remainingBoxes;
 
                     FileManager.writeToLogFile("[MEET] They both gained "+ gainXp +" xp.");
@@ -187,37 +156,11 @@ public abstract class Human extends Character {
         else if (!this.currentBox.isSafe() && !h.currentBox.isSafe()) {
             if(this.stamina == 0) {
                 FileManager.writeToLogFile("[MEET] "+ this.name + " is exhausted (0 Stamina). "+ h.name + " killed him/her.");
-                this.reduceLife(this.life);
-                
-                if (h instanceof Lannister) {
-                    Statistics.northernerKilledByLannister();
-                }
-                else if (h instanceof Targaryen) {
-                    Statistics.northernerKilledByTargaryen();
-                }
-                else if (h instanceof Stark) {
-                    Statistics.southernerKilledByStark();
-                }
-                else /*if (this instanceof Wilding)*/ {
-                    Statistics.southernerKilledByWildings();
-                }
+                this.reduceLife(this.life,DamageSource.Battle,h);
             }
             else if (h.stamina == 0) {
                 FileManager.writeToLogFile("[MEET] "+ h.name + " is exhausted (0 Stamina). "+ this.name + " killed him/her.");
-                h.reduceLife(h.life);
-                
-                if (this instanceof Lannister) {
-                    Statistics.northernerKilledByLannister();
-                }
-                else if (this instanceof Targaryen) {
-                    Statistics.northernerKilledByTargaryen();
-                }
-                else if (this instanceof Stark) {
-                    Statistics.southernerKilledByStark();
-                }
-                else /*if (this instanceof Wilding)*/ {
-                    Statistics.southernerKilledByWildings();
-                }
+                h.reduceLife(h.life,DamageSource.Battle,this);
             }
             else {
                 do {
@@ -228,41 +171,15 @@ public abstract class Human extends Character {
                 if(!this.isAlive()) {
                     h.addXp(this.xp);
                     FileManager.writeToLogFile("[DEATH] " + this.name + " from House " + this.getClass().getSimpleName() + " is killed by "+ h.name + " from House "+ h.getClass().getSimpleName());
-                    
-                    if (h instanceof Lannister) {
-                        Statistics.northernerKilledByLannister();
-                    }
-                    else if (h instanceof Targaryen) {
-                        Statistics.northernerKilledByTargaryen();
-                    }
-                    else if (h instanceof Stark) {
-                        Statistics.southernerKilledByStark();
-                    }
-                    else /*if (this instanceof Wilding)*/ {
-                        Statistics.southernerKilledByWildings();
-                    }
                 }
                 else {
                     FileManager.writeToLogFile("[DEATH] "+ h.name +" from House "+ h.getClass().getSimpleName()+" is killed by "+ this.name+" from House "+ this.getClass().getSimpleName()+".");
                     this.addXp(h.xp);
-                    
-                    if (this instanceof Lannister) {
-                        Statistics.northernerKilledByLannister();
-                    }
-                    else if (this instanceof Targaryen) {
-                        Statistics.northernerKilledByTargaryen();
-                    }
-                    else if (this instanceof Stark) {
-                        Statistics.southernerKilledByStark();
-                    }
-                    else /*if (this instanceof Wilding)*/ {
-                        Statistics.southernerKilledByWildings();
-                    }
                 }
             }
         }
         else {
-        	FileManager.writeToLogFile("[MEET] One of the character is inside a safezone ! No fight allowed.");
+            FileManager.writeToLogFile("[MEET] One of the character is inside a safezone ! No fight allowed.");
         }
     }
     
@@ -273,7 +190,7 @@ public abstract class Human extends Character {
                 this.superAttack(c);
                 break;
             case SUCCESS:
-                c.reduceLife(this.power);
+                c.reduceLife(this.power,DamageSource.Battle,this);
                 if(c instanceof Human) {
                     Human h = (Human) c;
                     FileManager.writeToLogFile("[ATTACK] "+ this.name+" from House "+ this.getClass().getSimpleName()+" attacked successfully. "+ h.name+"from House "+ h.getClass().getSimpleName()+" lost "+this.power +"and has now "+ c.life+" hp.");

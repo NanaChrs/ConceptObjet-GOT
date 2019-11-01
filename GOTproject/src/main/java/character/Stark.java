@@ -22,7 +22,7 @@ public class Stark extends Northerner {
     //Méthodes protected - définition d'actions
     @Override
     protected void superAttack(Character character) throws IOException, InterruptedException {
-        character.reduceLife((int)(this.maxLife/2));
+        character.reduceLife((int)(this.maxLife/2),DamageSource.Battle,this);
         FileManager.writeToLogFile("[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP");
     }
 }

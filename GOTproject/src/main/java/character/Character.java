@@ -51,34 +51,7 @@ public abstract class Character {
         if (this instanceof Human) {
             this.westeros.getSafeZone(this.getClass().getSimpleName()).removeFactionMember();
             
-            if (cause.equals(DamageSource.Nature)) {
-                if (this instanceof Lannister) {
-                    Statistics.LannisterDeadAlone();
-                }
-                else if (this instanceof Targaryen) {
-                    Statistics.TargaryenDeadAlone();
-                }
-                else if (this instanceof Stark) {
-                    Statistics.StarkDeadAlone();
-                }
-                else /*if (this instanceof Wilding)*/ {
-                    Statistics.WildingDeadAlone();
-                }
-            }
-            else {
-                if (this instanceof Lannister) {
-                    Statistics.LannisterDeadInBattle();
-                }
-                else if (this instanceof Targaryen) {
-                    Statistics.TargaryenDeadInBattle();
-                }
-                else if (this instanceof Stark) {
-                    Statistics.StarkDeadInBattle();
-                }
-                else /*if (this instanceof Wilding)*/ {
-                    Statistics.WildingDeadInBattle();
-                }
-                
+            if (cause.equals(DamageSource.Battle)) {
                 if (character instanceof Lannister) {
                     Statistics.northernerKilledByLannister();
                 }
@@ -94,6 +67,39 @@ public abstract class Character {
                 else {
                     Statistics.humanKilledByWW();
                 }
+            }
+        }
+        
+        if (this instanceof Lannister) {
+            if (cause.equals(DamageSource.Nature)) {
+                Statistics.LannisterDeadAlone();
+            }
+            else {   
+                Statistics.LannisterDeadInBattle();
+            }
+        }
+        else if (this instanceof Targaryen) {
+            if (cause.equals(DamageSource.Nature)) {
+                Statistics.TargaryenDeadAlone();
+            }
+            else {
+                Statistics.TargaryenDeadInBattle();
+            }
+        }
+        else if (this instanceof Stark) {
+            if (cause.equals(DamageSource.Nature)) {
+                Statistics.StarkDeadAlone();
+            }
+            else {   
+                Statistics.StarkDeadInBattle();
+            }
+        }
+        else if (this instanceof Wilding) {
+            if (cause.equals(DamageSource.Nature)) {
+                Statistics.WildingDeadAlone();
+            }
+            else {   
+                Statistics.WildingDeadInBattle();
             }
         }
         else {

@@ -59,6 +59,23 @@ public class Statistics {
         endOfLannister = endOfTargaryen = endOfStark = endOfWildings = maxTurn;
     }
     
+    //Getters (pour condition victoire
+    public static int LannisterAlive() {
+        return LannisterAdded - LannisterDeadInBattle - LannisterDeadAlone;
+    }
+    
+    public static int TargaryenAlive() {
+        return TargaryenAdded - TargaryenDeadInBattle - TargaryenDeadAlone;
+    }
+    
+    public static int StarkAlive() {
+        return StarkAdded - StarkDeadInBattle - StarkDeadAlone;
+    }
+    
+    public static int WildingsAlive() {
+        return WildingsAdded - WildingsDeadInBattle - WildingsDeadAlone;
+    }
+    
     //Setters
     //population
     public static void LannisterAdded() {

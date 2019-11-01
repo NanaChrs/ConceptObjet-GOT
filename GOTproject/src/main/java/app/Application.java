@@ -35,8 +35,11 @@ public class Application {
         return choice;
     }
     
-    
     public static void main(String[] args) throws IOException, InterruptedException {
+        GameMaster.getInstance().runSimulation(5, 18, 4, 50, 5, 6, 4);
+    }
+    
+    public static void alternativeLauncher() throws IOException, InterruptedException {
         GameMaster notreSuperSimulateur = GameMaster.getInstance();
         
         String menu = "Bienvenue dans notreSuperSimulateur. Veuillez choisir votre scénario :\n";//bienvenue dans petitsMeurtesEnFamilles

@@ -41,25 +41,12 @@ public class Statistics {
     private static int southernerKilledByStark;
     private static int southernerKilledByWildings;
     
-    /*
-    //moyenne des dégats et niveaux ?
-    private static int averageDamagesFromWW;
-    private static int averageDamagesFromLannister;
-    private static int averageDamagesFromTargaryen;
-    private static int averageDamagesFromStark;
-    private static int averageDamagesFromWildings;
-    
-    private static int averageLevelOfLannister;
-    private static int averageLevelOfTargaryen;
-    private static int averageLevelOfStark;
-    private static int averageLevelOfWildings;
-    */
     //Constructeur
     public Statistics(int maxTurn) {
         endOfLannister = endOfTargaryen = endOfStark = endOfWildings = maxTurn;
     }
     
-    //Getters (pour condition victoire
+    //Getters (pour condition victoire)
     public static int LannisterAlive() {
         return LannisterAdded - LannisterDeadInBattle - LannisterDeadAlone;
     }
@@ -74,6 +61,30 @@ public class Statistics {
     
     public static int WildingsAlive() {
         return WildingsAdded - WildingsDeadInBattle - WildingsDeadAlone;
+    }
+    
+    public static int WWAlive() {
+        return WWAdded - WWDeadInBattle;
+    }
+    
+    public static int LannisterKill() {
+        return northernerKilledByLannister + WWKilledByLannister;
+    }
+    
+    public static int TargaryenKill() {
+        return northernerKilledByTargaryen + WWKilledByTargaryen;
+    }
+    
+    public static int StarkKill() {
+        return southernerKilledByStark + WWKilledByStark;
+    }
+    
+    public static int WildingsKill() {
+        return southernerKilledByWildings + WWKilledByWildings;
+    }
+    
+    public static int WWKill() {
+        return humanKilledByWW;
     }
     
     //Setters

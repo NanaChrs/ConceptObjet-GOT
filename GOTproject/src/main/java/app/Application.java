@@ -5,12 +5,9 @@ import gameplay.UserInterface;
 
 import static gameplay.UserInterface.displayConsole;
 import java.io.IOException;
-import java.util.Scanner;
 
 
 public class Application {
-
-    
     public static void main(String[] args) throws IOException, InterruptedException {
     	//(int mapSize, int safezoneSize, int maxTurn, int popByFaction, int firstWW, int wwFrequency)
         //GameMaster.getInstance().runSimulation(12, 3, 13, 4, 3, 4);

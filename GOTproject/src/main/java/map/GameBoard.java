@@ -19,7 +19,6 @@ public class GameBoard {
     private static final double PROBA_OBSTACLE = 5;
 
     private GameBoard() {
-        //initialize(12, 3);//default value
     }
     
     public static GameBoard getInstance() {
@@ -63,12 +62,22 @@ public class GameBoard {
         return this.map;
     }
     
+    public SafeZone getSafeZone(String population) {
+        for (SafeZone town : towns) {
+            if ((town.getSafeFor().toString()).equals(population)) {
+                return town;
+            }
+        }
+        return null;
+    }
+    
     public boolean addCharacter(Character character) {
         int x,y,nbCases = SIZE*SIZE;
         do {//lui trouve une place
             x = (int) (Math.random() * SIZE);
             y = (int) (Math.random() * SIZE);
         } while (!map[x][y].isEmpty() && --nbCases > 0);
+
         if (!map[x][y].isEmpty()) return false;//plus de place
         
         //l'ajoute a la map et lui dit ou il est
@@ -77,8 +86,6 @@ public class GameBoard {
         character.setMap(this);//agrégation
         
         if (character instanceof Human) {
-            this.getSafeZone(character.getClass().getSimpleName()).addFactionMember();
-            
             if (character instanceof Lannister) {
                 Statistics.LannisterAdded();
             }
@@ -102,15 +109,6 @@ public class GameBoard {
         for (Character character : population) {
             this.addCharacter(character);
         }
-    }
-    
-    public SafeZone getSafeZone(String population) {
-        for (SafeZone town : towns) {
-            if ((town.getSafeFor().toString()).equals(population)) {
-                return town;
-            }
-        }
-        return null;
     }
     
     public String displayMap() {

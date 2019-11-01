@@ -38,6 +38,18 @@ public abstract class Human extends Character {
     }
     
     //Getters & setters utiles
+    //  caractéristiques
+    public static void displayStatics() {
+        String display = "\n\nClasse Human - hérite de Character";
+        display += "\nVie de départ : "+INITIAL_LIFE;
+        display += "\nEndurance min avant de chercher safezone : "+LOW_STAMINA;
+        display += "\nNombre de tours pouvant être passés sans endurance : "+MAX_TURNS_WITHOUT_STAMINA;
+        display += "\nAmélioration des stats par niveau : "+GAIN_BY_LEVEL;
+        display += "\nExpérience nécessaire pour gagner un niveau : "+XP_THRESHOLD;
+        
+        System.out.println(display);
+    }
+    
     //  nom
     public String getName() {
         return name;
@@ -124,11 +136,16 @@ public abstract class Human extends Character {
 
     @Override
     protected void meet(Human h, int remainingBoxes) throws IOException, InterruptedException {
-        displayConsole(this.getFullName() + " lv" + this.level + " (vie : " + this.life + ") rencontre " + h.getFullName() + " lv" + h.level + " (vie : " + h.life + ")", westeros, 2);
         FileManager.writeToLogFile("\n[MEET] "+ this.name +" from House "+ this.getClass().getSimpleName() + " met " + h.name + " from House "+ h.getClass().getSimpleName() +".");
-
+        if(this.getClass().getSuperclass().equals(h.getClass().getSuperclass()) || !this.currentBox.isSafe() && !h.currentBox.isSafe()) {
+            displayConsole(this.getFullName() + " lv" + this.level + " (vie : " + this.life + ") rencontre " + h.getFullName() + " lv" + h.level + " (vie : " + h.life + ")", westeros, 2);
+        }
+        else {
+            FileManager.writeToLogFile("[MEET] One of the character is inside a safezone ! No fight allowed.");
+        }
+        
         //amis (faction / région)
-        if(this.getClass().getSuperclass() == h.getClass().getSuperclass()) {
+        if(this.getClass().getSuperclass().equals(h.getClass().getSuperclass())) {
             if(this.stamina == 0) {
                 FileManager.writeToLogFile("[MEET] "+ this.name + " is exhausted (0 Stamina). "+ h.name + " gave him/her half of his/her : "+ h.stamina/2 + ".");
                 this.addStamina(h.stamina/2);
@@ -177,9 +194,6 @@ public abstract class Human extends Character {
                     this.addXp(h.xp);
                 }
             }
-        }
-        else {
-            FileManager.writeToLogFile("[MEET] One of the character is inside a safezone ! No fight allowed.");
         }
     }
     

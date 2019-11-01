@@ -5,9 +5,6 @@ import java.io.IOException;
 import gameplay.FileManager;
 
 public class Lannister extends Southerner {
-    //statistiques
-    protected static int NB_LANNISTERS = 0;  //Attribut statique qui a du sens
-    
     //Attributs - Instance définie par :
     //  sa chance
     protected final static int CRITICAL_SUCCESS_THRESHOLD= 65;
@@ -16,7 +13,14 @@ public class Lannister extends Southerner {
     //Constructeur - naissance de l'instance
     public Lannister(String name) {
         super(name, CRITICAL_SUCCESS_THRESHOLD, FAILURE_THRESHOLD);
-        NB_LANNISTERS++;
+    }
+    
+    public static void displayStatics() {
+        String display = "\n\nClasse Lannister - hérite de Southerner";
+        display += "\nPallier de succès critique : "+CRITICAL_SUCCESS_THRESHOLD;
+        display += "\nPallier d'échec : "+FAILURE_THRESHOLD;
+        
+        System.out.println(display);
     }
 
     //Méthodes protected - définition d'actions

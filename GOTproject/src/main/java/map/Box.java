@@ -2,11 +2,7 @@ package map;
 
 import character.Character;
 import character.Human;
-import character.Lannister;
-import character.Stark;
-import character.Targaryen;
 import character.WhiteWalker;
-import character.Wilding;
 import factions.Faction;
 import static gameplay.GameMaster.getTurn;
 import static java.lang.Character.toLowerCase;
@@ -136,44 +132,5 @@ public class Box {
             return (character instanceof Human)? character.getClass().getSimpleName().charAt(0) : 'M';
         }
         return toLowerCase(safeFor.toString().charAt(0));
-    }
-
-    public char displayUnicodeBox() {
-        if (isFrozen() && character == null) {
-            return '@';
-        }
-        if (this.isEmpty() && !limitSafeZone) {
-            return ' ';
-        }
-        if(isObstacle) {
-            return '+';
-        }
-        if (character != null) {
-            if(character.getClass().equals(Lannister.class)) {
-                return 'L';
-            }
-            if (character.getClass().equals(Stark.class)) {
-                return 'S';
-            }
-            if (character.getClass().equals(Targaryen.class)) {
-                return 'T';
-            }
-            if(character.getClass().equals(Wilding.class)) {
-                return 'W';
-            }
-            return 'M';
-        }
-        switch (safeFor) {
-            case Lannister:
-                return 'l';
-            case Stark:
-                return 's';
-            case Targaryen:
-                return 't';
-            case Wilding:
-                return 'w';
-            default:
-                return '?';
-        }
     }
 }

@@ -48,28 +48,6 @@ public abstract class Character {
         westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
         displayConsole((this instanceof Human? ((Human)this).getFullName() : "Le marcheur blanc") + " meurt", westeros, 3);
 
-        if (this instanceof Human) {
-            this.westeros.getSafeZone(this.getClass().getSimpleName()).removeFactionMember();
-            
-            if (cause.equals(DamageSource.Battle)) {
-                if (character instanceof Lannister) {
-                    Statistics.northernerKilledByLannister();
-                }
-                else if (character instanceof Targaryen) {
-                    Statistics.northernerKilledByTargaryen();
-                }
-                else if (character instanceof Stark) {
-                    Statistics.southernerKilledByStark();
-                }
-                else if (character instanceof Wilding) {
-                    Statistics.southernerKilledByWildings();
-                }
-                else {
-                    Statistics.humanKilledByWW();
-                }
-            }
-        }
-        
         if (this instanceof Lannister) {
             if (cause.equals(DamageSource.Nature)) {
                 Statistics.LannisterDeadAlone();
@@ -118,9 +96,42 @@ public abstract class Character {
                 Statistics.WWKilledByWildings();
             }
         }
+        
+        if (this instanceof Human) {
+            this.westeros.getSafeZone(this.getClass().getSimpleName()).removeEmptyFaction();
+            
+            if (cause.equals(DamageSource.Battle)) {
+                if (character instanceof Lannister) {
+                    Statistics.northernerKilledByLannister();
+                }
+                else if (character instanceof Targaryen) {
+                    Statistics.northernerKilledByTargaryen();
+                }
+                else if (character instanceof Stark) {
+                    Statistics.southernerKilledByStark();
+                }
+                else if (character instanceof Wilding) {
+                    Statistics.southernerKilledByWildings();
+                }
+                else {
+                    Statistics.humanKilledByWW();
+                }
+            }
+        }
     }
     
     //Getters & setters utiles
+    //  caractéristiques
+    public static void displayStatics() {
+        String display = "\n\nClasse Character";
+        display += "\nPortée max : "+MAX_RANGE;
+        display += "\nValeur de stat par défaut : "+DEFAULT_STAT_VALUE;
+        display += "\nChance par défaut : "+DEFAULT_THRESHOLD_VALUE;
+        display += "\nChance max : "+THRESHOLD_MAX;
+        
+        System.out.println(display);
+    }
+
     //  position
     public void setMap(GameBoard map) {
         this.westeros = map;
@@ -153,12 +164,6 @@ public abstract class Character {
         this.power += power;
         if (this.power > maxPower) this.power = maxPower;
     }
-
-/*
-    public void setDodge(int dodge) {
-            this.dodge = (this.dodge < 0) ? 0 : dodge;
-    }
-*/
     
     //Méthodes private - actions spécifiques
     private int currentRange() throws InterruptedException {

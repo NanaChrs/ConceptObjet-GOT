@@ -6,48 +6,19 @@ import gameplay.Statistics;
 import static gameplay.UserInterface.displayConsole;
 
 public class SafeZone {
-    protected int factionSize;
     protected Faction safeFor;
     protected Direction corner;//par rapport au centre
     protected GameBoard westeros;//aggrégation
     
-    protected final static int SIZE = GameBoard.getSize()/4;
+    protected static int SIZE;
     protected final static int RECOVERY = 10;//stamina récupérée
     
     public SafeZone(int size, GameBoard map, Faction population, Direction orientation) {
+        SafeZone.SIZE = size;
         this.westeros = map;
         this.corner = orientation;
         this.safeFor = population;
         applySafeZone(true);
-    }
-    
-    public void addFactionMember() {
-        factionSize++;
-    }
-    
-    public void removeFactionMember() throws InterruptedException {
-        if (--factionSize == 0) {
-            switch(safeFor) {
-                case Lannister:
-                    Statistics.endOfLannister(getTurn());
-                    break;
-                case Targaryen:
-                    Statistics.endOfTargaryen(getTurn());
-                    break;
-                case Stark:
-                    Statistics.endOfStark(getTurn());
-                    break;
-                case Wilding:
-                    Statistics.endOfWildings(getTurn());
-                    break;
-            }
-            
-            String name = safeFor.toString();
-            safeFor = null;
-            applySafeZone(false);//affichage carte
-            westeros.towns.remove(this);//enregistrement safezone
-            displayConsole("Les " + name + " sont morts : leur zone d'influence disparaît", westeros, 2);
-        }
     }
     
     public Direction getCorner() {
@@ -113,6 +84,40 @@ public class SafeZone {
                     }
                 }
                 break;
+        }
+    }
+    
+    public void removeEmptyFaction() throws InterruptedException {
+        int remaining = 1;
+        switch(safeFor) {
+            case Lannister:
+                if ((remaining = Statistics.LannisterAlive()) == 0) {
+                    Statistics.endOfLannister(getTurn());
+                }
+                break;
+            case Targaryen:
+                if ((remaining = Statistics.TargaryenAlive()) == 0) {
+                    Statistics.endOfTargaryen(getTurn());
+                }
+                break;
+            case Stark:
+                if ((remaining = Statistics.StarkAlive()) == 0) {
+                    Statistics.endOfStark(getTurn());
+                }
+                break;
+            case Wilding:
+                if ((remaining = Statistics.WildingsAlive()) == 0) {
+                    Statistics.endOfWildings(getTurn());
+                }
+                break;
+        }
+            
+        if (remaining == 0) {
+            String name = safeFor.toString();
+            safeFor = null;
+            applySafeZone(false);//affichage carte
+            westeros.towns.remove(this);//enregistrement safezone
+            displayConsole("Les " + name + " sont morts : leur zone d'influence disparaît", westeros, 2);
         }
     }
     

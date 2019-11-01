@@ -5,9 +5,6 @@ import java.io.IOException;
 import gameplay.FileManager;
 
 public class Stark extends Northerner {
-    //statistiques
-    protected static int NB_STARKS = 0;  //Attribut statique qui a du sens
-    
     //Attributs - Instance définie par :
     //  sa chance
     protected final static int CRITICAL_SUCCESS_THRESHOLD= 73;
@@ -16,7 +13,14 @@ public class Stark extends Northerner {
     //Constructeur - naissance de l'instance
     public Stark(String name) {
         super(name, CRITICAL_SUCCESS_THRESHOLD, FAILURE_THRESHOLD);
-        NB_STARKS++;
+    }
+    
+    public static void displayStatics() {
+        String display = "\n\nClasse Stark - hérite de Northerner";
+        display += "\nPallier de succès critique : "+CRITICAL_SUCCESS_THRESHOLD;
+        display += "\nPallier d'échec : "+FAILURE_THRESHOLD;
+        
+        System.out.println(display);
     }
 
     //Méthodes protected - définition d'actions

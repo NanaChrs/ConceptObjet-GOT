@@ -11,4 +11,13 @@ public abstract class Northerner extends Human {
     public Northerner(String name, int criticalSuccessThreshold, int failureThreshold) {
         super(name, MAX_POWER, INITIAL_POWER, MAX_STAMINA, criticalSuccessThreshold, failureThreshold);
     }
+    
+    public static void displayStatics() {
+        String display = "\n\nClasse Northerner - hérite de Human";
+        display += "\nEndurance max : "+MAX_STAMINA;
+        display += "\nDégâts initiaux : "+INITIAL_POWER;
+        display += "\nDégâts max : "+MAX_POWER;
+        
+        System.out.println(display);
+    }
 }

@@ -6,9 +6,6 @@ import gameplay.FileManager;
 import static gameplay.UserInterface.displayConsole;
 
 public class WhiteWalker extends Character {
-    //statistiques
-    protected static int NB_WHITEWALKERS = 0; //Attribut statique qui a du sens
-    
     //Attributs - Instance définie par :
     //  sa vie et les dégâts qu'il fait
     protected final static int LIFE = 200;//équivaut au INITIAL_LIFE de human
@@ -21,7 +18,16 @@ public class WhiteWalker extends Character {
     //Constructeur - naissance de l'instance
     public WhiteWalker() {
         super(LIFE, POWER, POWER, CRITICAL_SUCCESS_THRESHOLD, FAILURE_THRESHOLD);
-        NB_WHITEWALKERS++;
+    }
+    
+    public static void displayStatics() {
+        String display = "\n\nClasse WhiteWalker - hérite de Character";
+        display += "\nVie de départ : "+LIFE;
+        display += "\nDégâts de départ : "+POWER;
+        display += "\nPallier de succès critique : "+CRITICAL_SUCCESS_THRESHOLD;
+        display += "\nPallier d'échec : "+FAILURE_THRESHOLD;
+        
+        System.out.println(display);
     }
 
     //Méthodes protected - définition d'actions

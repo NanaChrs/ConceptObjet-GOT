@@ -12,14 +12,18 @@ public class UserInterface {
     private static final int LATENCY_MESSAGE_SHORT = 800;
     private static final int LATENCY_MESSAGE_REDUNDANT = 250;
     
-    public static void displayConsole(String message, GameBoard westeros, int deepness) throws InterruptedException {
+    public static void displayConsole(boolean clean, String message) {
         if (swipe == null) {//s'initialise au premier appel ~ lancement
             swipe = "";
             for (int i = 0; i < M_CONSOLE_SIZE; ++i) {//concatenates all the line breaks
                 swipe += "\n";
             }
         }
-        System.out.print(swipe + "Tour n°" + getTurn() + " \n" + message + "\n" + westeros.displayMap());//synchronise les affichages permet d'éliminer les artefacts
+        System.out.println((clean? swipe : "") + message);//synchronise les affichages permet d'éliminer les artefacts
+    }
+    
+    public static void displayConsole(boolean clean, String message, int deepness) throws InterruptedException {
+        displayConsole(clean, message);
         switch(deepness) {
             case 1:
                 TimeUnit.MILLISECONDS.sleep(LATENCY_MESSAGE_IMPORTANT);
@@ -34,5 +38,9 @@ public class UserInterface {
                 TimeUnit.MILLISECONDS.sleep(LATENCY_MESSAGE_REDUNDANT);
                 break;
         }
+    }
+    
+    public static void displayConsole(String message, GameBoard westeros, int deepness) throws InterruptedException {
+        displayConsole(true, "Tour n°" + getTurn() + " \n" + message + "\n" + westeros.displayMap(), deepness);
     }
 }

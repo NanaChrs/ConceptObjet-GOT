@@ -42,7 +42,7 @@ public class WhiteWalker extends Character {
 
     @Override
     protected void meet(Human character, int remainingBoxes) throws IOException, InterruptedException {
-        displayConsole("Le marcheur blanc attaque " + character.getFullName() + " (lv" + character.level + "; vie : " + character.life + ")", westeros, 2);
+        displayConsole("Le marcheur blanc attaque " + character.getFullName() + " lv" + character.level + " (vie : " + character.life + ")", westeros, 2);
     	FileManager.writeToLogFile("\n[MEET] A whitewalker met "+ character.name + " from House "+ character.getClass().getSimpleName() +".");
     	
     	do {
@@ -66,7 +66,7 @@ public class WhiteWalker extends Character {
             case CRITICAL_SUCCESS:
             case SUCCESS:
                 Human h = (Human) c;
-                c.reduceLife(this.power);
+                c.reduceLife(this.power,DamageSource.Battle,this);
                 FileManager.writeToLogFile("[ATTACK] The whitewalker attacked successfully. "+ h.name+" from House "+ h.getClass().getSimpleName()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
                 break;
             default:

@@ -2,356 +2,58 @@
 
 [GAME] TURN N�1 BEGIN
 
-<<<<<<< HEAD
-[MEET] Aegon from House Targaryen met John from House Targaryen.
+[MEET] Ygritte from House Wilding met Robb from House Stark.
 [MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 5 xp.
-
-[MEET] Aegon from House Targaryen met John from House Targaryen.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 4 xp.
-
-[MEET] Aegon from House Targaryen met Tormund from House Wilding.
-[ATTACK] Aegon from House Targaryen attacked successfully. Tormundfrom House Wilding lost 20and has now 80 hp.
-[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[ATTACK] Aegon from House Targaryen attacked successfully. Tormundfrom House Wilding lost 20and has now 70 hp.
-[ATTACK] Tormund from House Wilding attacked successfully. Aegonfrom House Targaryen lost 30and has now 10 hp.
-[SUPERATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.
-[DEATH] Tormund from House Wilding is killed by Aegon from House Targaryen.
-
-[MEET] Aegon from House Targaryen met John from House Targaryen.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 3 xp.
-=======
-[MEET] John from House Targaryen met Osha from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Rhaegar from House Targaryen met Gilly from House Wilding.
-[ATTACK] Rhaegar from House Targaryen attacked successfully. Gillyfrom House Wilding lost 20and has now 80 hp.
-[ATTACK] Gilly from House Wilding attacked successfully. Rhaegarfrom House Targaryen lost 30and has now 70 hp.
-[ATTACK]Rhaegar from House Targaryen missed his attack! Nothing happened.
-[ATTACK] Gilly from House Wilding attacked successfully. Rhaegarfrom House Targaryen lost 30and has now 40 hp.
-[SUPERATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.
-[DEATH] Gilly from House Wilding is killed by Rhaegar from House Targaryen.
-
-[MEET] Sansa from House Stark met Orell from House Wilding.
-[ATTACK] Sansa from House Stark attacked successfully. Orellfrom House Wilding lost 30and has now 70 hp.
-[ATTACK]Orell from House Wilding missed his attack! Nothing happened.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK]Orell from House Wilding missed his attack! Nothing happened.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[DEATH] Orell from House Wilding is killed by Sansa from House Stark.
-
-[MEET] Daenerys from House Targaryen met Arya from House Stark.
-[ATTACK] Daenerys from House Targaryen attacked successfully. Aryafrom House Stark lost 20and has now 80 hp.
-[ATTACK] Arya from House Stark attacked successfully. Daenerysfrom House Targaryen lost 30and has now 70 hp.
-[ATTACK] Daenerys from House Targaryen attacked successfully. Aryafrom House Stark lost 20and has now 60 hp.
-[ATTACK] Arya from House Stark attacked successfully. Daenerysfrom House Targaryen lost 30and has now 40 hp.
-[ATTACK]Daenerys from House Targaryen missed his attack! Nothing happened.
-[ATTACK] Arya from House Stark attacked successfully. Daenerysfrom House Targaryen lost 30and has now 10 hp.
-[ATTACK] Daenerys from House Targaryen attacked successfully. Aryafrom House Stark lost 20and has now 40 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[DEATH] Daenerys from House Targaryen is killed by Arya from House Stark
-
-[MEET] Osha from House Wilding met Sansa from House Stark.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Ned from House Stark met Osha from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Tyrion from House Lannister met Bran from House Stark.
-[ATTACK] Tyrion from House Lannister attacked successfully. Branfrom House Stark lost 20and has now 80 hp.
-[ATTACK] Bran from House Stark attacked successfully. Tyrionfrom House Lannister lost 30and has now 70 hp.
-[ATTACK] Tyrion from House Lannister attacked successfully. Branfrom House Stark lost 20and has now 60 hp.
-[ATTACK] Bran from House Stark attacked successfully. Tyrionfrom House Lannister lost 30and has now 40 hp.
-[ATTACK] Tyrion from House Lannister attacked successfully. Branfrom House Stark lost 20and has now 40 hp.
-[ATTACK] Bran from House Stark attacked successfully. Tyrionfrom House Lannister lost 30and has now 10 hp.
-[ATTACK] Tyrion from House Lannister attacked successfully. Branfrom House Stark lost 20and has now 20 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[DEATH] Tyrion from House Lannister is killed by Bran from House Stark
-
-[MEET] Bran from House Stark met Rhaegar from House Targaryen.
-[ATTACK] Bran from House Stark attacked successfully. Rhaegarfrom House Targaryen lost 30and has now 10 hp.
-[ATTACK] Rhaegar from House Targaryen attacked successfully. Branfrom House Stark lost 20and has now 4 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[DEATH] Rhaegar from House Targaryen is killed by Bran from House Stark.
->>>>>>> master
-
-[MEET] Robb from House Stark met Orell from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-<<<<<<< HEAD
-[MEET] Robb from House Stark met Orell from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Robb from House Stark met Orell from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Jaime from House Lannister met Daenerys from House Targaryen.
-[ATTACK] Jaime from House Lannister attacked successfully. Daenerysfrom House Targaryen lost 20and has now 80 hp.
-[ATTACK] Daenerys from House Targaryen attacked successfully. Jaimefrom House Lannister lost 20and has now 80 hp.
-[ATTACK] Jaime from House Lannister attacked successfully. Daenerysfrom House Targaryen lost 20and has now 60 hp.
-[ATTACK] Daenerys from House Targaryen attacked successfully. Jaimefrom House Lannister lost 20and has now 60 hp.
-[ATTACK] Jaime from House Lannister attacked successfully. Daenerysfrom House Targaryen lost 20and has now 40 hp.
-[ATTACK] Daenerys from House Targaryen attacked successfully. Jaimefrom House Lannister lost 20and has now 40 hp.
-[ATTACK] Jaime from House Lannister attacked successfully. Daenerysfrom House Targaryen lost 20and has now 20 hp.
-[ATTACK] Daenerys from House Targaryen attacked successfully. Jaimefrom House Lannister lost 20and has now 20 hp.
-[ATTACK] Jaime from House Lannister attacked successfully. Daenerysfrom House Targaryen lost 20and has now 0 hp.
-[DEATH] Daenerys from House Targaryen is killed by Jaime from House Lannister.
-
-[MEET] Jaime from House Lannister met Arya from House Stark.
-[SUPERATTACK] A Lannister always pays his debts ! Jaime gave 1/3 of his life.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[DEATH] Jaime from House Lannister is killed by Arya from House Stark
-
-[MEET] Viserys from House Targaryen met Catelyn from House Stark.
-[ATTACK] Viserys from House Targaryen attacked successfully. Catelynfrom House Stark lost 20and has now 80 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK]Viserys from House Targaryen missed his attack! Nothing happened.
-[ATTACK] Catelyn from House Stark attacked successfully. Viserysfrom House Targaryen lost 30and has now 20 hp.
-[ATTACK] Viserys from House Targaryen attacked successfully. Catelynfrom House Stark lost 20and has now 60 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[DEATH] Viserys from House Targaryen is killed by Catelyn from House Stark
-
-[MEET] Aerys from House Targaryen met Orell from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Kevan from House Lannister met Aegon from House Targaryen.
-[ATTACK] Kevan from House Lannister attacked successfully. Aegonfrom House Targaryen lost 20and has now 12 hp.
-[ATTACK] Aegon from House Targaryen attacked successfully. Kevanfrom House Lannister lost 20and has now 80 hp.
-[SUPERATTACK] A Lannister always pays his debts ! Kevan gave 1/3 of his life.
-[DEATH] Aegon from House Targaryen is killed by Kevan from House Lannister.
 
 [MEET] Kevan from House Lannister met Ygritte from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
+[SUPERATTACK] A Lannister always pays his debts ! Kevan gave 1/3 of his life.
+[ATTACK] Ygritte from House Wilding attacked successfully. Kevanfrom House Lannister lost 30and has now 37 hp.
+[SUPERATTACK] A Lannister always pays his debts ! Kevan gave 1/3 of his life.
+[ATTACK]Ygritte from House Wilding missed his attack! Nothing happened.
+[SUPERATTACK] A Lannister always pays his debts ! Kevan gave 1/3 of his life.
+[ATTACK] Ygritte from House Wilding attacked successfully. Kevanfrom House Lannister lost 30and has now -13 hp.
+[DEATH] Kevan from House Lannister is killed by Ygritte from House Wilding
 
-[MEET] Kevan from House Lannister met Sansa from House Stark.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Tyrion from House Lannister met Catelyn from House Stark.
-[ATTACK] Tyrion from House Lannister attacked successfully. Catelynfrom House Stark lost 20and has now 40 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK] Tyrion from House Lannister attacked successfully. Catelynfrom House Stark lost 20and has now 20 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[DEATH] Tyrion from House Lannister is killed by Catelyn from House Stark
-
-[MEET] Osha from House Wilding met Robb from House Stark.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Osha from House Wilding met Robb from House Stark.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Sansa from House Stark met Kevan from House Lannister.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Sansa from House Stark met Ygritte from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Sansa from House Stark met Ygritte from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Sansa from House Stark met John from House Targaryen.
-[ATTACK]Sansa from House Stark missed his attack! Nothing happened.
-[ATTACK] John from House Targaryen attacked successfully. Sansafrom House Stark lost 20and has now 71 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK] John from House Targaryen attacked successfully. Sansafrom House Stark lost 20and has now 51 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[DEATH] John from House Targaryen is killed by Sansa from House Stark.
-
-[MEET] Orell from House Wilding met Aerys from House Targaryen.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Orell from House Wilding met Aerys from House Targaryen.
-[MEET] One of the character is inside a safezone ! No fight allowed.
+[GAME] New WhiteWalker
 
 [GAME] TURN N�2 BEGIN
 
-[MEET] Osha from House Wilding met Robb from House Stark.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Sansa from House Stark met Mance from House Wilding.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK]Mance from House Wilding missed his attack! Nothing happened.
-[ATTACK] Sansa from House Stark attacked successfully. Mancefrom House Wilding lost 30and has now -1 hp.
-[DEATH] Mance from House Wilding is killed by Sansa from House Stark.
-
-[MEET] Sansa from House Stark met Aerys from House Targaryen.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Bran from House Stark met Lancel from House Lannister.
-[ATTACK] Bran from House Stark attacked successfully. Lancelfrom House Lannister lost 30and has now 70 hp.
-[SUPERATTACK] A Lannister always pays his debts ! Lancel gave 1/3 of his life.
-[ATTACK] Bran from House Stark attacked successfully. Lancelfrom House Lannister lost 30and has now 7 hp.
-[SUPERATTACK] A Lannister always pays his debts ! Lancel gave 1/3 of his life.
-[DEATH] Lancel from House Lannister is killed by Bran from House Stark.
-
-[MEET] Bran from House Stark met Arya from House Stark.
+[MEET] Robb from House Stark met Ygritte from House Wilding.
 [MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 2 xp.
 
-[MEET] Bran from House Stark met Arya from House Stark.
+[MEET] Ygritte from House Wilding met Robb from House Stark.
 [MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 1 xp.
 
-[MEET] Orell from House Wilding met Tywin from House Lannister.
-[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[ATTACK] Tywin from House Lannister attacked successfully. Orellfrom House Wilding lost 20and has now 80 hp.
-[ATTACK] Orell from House Wilding attacked successfully. Tywinfrom House Lannister lost 30and has now 4 hp.
-[SUPERATTACK] A Lannister always pays his debts ! Tywin gave 1/3 of his life.
-[DEATH] Tywin from House Lannister is killed by Orell from House Wilding.
-=======
-[MEET] Kevan from House Lannister met Cersei from House Lannister.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 7 xp.
+[MEET] Aerys from House Targaryen met a White Walker.
+[ATTACK]Aerys from House Targaryen missed his attack! Nothing happened.
+[ATTACK] The whitewalker attacked successfully. Aerys from House Targaryen lost 50 HP and has now 50 hp.
+[ATTACK] Aerys from House Targaryen attacked successfully. The whitewalker lost 20and has now 180 hp.
+[ATTACK] The whitewalker attacked successfully. Aerys from House Targaryen lost 50 HP and has now 0 hp.
+[DEATH] Aerys from House Targaryen is killed by the whitewalker.
 
-[MEET] Kevan from House Lannister met Tywin from House Lannister.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 7 xp.
+[GAME] TURN N�3 BEGIN
 
-[MEET] Bran from House Stark met Osha from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Bran from House Stark met Sansa from House Stark.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 2 xp.
-
-[MEET] Sansa from House Stark met Osha from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Sansa from House Stark met Bran from House Stark.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 9 xp.
-
-[MEET] Osha from House Wilding met Bran from House Stark.
-[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[DEATH] Bran from House Stark is killed by Osha from House Wilding.
-
-[MEET] Osha from House Wilding met Arya from House Stark.
-[ATTACK] Osha from House Wilding attacked successfully. Aryafrom House Stark lost 30and has now 13 hp.
-[ATTACK] Arya from House Stark attacked successfully. Oshafrom House Wilding lost 30and has now 68 hp.
-[ATTACK] Osha from House Wilding attacked successfully. Aryafrom House Stark lost 30and has now -17 hp.
-[DEATH] Arya from House Stark is killed by Osha from House Wilding.
-
-[GAME] New WhiteWalker
-
-[GAME] TURN N째3 BEGIN
-
-[MEET] Kevan from House Lannister met Tywin from House Lannister.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 5 xp.
-
-[MEET] Tywin from House Lannister met Kevan from House Lannister.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 6 xp.
-
-[MEET] Cersei from House Lannister met Mance from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[GAME] TURN N째4 BEGIN
-
-[MEET] A whitewalker met Osha from House Wilding.
-[ATTACK] The whitewalker attacked successfully. Osha from House Wilding lost 50 HP and has now 0 hp.
-[DEATH] The whitewalker killed Osha from House Wilding.
-
-[MEET] Ned from House Stark met Sansa from House Stark.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 5 xp.
-
-[MEET] Tywin from House Lannister met Kevan from House Lannister.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 10 xp.
-
-[MEET] Kevan from House Lannister met Mance from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[GAME] TURN N째5 BEGIN
-
-[MEET] Sansa from House Stark met Ned from House Stark.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 4 xp.
-
-[GAME] TURN N째6 BEGIN
-
-[MEET] Mance from House Wilding met a White Walker.
-[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
+[MEET] A whitewalker met Robb from House Stark.
 [ATTACK] The whitewalker missed his attack! Nothing happened.
-[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[ATTACK] The whitewalker attacked successfully. Mance from House Wilding lost 50 HP and has now 50 hp.
-[ATTACK] Mance from House Wilding attacked successfully. The whitewalker lost 30and has now 50 hp.
+[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
+[ATTACK] The whitewalker attacked successfully. Robb from House Stark lost 50 HP and has now 50 hp.
+[ATTACK] Robb from House Stark attacked successfully. The whitewalker lost 30and has now 120 hp.
 [ATTACK] The whitewalker missed his attack! Nothing happened.
-[ATTACK] Mance from House Wilding attacked successfully. The whitewalker lost 30and has now 20 hp.
-[ATTACK] The whitewalker attacked successfully. Mance from House Wilding lost 50 HP and has now 0 hp.
-[DEATH] Mance from House Wilding is killed by the whitewalker.
+[ATTACK] Robb from House Stark attacked successfully. The whitewalker lost 30and has now 90 hp.
+[ATTACK] The whitewalker attacked successfully. Robb from House Stark lost 50 HP and has now 0 hp.
+[DEATH] The whitewalker killed Robb from House Stark.
 
-[MEET] A whitewalker met John from House Targaryen.
-[ATTACK] The whitewalker attacked successfully. John from House Targaryen lost 50 HP and has now 49 hp.
-[ATTACK]John from House Targaryen missed his attack! Nothing happened.
-[ATTACK] The whitewalker attacked successfully. John from House Targaryen lost 50 HP and has now -1 hp.
-[DEATH] The whitewalker killed John from House Targaryen.
+[GAME] TURN N�4 BEGIN
 
-[GAME] TURN N째7 BEGIN
+[GAME] TURN N�5 BEGIN
 
-[GAME] New WhiteWalker
+[GAME] TURN N�6 BEGIN
 
-[GAME] TURN N째8 BEGIN
+[MEET] Ygritte from House Wilding met a White Walker.
+[ATTACK] Ygritte from House Wilding attacked successfully. The whitewalker lost 30and has now 60 hp.
+[ATTACK] The whitewalker attacked successfully. Ygritte from House Wilding lost 50 HP and has now 13 hp.
+[ATTACK] Ygritte from House Wilding attacked successfully. The whitewalker lost 30and has now 30 hp.
+[ATTACK] The whitewalker attacked successfully. Ygritte from House Wilding lost 50 HP and has now -37 hp.
+[DEATH] Ygritte from House Wilding is killed by the whitewalker.
 
-[MEET] Cersei from House Lannister met Ned from House Stark.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[GAME] TURN N째9 BEGIN
-
-[GAME] TURN N째10 BEGIN
-
-[GAME] TURN N째11 BEGIN
-
-[MEET] A whitewalker met Kevan from House Lannister.
-[ATTACK] The whitewalker attacked successfully. Kevan from House Lannister lost 50 HP and has now 45 hp.
-[ATTACK] Kevan from House Lannister attacked successfully. The whitewalker lost 120and has now -75 hp.
-[DEATH] The whitewalker is dead and Kevan from House Lannister gained 100 XP and 25 HP.
-
-[MEET] Aerys from House Targaryen met Kevan from House Lannister.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[GAME] TURN N째12 BEGIN
-
-[MEET] Aerys from House Targaryen met Kevan from House Lannister.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Sansa from House Stark met Tywin from House Lannister.
-[MEET] One of the character is inside a safezone ! No fight allowed.
->>>>>>> master
-
-[MEET] Arya from House Stark met Bran from House Stark.
-[MEET] They both restored 1/4 of their HP.
-[MEET] They both gained 3 xp.
-
-[MEET] Arya from House Stark met Cersei from House Lannister.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK] Cersei from House Lannister attacked successfully. Aryafrom House Stark lost 20and has now 76 hp.
-[ATTACK]Arya from House Stark missed his attack! Nothing happened.
-[ATTACK] Cersei from House Lannister attacked successfully. Aryafrom House Stark lost 20and has now 56 hp.
-[ATTACK] Arya from House Stark attacked successfully. Cerseifrom House Lannister lost 30and has now 20 hp.
-[SUPERATTACK] A Lannister always pays his debts ! Cersei gave 1/3 of his life.
-[DEATH] Cersei from House Lannister is killed by Arya from House Stark.
-
-[MEET] Gilly from House Wilding met Catelyn from House Stark.
-[ATTACK] Gilly from House Wilding attacked successfully. Catelynfrom House Stark lost 30and has now -4 hp.
-[DEATH] Catelyn from House Stark is killed by Gilly from House Wilding.
-
-<<<<<<< HEAD
-[MEET] Aerys from House Targaryen met Sansa from House Stark.
-[ATTACK] Aerys from House Targaryen attacked successfully. Sansafrom House Stark lost 20and has now 37 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[ATTACK] Aerys from House Targaryen attacked successfully. Sansafrom House Stark lost 20and has now 17 hp.
-[SUPERATTACK] The wolves of Winterfell attack ! The opponent loses half his HP
-[DEATH] Aerys from House Targaryen is killed by Sansa from House Stark
-=======
-[MEET] Cersei from House Lannister met Aerys from House Targaryen.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Aerys from House Targaryen met Kevan from House Lannister.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Kevan from House Lannister met Sansa from House Stark.
-[MEET] One of the character is inside a safezone ! No fight allowed.
->>>>>>> master
+[GAME] Victory of WhiteWalker

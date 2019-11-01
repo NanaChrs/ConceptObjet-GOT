@@ -2,7 +2,11 @@ package map;
 
 import character.Character;
 import character.Human;
+import character.Lannister;
+import character.Stark;
+import character.Targaryen;
 import factions.Faction;
+import gameplay.Statistics;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -10,15 +14,27 @@ public class GameBoard {
     private static GameBoard uniqueInstance;
     protected static int SIZE;//carré uniquement, plus simple
     protected ArrayList<SafeZone> towns;
-    private final Box[][] map;
+    private Box[][] map;
 
     private static final double PROBA_OBSTACLE = 5;
 
-    private GameBoard(int mapSize, int safezoneSize) {
+    private GameBoard() {
+        //initialize(12, 3);//default value
+    }
+    
+    public static GameBoard getInstance() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new GameBoard();
+        }
+        return uniqueInstance;
+    }
+    
+    public final void initialize(int mapSize, int safezoneSize) {
+        //déclare support
         GameBoard.SIZE = mapSize;
-        //initialise map
         map = new Box[GameBoard.SIZE][GameBoard.SIZE];
         
+        //génère support
         Weather weather = Weather.Warm;
         for (int y=SIZE-1; y >= 0; --y) {
             if (y+1 == SIZE * 2 / 3) weather = Weather.Tempered;
@@ -29,6 +45,7 @@ public class GameBoard {
             }
         }
         
+        //ajoute zones spécifiques
         towns = new ArrayList<>();
         ArrayList<Direction> corners = new ArrayList<>(Arrays.asList(Direction.NorthEast, Direction.NorthWest,
                                                                      Direction.SouthEast, Direction.SouthWest));
@@ -36,13 +53,6 @@ public class GameBoard {
             towns.add(new SafeZone(safezoneSize, this, population, corners.get((int) (Math.random() * corners.size()))));
             corners.remove(towns.get(towns.size()-1).getCorner());
         }
-    }
-    
-    public static GameBoard getInstance(int mapSize, int safezoneSize) {
-        if (uniqueInstance == null) {
-            uniqueInstance = new GameBoard(mapSize, safezoneSize);
-        }
-        return uniqueInstance;
     }
     
     public static int getSize() {
@@ -53,13 +63,14 @@ public class GameBoard {
         return this.map;
     }
     
-    public void addCharacter(Character character) {
-        int x,y;
+    public boolean addCharacter(Character character) {
+        int x,y,nbCases = SIZE*SIZE;
         do {//lui trouve une place
             x = (int) (Math.random() * SIZE);
             y = (int) (Math.random() * SIZE);
-        } while (!map[x][y].isEmpty());
-
+        } while (!map[x][y].isEmpty() && --nbCases > 0);
+        if (!map[x][y].isEmpty()) return false;//plus de place
+        
         //l'ajoute a la map et lui dit ou il est
         map[x][y].setCharacter(character);
         character.setBox(map[x][y]);//agrégation
@@ -67,7 +78,24 @@ public class GameBoard {
         
         if (character instanceof Human) {
             this.getSafeZone(character.getClass().getSimpleName()).addFactionMember();
+            
+            if (character instanceof Lannister) {
+                Statistics.LannisterAdded();
+            }
+            else if (character instanceof Targaryen) {
+                Statistics.TargaryenAdded();
+            }
+            else if (character instanceof Stark) {
+                Statistics.StarkAdded();
+            }
+            else /*if (this instanceof Wilding)*/ {
+                Statistics.WildingsAdded();
+            }
         }
+        else {
+            Statistics.WWAdded();
+        }
+        return true;
     }
     
     public void addCharacters(ArrayList<Character> population) {
@@ -87,28 +115,28 @@ public class GameBoard {
     
     public String displayMap() {
         String cool = "X", warm = "O", tempered = "~";
-        String result = " ";
+        String display = " ";
         
-        for(int x = 0; x < SIZE; x++) result += " " + warm;
-        result += "\n";
+        for(int x = 0; x < SIZE; x++) display += " " + warm;
+        display += "\n";
         
         String sides = warm;
         for (int y = SIZE-1; y >= 0; y-- ) {
             if (y+1 == SIZE * 2 / 3) sides = tempered;
             else if (y+1 == SIZE / 3) sides = cool;
             
-            result += sides + " ";
+            display += sides + " ";
             for(int x = 0; x < SIZE; x++) {
-                result += map[x][y].displayBox() + " ";//double la largeur pour equivaloir la hauteur
+                display += map[x][y].displayBox() + " ";//double la largeur pour equivaloir la hauteur
             }
             //result += (map[0][y].getWeather()==Weather.Cool? cool : map[0][y].getWeather()==Weather.Warm? warm : tempered) + "\n";//ligne de vérif
-            result += sides + "\n";
+            display += sides + "\n";
         }
         
-        result += " ";
-        for(int x = 0; x < SIZE; x++) result += " " + cool;
-        result += "\n";
+        display += " ";
+        for(int x = 0; x < SIZE; x++) display += " " + cool;
+        display += "\n";
         
-        return (result + "\n");
+        return (display);
     }
 }

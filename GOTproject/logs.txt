@@ -1,65 +1,10 @@
 [GAME] New simulation
 
-[GAME] TURN N°1 BEGIN
+[GAME] TURN NÂ°1 BEGIN
 
-[MEET] Tywin from House Lannister met Orell from House Wilding.
-[ATTACK]Tywin from House Lannister missed his attack! Nothing happened.
-[ATTACK] Orell from House Wilding attacked successfully. Tywinfrom House Lannister lost 30and has now 65 hp.
-[ATTACK] Tywin from House Lannister attacked successfully. Orellfrom House Wilding lost 20and has now 80 hp.
-[ATTACK] Orell from House Wilding attacked successfully. Tywinfrom House Lannister lost 30and has now 35 hp.
-[ATTACK] Tywin from House Lannister attacked successfully. Orellfrom House Wilding lost 20and has now 60 hp.
-[ATTACK] Orell from House Wilding attacked successfully. Tywinfrom House Lannister lost 30and has now 5 hp.
-[SUPERATTACK] A Lannister always pays his debts ! Tywin gave 1/6 of his life.
-[ATTACK] Orell from House Wilding attacked successfully. Tywinfrom House Lannister lost 30and has now -25 hp.
-[DEATH] Tywin from House Lannister is killed by Orell from House Wilding
+[MEET] Ygritte from House Wilding met Sansa from House Stark.
+[MEET] They both restored 1/4 of their HP.
 
 [GAME] New WhiteWalker
-
-[GAME] TURN N°2 BEGIN
-
-[MEET] A whitewalker met Rhaegar from House Targaryen.
-[ATTACK] The whitewalker missed his attack! Nothing happened.
-[ATTACK] Rhaegar from House Targaryen attacked successfully. The whitewalker lost 20and has now 180 hp.
-[ATTACK] The whitewalker attacked successfully. Rhaegar from House Targaryen lost 50 HP and has now 50 hp.
-[SUPERATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.
-[DEATH] The whitewalker is dead and Rhaegar from House Targaryen gained 100 XP and 25 HP.
-
-[GAME] TURN N°3 BEGIN
-
-[GAME] TURN N°4 BEGIN
-
-[GAME] TURN N°5 BEGIN
-
-[GAME] TURN N°6 BEGIN
-
-[MEET] Rhaegar from House Targaryen met Orell from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[GAME] TURN N°7 BEGIN
-
-[GAME] TURN N°8 BEGIN
-
-[MEET] Orell from House Wilding met Rhaegar from House Targaryen.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[MEET] Rhaegar from House Targaryen met Orell from House Wilding.
-[MEET] One of the character is inside a safezone ! No fight allowed.
-
-[GAME] TURN N°9 BEGIN
-
-[MEET] Orell from House Wilding met Rhaegar from House Targaryen.
-[ATTACK] Orell from House Wilding attacked successfully. Rhaegarfrom House Targaryen lost 30and has now 63 hp.
-[ATTACK] Rhaegar from House Targaryen attacked successfully. Orellfrom House Wilding lost 25and has now 6 hp.
-[SUPER ATTACK] Wilding just drank Giant milk ! He gained 10HP and his attack is doubled !
-[SUPERATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.
-[DEATH] Orell from House Wilding is killed by Rhaegar from House Targaryen
-
-[GAME] TURN N°10 BEGIN
-
-[GAME] TURN N°11 BEGIN
-
-[GAME] TURN N°12 BEGIN
-
-[GAME] TURN N°13 BEGIN
 
 [GAME] Probable victory of Wildings

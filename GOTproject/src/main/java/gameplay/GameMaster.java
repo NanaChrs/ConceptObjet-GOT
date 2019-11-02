@@ -186,6 +186,7 @@ public class GameMaster {
         Targaryen.displayStatics();
         Stark.displayStatics();
         Wilding.displayStatics();
+        UserInterface.blockingMessage("Attributs statiques des classes", "continuer");
 
     	//prépare jeu
         this.initialize(mapSize, safezoneSize, popByFaction);
@@ -223,11 +224,10 @@ public class GameMaster {
         } while (!this.isFinished(turn >= maxTurn));
         
         //fin du jeu
-        UserInterface.displayConsole(false,endReason,1);
+        UserInterface.blockingMessage(endReason, "continuer");
         Statistics.displayStats();
-        
-        UserInterface.displayConsole(false,"\nFin de la simulation - appuyez sur une touche pour revenir au menu");
-        new Scanner(System.in).next();
+
+        UserInterface.blockingMessage("Fin de la simulation", "revenir au menu");
     }
     
 }

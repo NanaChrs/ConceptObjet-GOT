@@ -10,13 +10,25 @@ import java.nio.file.Paths;
 public class FileManager {
     protected static String fileName = "logs.txt";
     
-    public static void writeToLogFile(String content) throws IOException {
+    private static void writeToLogFile(String content) throws IOException {
     	FileWriter fw = new FileWriter(FileManager.fileName, true);
         BufferedWriter bw = new BufferedWriter(fw);
 
         bw.write(content);
         bw.newLine();
         bw.close();
+    }
+    
+    public static void writeToLogFile(String header, String content) throws IOException {
+        writeToLogFile("["+header+"] "+content);
+    }
+    
+    public static void writeToLogFile(int nbLineBreak, String header, String content) throws IOException {
+        String lineBreak = "";
+        for (int i = 0; i < nbLineBreak; ++i) {
+        	lineBreak += "\n";
+        }
+        writeToLogFile(lineBreak+"["+header+"] "+content);
     }
     
     public static void createLogFile() {

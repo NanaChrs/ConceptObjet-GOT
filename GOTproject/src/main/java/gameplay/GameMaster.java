@@ -83,12 +83,12 @@ public class GameMaster {
         }
     }
     
-    private void initialize(int mapSize, int safezoneSize, int popByFaction) throws InterruptedException, IOException {
+    private void initialize(String mode, int mapSize, int safezoneSize, int popByFaction) throws InterruptedException, IOException {
         //lance une nouvelle partie
         turn = 0;
         endReason = null;
     	FileManager.cleanLogFile();
-        FileManager.writeToLogFile("[GAME] New simulation");
+        FileManager.writeToLogFile("GAME","New simulation : "+ mode);
         
         //crée plateau
         westeros.initialize(mapSize, safezoneSize);
@@ -115,7 +115,7 @@ public class GameMaster {
             if(Northerner + Southerner == 0) {
                 endReason = "Plus aucun humains sur le terrain. Les marcheurs blancs ont gagné !";
 
-                FileManager.writeToLogFile("\n[GAME] Victory of WhiteWalker");
+                FileManager.writeToLogFile(1,"GAME","Victory of WhiteWalker");
                 return true;
             }
             if((Lannister > 0 || Targaryen > 0) && Northerner + Walkers == 0) {
@@ -123,15 +123,15 @@ public class GameMaster {
 
                 if (Lannister > Targaryen || (Lannister == Targaryen && LannisterKill > TargaryenKill)) {
                     endReason += "les Lannister sont sur le trône !";
-                    FileManager.writeToLogFile("\n[GAME] Victory of Lannister");
+                    FileManager.writeToLogFile(1,"GAME","Victory of Lannister");
                 }
                 else if (Lannister < Targaryen || (Lannister == Targaryen && LannisterKill < TargaryenKill)) {
                     endReason += "Les Targaryen sont sur le trône !";
-                    FileManager.writeToLogFile("\n[GAME] Victory of Targaryen");
+                    FileManager.writeToLogFile(1,"GAME","Victory of Targaryen");
                 }
                 else {
                     endReason += "Les deux familles font la paix (égalité)";
-                    FileManager.writeToLogFile("\n[GAME] Victory of South");
+                    FileManager.writeToLogFile(1,"GAME","Victory of South");
                 }
                 return true;
             }
@@ -139,15 +139,15 @@ public class GameMaster {
                 endReason = "Il ne reste plus que les familles du nord sur le plateau.\nLa guerre est finie : ";
                 if (Stark > Wildings || (Stark == Wildings && StarkKill > WildingsKill)) {
                     endReason += "Les Stark sont sur le trône !";
-                    FileManager.writeToLogFile("\n[GAME] Victory of Stark");
+                    FileManager.writeToLogFile(1,"GAME","Victory of Stark");
                 }
                 else if (Stark < Wildings || (Stark == Wildings && StarkKill < WildingsKill)) {
                     endReason += "Les Sauvageons sont sur le trône !";
-                    FileManager.writeToLogFile("\n[GAME] Victory of Wildings");
+                    FileManager.writeToLogFile(1,"GAME","Victory of Wildings");
                 }
                 else {
                     endReason += "Les deux familles font la paix (égalité)";
-                    FileManager.writeToLogFile("\n[GAME] Victory of North");
+                    FileManager.writeToLogFile(1,"GAME","Victory of North");
                 }
                 return true;
             }
@@ -169,13 +169,17 @@ public class GameMaster {
                 house = Statistics.StarkKill() > Statistics.WildingsKill() ? "Stark" : "Wildings";
                 endReason += "familles du nord, avec les " + house + " à leur tête";
             }
-            FileManager.writeToLogFile("\n[GAME] Probable victory of "+house);
+            FileManager.writeToLogFile(1,"GAME", "Probable victory of "+house);
             
             return true;
         }
     }
     
-    public void runSimulation(int mapSize, int safezoneSize, int maxTurn, int popByFaction, int firstWW, int wwFrequency) throws InterruptedException, IOException {        
+    public void runSimulation(String mode, int maxTurn, int mapSize, int safezoneSize, int popByFaction, int firstWW, int wwFrequency) throws InterruptedException, IOException {
+    	//prépare jeu
+    	Statistics.initialize(maxTurn);
+        this.initialize(mode, mapSize, safezoneSize, popByFaction);
+        
         //affiche attributs statiques des classes character
         Character.displayStatics();
         WhiteWalker.displayStatics();
@@ -186,14 +190,11 @@ public class GameMaster {
         Targaryen.displayStatics();
         Stark.displayStatics();
         Wilding.displayStatics();
-        UserInterface.blockingMessage("Attributs statiques des classes", "continuer");
-
-    	//prépare jeu
-        this.initialize(mapSize, safezoneSize, popByFaction);
+        UserInterface.blockingMessage("Attributs statiques des classes", "lancer la simulation en "+maxTurn+" tours du mode "+mode);
         
         //exécution de la simulation tour par tour
         do {
-            FileManager.writeToLogFile("\n[GAME] TURN N°" + ++turn + " BEGIN");
+            FileManager.writeToLogFile(2,"GAME","TURN N°" + ++turn + " BEGIN");
             UserInterface.displayConsole("Nouveau tour", westeros, 1);
             
             //fait jouer chaque personnage dans un ordre aléatoire s'il est vivant
@@ -217,7 +218,7 @@ public class GameMaster {
                     population.remove(population.size()-1);//plus de place
                 }
                 else {
-                    FileManager.writeToLogFile("\n[GAME] New WhiteWalker");
+                    FileManager.writeToLogFile(1,"GAME","New WhiteWalker");
                     UserInterface.displayConsole("Un marcheur blanc arrive !", westeros, 3);
                 }
             }
@@ -227,7 +228,7 @@ public class GameMaster {
         UserInterface.blockingMessage(endReason, "continuer");
         Statistics.displayStats();
 
-        UserInterface.blockingMessage("Fin de la simulation", "revenir au menu");
+        UserInterface.blockingMessage("Fin de la simulation : retrouvez les détails de ce qui s'est passé dans logs.txt avant de lancer une autre simulation!", "revenir au menu");
     }
     
 }

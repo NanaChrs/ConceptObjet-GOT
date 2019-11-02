@@ -41,10 +41,6 @@ public class Statistics {
     private static int southernerKilledByStark;
     private static int southernerKilledByWildings;
     
-    //Constructeur
-    public Statistics(int maxTurn) {
-        endOfLannister = endOfTargaryen = endOfStark = endOfWildings = maxTurn;
-    }
     
     //Getters (pour condition victoire)
     public static int LannisterAlive() {
@@ -88,6 +84,11 @@ public class Statistics {
     }
     
     //Setters
+    //nouvelle partie
+    public static void initialize(int maxTurn) {
+        endOfLannister = endOfTargaryen = endOfStark = endOfWildings = maxTurn;
+    }
+    
     //population
     public static void LannisterAdded() {
         LannisterAdded++;
@@ -207,7 +208,12 @@ public class Statistics {
         
         stats += "\n\nFAMILLE LANNISTER :\n";
         stats += LannisterAdded+" représentant(s)\n";
-        stats += endOfLannister+" tour(s) traversé(s)\n";
+        if (LannisterAlive() == 0) {
+        	stats += endOfLannister+"/"+GameMaster.getTurn()+" tour(s) traversé(s)\n";
+        }
+        else {
+        	stats += "Famille survivante\n";
+        }
         stats += LannisterDeadInBattle+" mort(s) au combat\n";
         stats += LannisterDeadAlone+" mort(s) sur les routes\n";
         stats += northernerKilledByLannister+" personne(s) du Nord tuée(s)\n";
@@ -215,7 +221,12 @@ public class Statistics {
         
         stats += "\n\nFAMILLE TARGARYEN :\n";
         stats += TargaryenAdded+" représentant(s)\n";
-        stats += endOfTargaryen+" tour(s) traversé(s)\n";
+        if (TargaryenAlive() == 0) {
+        	stats += endOfTargaryen+"/"+GameMaster.getTurn()+" tour(s) traversé(s)\n";
+        }
+        else {
+        	stats += "Famille survivante\n";
+        }
         stats += TargaryenDeadInBattle+" mort(s) au combat\n";
         stats += TargaryenDeadAlone+" mort(s) sur les routes\n";
         stats += northernerKilledByTargaryen+" personne(s) du Nord tuée(s)\n";
@@ -223,7 +234,12 @@ public class Statistics {
         
         stats += "\n\nFAMILLE STARK :\n";
         stats += StarkAdded+" représentant(s)\n";
-        stats += endOfStark+" tour(s) traversé(s)\n";
+        if (StarkAlive() == 0) {
+        	stats += endOfStark+"/"+GameMaster.getTurn()+" tour(s) traversé(s)\n";
+        }
+        else {
+        	stats += "Famille survivante\n";
+        }
         stats += StarkDeadInBattle+" mort(s) au combat\n";
         stats += StarkDeadAlone+" mort(s) sur les routes\n";
         stats += southernerKilledByStark+" personne(s) du Sud tuée(s)\n";
@@ -231,7 +247,12 @@ public class Statistics {
         
         stats += "\n\nFAMILLE WILDINGS :\n";
         stats += WildingsAdded+" représentant(s)\n";
-        stats += endOfWildings+" tour(s) traversé(s)\n";
+        if (WildingsAlive() == 0) {
+        	stats += endOfWildings+"/"+GameMaster.getTurn()+" tour(s) traversé(s)\n";
+        }
+        else {
+        	stats += "Famille survivante\n";
+        }
         stats += WildingsDeadInBattle+" mort(s) au combat\n";
         stats += WildingsDeadAlone+" mort(s) sur les routes\n";
         stats += southernerKilledByWildings+" personne(s) du Sud tuée(s)\n";

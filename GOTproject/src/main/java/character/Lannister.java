@@ -6,7 +6,8 @@ import gameplay.FileManager;
 
 public class Lannister extends Southerner {
     //Attributs - Instance définie par :
-    //  sa chance
+    
+	//  sa chance
     protected final static int CRITICAL_SUCCESS_THRESHOLD= 65;
     protected final static int FAILURE_THRESHOLD = 5;
 
@@ -15,10 +16,11 @@ public class Lannister extends Southerner {
         super(name, CRITICAL_SUCCESS_THRESHOLD, FAILURE_THRESHOLD);
     }
     
+    //Affichage des caractéristiques statiques de la classe
     public static void displayStatics() {
         String display = "\n\nClasse Lannister - hérite de Southerner";
-        display += "\nPallier de succès critique : "+CRITICAL_SUCCESS_THRESHOLD;
-        display += "\nPallier d'échec : "+FAILURE_THRESHOLD;
+        display += "\nPalier de succès critique : "+CRITICAL_SUCCESS_THRESHOLD;
+        display += "\nPalier d'échec : "+FAILURE_THRESHOLD;
         
         System.out.println(display);
     }
@@ -29,6 +31,6 @@ public class Lannister extends Southerner {
         c.reduceLife((int)(this.maxLife/2),DamageSource.Battle,this);
         this.reduceLife((int)(this.life/6),DamageSource.Battle,this);//pas mortel
 
-        FileManager.writeToLogFile("[SUPERATTACK] A Lannister always pays his debts ! "+ this.name+" gave 1/6 of his life.");
+        FileManager.writeToLogFile("SUPER ATTACK","A Lannister always pays his debts ! "+ this.name+" gave 1/6 of his life to inflict "+this.maxLife/2+"damages.");
     }
 }

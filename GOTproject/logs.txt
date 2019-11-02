@@ -1,10 +1,856 @@
-[GAME] New simulation
+[GAME] New simulation : test equilibrage
+
 
 [GAME] TURN N°1 BEGIN
 
-[MEET] Ygritte from House Wilding met Sansa from House Stark.
-[MEET] They both restored 1/4 of their HP.
+[MEET] John Targaryen (lv1 : 98 HP and 20 PP) met Sansa Stark (lv1 : 100 HP and 30 PP)
+[ATTACK] John Targaryen	 : Successful attack : Sansa Stark lost 20 HP and has now 80 hp.
+[ATTACK] Sansa Stark	 : Successful attack : John Targaryen lost 30 HP and has now 68 hp.
+[ATTACK] John Targaryen	 : Missed attack! Nothing happened.
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[ATTACK] John Targaryen	 : Successful attack : Sansa Stark lost 20 HP and has now 60 hp.
+[ATTACK] Sansa Stark	 : Successful attack : John Targaryen lost 30 HP and has now 5 hp.
+[ATTACK] John Targaryen	 : Successful attack : Sansa Stark lost 20 HP and has now 40 hp.
+[ATTACK] Sansa Stark	 : Successful attack : John Targaryen lost 30 HP and has now -25 hp.
+[DEATH] Sansa Stark killed John Targaryen. Reward : 1 XP
+
+[MEET] Daenerys Targaryen (lv1 : 100 HP and 20 PP) met Tormund Wilding (lv1 : 100 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Aerys Targaryen (lv1 : 100 HP and 20 PP) met Viserys Targaryen (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Tywin Lannister (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Cersei Lannister (lv1 : 98 HP and 20 PP) met Daenerys Targaryen (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Bran Stark (lv1 : 100 HP and 30 PP) met Aerys Targaryen (lv1 : 100 HP and 20 PP)
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[ATTACK] Aerys Targaryen	 : Missed attack! Nothing happened.
+[ATTACK] Bran Stark	 : Successful attack : Aerys Targaryen lost 30 HP and has now 37 hp.
+[ATTACK] Aerys Targaryen	 : Missed attack! Nothing happened.
+[ATTACK] Bran Stark	 : Successful attack : Aerys Targaryen lost 30 HP and has now 7 hp.
+[ATTACK] Aerys Targaryen	 : Successful attack : Bran Stark lost 20 HP and has now 80 hp.
+[ATTACK] Bran Stark	 : Missed attack! Nothing happened.
+[ATTACK] Aerys Targaryen	 : Missed attack! Nothing happened.
+[ATTACK] Bran Stark	 : Successful attack : Aerys Targaryen lost 30 HP and has now -23 hp.
+[DEATH] Bran Stark killed Aerys Targaryen. Reward : 6 XP
+
+[MEET] Jaime Lannister (lv1 : 96 HP and 20 PP) met Cersei Lannister (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Jaime Lannister (lv1 : 100 HP and 20 PP) met Tormund Wilding (lv1 : 100 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Tywin Lannister (lv1 : 100 HP and 20 PP) met Lancel Lannister (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 3 xp.
+
+[MEET] Kevan Lannister (lv1 : 100 HP and 20 PP) met Mance Wilding (lv1 : 100 HP and 30 PP)
+[ATTACK] Kevan Lannister	 : Successful attack : Mance Wilding lost 20 HP and has now 80 hp.
+[ATTACK] Mance Wilding	 : Successful attack : Kevan Lannister lost 30 HP and has now 70 hp.
+[SUPER ATTACK] A Lannister always pays his debts ! Kevan gave 1/6 of his life to inflict 50damages.
+[SUPER ATTACK] Mance Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[ATTACK] Kevan Lannister	 : Successful attack : Mance Wilding lost 20 HP and has now 20 hp.
+[SUPER ATTACK] Mance Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[DEATH] Mance Wilding killed Kevan Lannister. Reward : 1 XP
+
+[MEET] Sansa Stark (lv1 : 36 HP and 30 PP) met Orell Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Catelyn Stark (lv1 : 100 HP and 30 PP) met Ygritte Wilding (lv1 : 98 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Lancel Lannister (lv1 : 100 HP and 20 PP) met Mance Wilding (lv1 : 30 HP and 30 PP)
+[SUPER ATTACK] A Lannister always pays his debts ! Lancel gave 1/6 of his life to inflict 50damages.
+[DEATH] Lancel Lannister killed Mance Wilding. Reward : 1 XP
+
+[MEET] Gilly Wilding (lv1 : 96 HP and 30 PP) met Jaime Lannister (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Gilly Wilding (lv1 : 96 HP and 30 PP) met Tormund Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Arya Stark (lv1 : 94 HP and 30 PP) met Rhaegar Targaryen (lv1 : 94 HP and 20 PP)
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[ATTACK] Rhaegar Targaryen	 : Successful attack : Arya Stark lost 20 HP and has now 74 hp.
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[ATTACK] Rhaegar Targaryen	 : Successful attack : Arya Stark lost 20 HP and has now 54 hp.
+[ATTACK] Arya Stark	 : Successful attack : Rhaegar Targaryen lost 30 HP and has now -2 hp.
+[DEATH] Arya Stark killed Rhaegar Targaryen. Reward : 3 XP
+
+[MEET] Tormund Wilding (lv1 : 98 HP and 30 PP) met Daenerys Targaryen (lv1 : 100 HP and 20 PP)
+[ATTACK] Tormund Wilding	 : Successful attack : Daenerys Targaryen lost 30 HP and has now 70 hp.
+[ATTACK] Daenerys Targaryen	 : Successful attack : Tormund Wilding lost 20 HP and has now 78 hp.
+[SUPER ATTACK] Tormund Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[ATTACK] Daenerys Targaryen	 : Successful attack : Tormund Wilding lost 20 HP and has now 68 hp.
+[ATTACK] Tormund Wilding	 : Successful attack : Daenerys Targaryen lost 30 HP and has now 10 hp.
+[ATTACK] Daenerys Targaryen	 : Missed attack! Nothing happened.
+[SUPER ATTACK] Tormund Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[DEATH] Tormund Wilding killed Daenerys Targaryen. Reward : 2 XP
+
+
+[GAME] TURN N°2 BEGIN
+
+[MEET] Tormund Wilding (lv1 : 81 HP and 30 PP) met Arya Stark (lv1 : 54 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Catelyn Stark (lv1 : 100 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Ned Stark (lv1 : 88 HP and 30 PP) met Osha Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Osha Wilding (lv1 : 100 HP and 30 PP) met Ned Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Sansa Stark (lv1 : 59 HP and 30 PP) met Orell Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Catelyn Stark (lv1 : 100 HP and 30 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Viserys Targaryen (lv1 : 100 HP and 20 PP) met Cersei Lannister (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Gilly Wilding (lv1 : 98 HP and 30 PP) met Robb Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Robb Stark (lv1 : 100 HP and 30 PP) met Gilly Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Arya Stark (lv1 : 77 HP and 30 PP) met Tormund Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Lancel Lannister (lv1 : 85 HP and 20 PP) met Orell Wilding (lv1 : 100 HP and 30 PP)
+[ATTACK] Lancel Lannister	 : Successful attack : Orell Wilding lost 20 HP and has now 80 hp.
+[ATTACK] Orell Wilding	 : Successful attack : Lancel Lannister lost 30 HP and has now 55 hp.
+[ATTACK] Lancel Lannister	 : Successful attack : Orell Wilding lost 20 HP and has now 60 hp.
+[ATTACK] Orell Wilding	 : Missed attack! Nothing happened.
+[ATTACK] Lancel Lannister	 : Successful attack : Orell Wilding lost 20 HP and has now 40 hp.
+[ATTACK] Orell Wilding	 : Successful attack : Lancel Lannister lost 30 HP and has now 25 hp.
+[ATTACK] Lancel Lannister	 : Successful attack : Orell Wilding lost 20 HP and has now 20 hp.
+[ATTACK] Orell Wilding	 : Successful attack : Lancel Lannister lost 30 HP and has now -5 hp.
+[DEATH] Orell Wilding killed Lancel Lannister. Reward : 6 XP
+
+[MEET] Bran Stark (lv1 : 82 HP and 30 PP) met Tywin Lannister (lv1 : 100 HP and 20 PP)
+[ATTACK] Bran Stark	 : Successful attack : Tywin Lannister lost 30 HP and has now 70 hp.
+[ATTACK] Tywin Lannister	 : Successful attack : Bran Stark lost 20 HP and has now 62 hp.
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[ATTACK] Tywin Lannister	 : Missed attack! Nothing happened.
+[ATTACK] Bran Stark	 : Successful attack : Tywin Lannister lost 30 HP and has now 7 hp.
+[ATTACK] Tywin Lannister	 : Successful attack : Bran Stark lost 20 HP and has now 42 hp.
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[DEATH] Bran Stark killed Tywin Lannister. Reward : 11 XP
+
+[MEET] Orell Wilding (lv1 : 21 HP and 30 PP) met Sansa Stark (lv1 : 84 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+
+[GAME] TURN N°3 BEGIN
+
+[MEET] Sansa Stark (lv1 : 98 HP and 30 PP) met Orell Wilding (lv1 : 46 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Arya Stark (lv1 : 100 HP and 30 PP) met Bran Stark (lv2 : 42 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 3 xp.
+
+[MEET] Gilly Wilding (lv1 : 98 HP and 30 PP) met Jaime Lannister (lv1 : 98 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Osha Wilding (lv1 : 100 HP and 30 PP) met Ned Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Jaime Lannister (lv1 : 96 HP and 20 PP) met Gilly Wilding (lv1 : 98 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Bran Stark (lv2 : 69 HP and 35 PP) met Arya Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Tyrion Lannister (lv1 : 100 HP and 20 PP) met Tormund Wilding (lv1 : 100 HP and 30 PP)
+[ATTACK] Tyrion Lannister	 : Successful attack : Tormund Wilding lost 20 HP and has now 80 hp.
+[ATTACK] Tormund Wilding	 : Missed attack! Nothing happened.
+[SUPER ATTACK] A Lannister always pays his debts ! Tyrion gave 1/6 of his life to inflict 50damages.
+[ATTACK] Tormund Wilding	 : Missed attack! Nothing happened.
+[ATTACK] Tyrion Lannister	 : Successful attack : Tormund Wilding lost 20 HP and has now 10 hp.
+[ATTACK] Tormund Wilding	 : Successful attack : Tyrion Lannister lost 30 HP and has now 54 hp.
+[ATTACK] Tyrion Lannister	 : Successful attack : Tormund Wilding lost 20 HP and has now -10 hp.
+[DEATH] Tyrion Lannister killed Tormund Wilding. Reward : 13 XP
+
+[MEET] Cersei Lannister (lv1 : 100 HP and 20 PP) met Tyrion Lannister (lv1 : 54 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 3 xp.
+
+
+[GAME] TURN N°4 BEGIN
+
+[MEET] Robb Stark (lv1 : 100 HP and 30 PP) met Jaime Lannister (lv1 : 96 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Gilly Wilding (lv1 : 90 HP and 30 PP) met Ygritte Wilding (lv1 : 86 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Ygritte Wilding (lv1 : 90 HP and 30 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Ygritte Wilding (lv1 : 90 HP and 30 PP) met Catelyn Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Jaime Lannister (lv1 : 94 HP and 20 PP) met Viserys Targaryen (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Osha Wilding (lv1 : 100 HP and 30 PP) met Orell Wilding (lv1 : 78 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 1 xp.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Catelyn Stark (lv1 : 100 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Ygritte Wilding (lv1 : 100 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Bran Stark (lv2 : 99 HP and 35 PP) met Ygritte Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Viserys Targaryen (lv1 : 100 HP and 20 PP) met Jaime Lannister (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Arya Stark (lv1 : 100 HP and 30 PP) met Sansa Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 3 xp.
 
 [GAME] New WhiteWalker
 
-[GAME] Probable victory of Wildings
+
+[GAME] TURN N°5 BEGIN
+
+[MEET] Ygritte Wilding (lv1 : 98 HP and 30 PP) met Bran Stark (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Arya Stark (lv2 : 101 HP and 35 PP) met Sansa Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Tyrion Lannister (lv2 : 84 HP and 25 PP) met Cersei Lannister (lv2 : 104 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Bran Stark (lv2 : 105 HP and 35 PP) met Ygritte Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Sansa Stark (lv2 : 100 HP and 35 PP) met Arya Stark (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Ned Stark (lv1 : 95 HP and 30 PP) met Catelyn Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Ned Stark (lv2 : 100 HP and 35 PP) met Ygritte Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Catelyn Stark (lv1 : 100 HP and 30 PP) met Ned Stark (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Catelyn Stark (lv1 : 100 HP and 30 PP) met Ygritte Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Viserys Targaryen (lv1 : 100 HP and 20 PP) met Jaime Lannister (lv1 : 94 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+
+[GAME] TURN N°6 BEGIN
+
+[MEET] Gilly Wilding (lv2 : 103 HP and 35 PP) met Osha Wilding (lv1 : 100 HP and 30 PP)
+[RESCUE] Gilly Wilding is exhausted (0 Stamina). Osha gave him/her half of his/her : 17.
+
+[MEET] Sansa Stark (lv2 : 105 HP and 35 PP) met Arya Stark (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Cersei Lannister (lv2 : 105 HP and 25 PP) met Gilly Wilding (lv2 : 103 HP and 35 PP)
+[ATTACK] Cersei Lannister	 : Successful attack : Gilly Wilding lost 25 HP and has now 78 hp.
+[ATTACK] Gilly Wilding	 : Missed attack! Nothing happened.
+[SUPER ATTACK] A Lannister always pays his debts ! Cersei gave 1/6 of his life to inflict 52damages.
+[SUPER ATTACK] Gilly Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[SUPER ATTACK] A Lannister always pays his debts ! Cersei gave 1/6 of his life to inflict 52damages.
+[DEATH] Cersei Lannister killed Gilly Wilding. Reward : 6 XP
+
+[MEET] Ned Stark (lv2 : 105 HP and 35 PP) met Catelyn Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Catelyn Stark (lv2 : 100 HP and 35 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Ygritte Wilding (lv1 : 100 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Bran Stark (lv2 : 105 HP and 35 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Ygritte Wilding (lv1 : 98 HP and 30 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Ygritte Wilding (lv1 : 98 HP and 30 PP) met Bran Stark (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Robb Stark (lv1 : 92 HP and 30 PP) met Tyrion Lannister (lv2 : 105 HP and 25 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Bran Stark (lv2 : 105 HP and 35 PP) met Sansa Stark (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Catelyn Stark (lv2 : 102 HP and 35 PP) met Arya Stark (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Catelyn Stark (lv2 : 105 HP and 35 PP) met Bran Stark (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Catelyn Stark (lv2 : 105 HP and 35 PP) met Sansa Stark (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Osha Wilding (lv1 : 100 HP and 30 PP) met Cersei Lannister (lv2 : 45 HP and 25 PP)
+[ATTACK] Osha Wilding	 : Successful attack : Cersei Lannister lost 30 HP and has now 15 hp.
+[SUPER ATTACK] A Lannister always pays his debts ! Cersei gave 1/6 of his life to inflict 52damages.
+[ATTACK] Osha Wilding	 : Successful attack : Cersei Lannister lost 30 HP and has now -17 hp.
+[DEATH] Osha Wilding killed Cersei Lannister. Reward : 18 XP
+
+[MEET] Tyrion Lannister (lv2 : 105 HP and 25 PP) met Viserys Targaryen (lv2 : 101 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Tyrion Lannister (lv2 : 105 HP and 25 PP) met Robb Stark (lv1 : 92 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Arya Stark (lv2 : 105 HP and 35 PP) met Catelyn Stark (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+
+[GAME] TURN N°7 BEGIN
+
+[MEET] Sansa Stark (lv2 : 105 HP and 35 PP) met Arya Stark (lv3 : 105 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Sansa Stark (lv3 : 105 HP and 40 PP) met Catelyn Stark (lv3 : 105 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Sansa Stark (lv3 : 110 HP and 40 PP) met Bran Stark (lv3 : 105 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Arya Stark (lv3 : 110 HP and 40 PP) met Sansa Stark (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Arya Stark (lv3 : 110 HP and 40 PP) met Catelyn Stark (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Bran Stark (lv3 : 110 HP and 40 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Bran Stark (lv3 : 110 HP and 40 PP) met Arya Stark (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Bran Stark (lv3 : 110 HP and 40 PP) met Ygritte Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Bran Stark (lv3 : 110 HP and 40 PP) met Sansa Stark (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Ygritte Wilding (lv1 : 98 HP and 30 PP) met Bran Stark (lv4 : 110 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Ygritte Wilding (lv1 : 100 HP and 30 PP) met Sansa Stark (lv4 : 110 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Viserys Targaryen (lv2 : 104 HP and 25 PP) met Jaime Lannister (lv2 : 93 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Tyrion Lannister (lv2 : 105 HP and 25 PP) met Viserys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Orell Wilding (lv2 : 104 HP and 35 PP) met Osha Wilding (lv2 : 48 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 3 xp.
+
+[MEET] Catelyn Stark (lv3 : 110 HP and 40 PP) met Arya Stark (lv4 : 110 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Catelyn Stark (lv4 : 110 HP and 45 PP) met Sansa Stark (lv4 : 115 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+
+[GAME] TURN N°8 BEGIN
+
+[MEET] Ygritte Wilding (lv1 : 98 HP and 30 PP) met Bran Stark (lv4 : 115 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Ygritte Wilding (lv1 : 100 HP and 30 PP) met Sansa Stark (lv4 : 115 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Jaime Lannister (lv2 : 105 HP and 25 PP) met Tyrion Lannister (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Jaime Lannister (lv2 : 105 HP and 25 PP) met Viserys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Bran Stark (lv4 : 115 HP and 45 PP) met Arya Stark (lv4 : 115 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Bran Stark (lv4 : 115 HP and 45 PP) met Sansa Stark (lv4 : 115 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Sansa Stark (lv4 : 115 HP and 45 PP) met Bran Stark (lv4 : 115 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Sansa Stark (lv5 : 115 HP and 50 PP) met Arya Stark (lv4 : 115 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Sansa Stark (lv5 : 120 HP and 50 PP) met Ygritte Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Arya Stark (lv5 : 116 HP and 50 PP) met Bran Stark (lv5 : 115 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Viserys Targaryen (lv2 : 105 HP and 25 PP) met Jaime Lannister (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Tyrion Lannister (lv2 : 105 HP and 25 PP) met Jaime Lannister (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Tyrion Lannister (lv3 : 105 HP and 30 PP) met Viserys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Catelyn Stark (lv4 : 115 HP and 45 PP) met Arya Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Catelyn Stark (lv4 : 115 HP and 45 PP) met Bran Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Ned Stark (lv2 : 105 HP and 35 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Ned Stark (lv2 : 105 HP and 35 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+
+[GAME] TURN N°9 BEGIN
+
+[MEET] Arya Stark (lv5 : 120 HP and 50 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Arya Stark (lv5 : 120 HP and 50 PP) met Bran Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Arya Stark (lv5 : 120 HP and 50 PP) met Sansa Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Ned Stark (lv3 : 105 HP and 40 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Viserys Targaryen (lv2 : 105 HP and 25 PP) met Jaime Lannister (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Ygritte Wilding (lv2 : 98 HP and 35 PP) met Bran Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Ygritte Wilding (lv2 : 105 HP and 35 PP) met Sansa Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Jaime Lannister (lv2 : 105 HP and 25 PP) met Viserys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Tyrion Lannister (lv3 : 110 HP and 30 PP) met Osha Wilding (lv2 : 85 HP and 35 PP)
+[SUPER ATTACK] A Lannister always pays his debts ! Tyrion gave 1/6 of his life to inflict 55damages.
+[ATTACK] Osha Wilding	 : Successful attack : Tyrion Lannister lost 35 HP and has now 57 hp.
+[ATTACK] Tyrion Lannister	 : Successful attack : Osha Wilding lost 30 HP and has now 0 hp.
+[DEATH] Tyrion Lannister killed Osha Wilding. Reward : 14 XP
+
+[MEET] Sansa Stark (lv5 : 120 HP and 50 PP) met Ygritte Wilding (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Orell Wilding (lv2 : 105 HP and 35 PP) met Sansa Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Bran Stark (lv5 : 120 HP and 50 PP) met Catelyn Stark (lv4 : 115 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Bran Stark (lv5 : 120 HP and 50 PP) met Ygritte Wilding (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Catelyn Stark (lv4 : 115 HP and 45 PP) met Arya Stark (lv6 : 120 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Catelyn Stark (lv5 : 115 HP and 50 PP) met Bran Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Catelyn Stark (lv5 : 120 HP and 50 PP) met Ygritte Wilding (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+
+[GAME] TURN N°10 BEGIN
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Ned Stark (lv3 : 105 HP and 40 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Arya Stark (lv6 : 125 HP and 55 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Ygritte Wilding (lv2 : 103 HP and 35 PP) met Bran Stark (lv6 : 120 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Bran Stark (lv6 : 125 HP and 55 PP) met Catelyn Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Bran Stark (lv6 : 125 HP and 55 PP) met Ygritte Wilding (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Bran Stark (lv6 : 125 HP and 55 PP) met Sansa Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Ned Stark (lv3 : 106 HP and 40 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Jaime Lannister (lv2 : 105 HP and 25 PP) met Viserys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Jaime Lannister (lv2 : 105 HP and 25 PP) met Robb Stark (lv2 : 86 HP and 35 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Catelyn Stark (lv5 : 120 HP and 50 PP) met Ygritte Wilding (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Sansa Stark (lv6 : 122 HP and 55 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+
+[GAME] TURN N°11 BEGIN
+
+[MEET] Catelyn Stark (lv5 : 120 HP and 50 PP) met Ygritte Wilding (lv2 : 105 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Catelyn Stark (lv5 : 120 HP and 50 PP) met Bran Stark (lv6 : 125 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Sansa Stark (lv6 : 123 HP and 55 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Sansa Stark (lv6 : 123 HP and 55 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Bran Stark (lv7 : 126 HP and 60 PP) met Sansa Stark (lv6 : 123 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Bran Stark (lv7 : 130 HP and 60 PP) met Catelyn Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Ned Stark (lv3 : 107 HP and 40 PP) met Aegon Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Ned Stark (lv3 : 107 HP and 40 PP) met Sansa Stark (lv6 : 125 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Arya Stark (lv6 : 125 HP and 55 PP) met Viserys Targaryen (lv2 : 105 HP and 25 PP)
+[ATTACK] Arya Stark	 : Successful attack : Viserys Targaryen lost 55 HP and has now 50 hp.
+[ATTACK] Viserys Targaryen	 : Successful attack : Arya Stark lost 25 HP and has now 100 hp.
+[ATTACK] Arya Stark	 : Missed attack! Nothing happened.
+[ATTACK] Viserys Targaryen	 : Successful attack : Arya Stark lost 25 HP and has now 75 hp.
+[ATTACK] Arya Stark	 : Missed attack! Nothing happened.
+[ATTACK] Viserys Targaryen	 : Successful attack : Arya Stark lost 25 HP and has now 50 hp.
+[ATTACK] Arya Stark	 : Successful attack : Viserys Targaryen lost 55 HP and has now -5 hp.
+[DEATH] Arya Stark killed Viserys Targaryen. Reward : 14 XP
+
+
+[GAME] TURN N°12 BEGIN
+
+[MEET] Sansa Stark (lv6 : 125 HP and 55 PP) met Catelyn Stark (lv6 : 120 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Catelyn Stark (lv6 : 125 HP and 55 PP) met Ygritte Wilding (lv2 : 105 HP and 35 PP)
+[RESCUE] Ygritte Wilding is exhausted (0 Stamina). Catelyn gave him/her half of his/her : 38.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Ned Stark (lv3 : 110 HP and 40 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Sansa Stark (lv6 : 125 HP and 55 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Aegon Targaryen (lv1 : 100 HP and 20 PP) met Bran Stark (lv7 : 130 HP and 60 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Orell Wilding (lv3 : 110 HP and 40 PP) met Catelyn Stark (lv6 : 125 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Bran Stark (lv7 : 130 HP and 60 PP) met Orell Wilding (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Ygritte Wilding (lv2 : 105 HP and 35 PP) met Catelyn Stark (lv6 : 125 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Arya Stark (lv7 : 52 HP and 60 PP) met Orell Wilding (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] A whitewalker (150 HP and 45 PP) met Tyrion Lannister (lv4 : 71 HP and 35 PP).
+[ATTACK] WhiteWalker :	 Missed attack! Nothing happened.
+[SUPER ATTACK] A Lannister always pays his debts ! Tyrion gave 1/6 of his life to inflict 57damages.
+[ATTACK] WhiteWalker :	 Missed attack! Nothing happened.
+[ATTACK] Tyrion Lannister	 : Successful attack : The whitewalker lost 35 HP and has now 58 hp.
+[ATTACK] WhiteWalker :	 Successful attack : Tyrion Lannister lost 45 HP and has now 15 hp.
+[ATTACK] Tyrion Lannister	 : Successful attack : The whitewalker lost 35 HP and has now 23 hp.
+[ATTACK] WhiteWalker :	 Successful attack : Tyrion Lannister lost 45 HP and has now -30 hp.
+[DEATH] The whitewalker killed Tyrion Lannister.
+
+[MEET] Ned Stark (lv3 : 110 HP and 40 PP) met Sansa Stark (lv6 : 125 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[GAME] New WhiteWalker
+
+
+[GAME] TURN N°13 BEGIN
+
+[MEET] Ned Stark (lv3 : 110 HP and 40 PP) met Sansa Stark (lv7 : 125 HP and 60 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Orell Wilding (lv3 : 110 HP and 40 PP) met Bran Stark (lv7 : 130 HP and 60 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Orell Wilding (lv3 : 110 HP and 40 PP) met Catelyn Stark (lv6 : 125 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Sansa Stark (lv7 : 130 HP and 60 PP) met Bran Stark (lv7 : 130 HP and 60 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 1 xp.
+
+[MEET] Ygritte Wilding (lv2 : 105 HP and 35 PP) met a whitewalker (23 HP and 45 PP)
+[ATTACK] Ygritte Wilding	 : Successful attack : The whitewalker lost 35 HP and has now -12 hp.
+[DEATH] Ygritte Wilding killed the Whitewalker : He/she gain 100 XP and 25 HP.
+
+[MEET] Bran Stark (lv7 : 130 HP and 60 PP) met Orell Wilding (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] A whitewalker (150 HP and 45 PP) met Arya Stark (lv7 : 89 HP and 60 PP).
+[ATTACK] WhiteWalker :	 Missed attack! Nothing happened.
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[ATTACK] WhiteWalker :	 Missed attack! Nothing happened.
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[ATTACK] WhiteWalker :	 Successful attack : Arya Stark lost 45 HP and has now 44 hp.
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[ATTACK] WhiteWalker :	 Successful attack : Arya Stark lost 45 HP and has now -1 hp.
+[DEATH] The whitewalker killed Arya Stark.
+
+[MEET] Catelyn Stark (lv6 : 125 HP and 55 PP) met Orell Wilding (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+
+[GAME] TURN N°14 BEGIN
+
+[MEET] Bran Stark (lv7 : 130 HP and 60 PP) met Orell Wilding (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Orell Wilding (lv3 : 110 HP and 40 PP) met Bran Stark (lv7 : 130 HP and 60 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Jaime Lannister (lv3 : 110 HP and 30 PP) met Ygritte Wilding (lv3 : 110 HP and 40 PP)
+[SUPER ATTACK] A Lannister always pays his debts ! Jaime gave 1/6 of his life to inflict 55damages.
+[ATTACK] Ygritte Wilding	 : Missed attack! Nothing happened.
+[ATTACK] Jaime Lannister	 : Successful attack : Ygritte Wilding lost 30 HP and has now 25 hp.
+[ATTACK] Ygritte Wilding	 : Missed attack! Nothing happened.
+[ATTACK] Jaime Lannister	 : Successful attack : Ygritte Wilding lost 30 HP and has now -5 hp.
+[DEATH] Jaime Lannister killed Ygritte Wilding. Reward : 0 XP
+
+[MEET] Catelyn Stark (lv6 : 125 HP and 55 PP) met Orell Wilding (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Catelyn Stark (lv6 : 125 HP and 55 PP) met Bran Stark (lv7 : 130 HP and 60 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+
+[GAME] TURN N°15 BEGIN
+
+[MEET] Catelyn Stark (lv6 : 125 HP and 55 PP) met Orell Wilding (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Catelyn Stark (lv6 : 125 HP and 55 PP) met Bran Stark (lv8 : 130 HP and 65 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Bran Stark (lv8 : 135 HP and 65 PP) met Orell Wilding (lv3 : 110 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Sansa Stark (lv7 : 130 HP and 60 PP) met Catelyn Stark (lv7 : 125 HP and 60 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 3 xp.
+
+[MEET] Orell Wilding (lv3 : 108 HP and 40 PP) met Catelyn Stark (lv7 : 130 HP and 60 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Orell Wilding (lv3 : 110 HP and 40 PP) met Bran Stark (lv8 : 135 HP and 65 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Jaime Lannister (lv3 : 96 HP and 30 PP) met Orell Wilding (lv3 : 110 HP and 40 PP)
+[ATTACK] Jaime Lannister	 : Successful attack : Orell Wilding lost 30 HP and has now 80 hp.
+[ATTACK] Orell Wilding	 : Successful attack : Jaime Lannister lost 40 HP and has now 56 hp.
+[SUPER ATTACK] A Lannister always pays his debts ! Jaime gave 1/6 of his life to inflict 55damages.
+[SUPER ATTACK] Orell Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[SUPER ATTACK] A Lannister always pays his debts ! Jaime gave 1/6 of his life to inflict 55damages.
+[DEATH] Jaime Lannister killed Orell Wilding. Reward : 9 XP
+
+
+[GAME] TURN N°16 BEGIN
+
+[MEET] Sansa Stark (lv8 : 131 HP and 65 PP) met Catelyn Stark (lv7 : 130 HP and 60 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Ned Stark (lv4 : 115 HP and 45 PP) met Sansa Stark (lv8 : 135 HP and 65 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 1 xp.
+
+[MEET] Catelyn Stark (lv7 : 130 HP and 60 PP) met Sansa Stark (lv8 : 135 HP and 65 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+
+[GAME] TURN N°17 BEGIN
+
+[MEET] Sansa Stark (lv9 : 136 HP and 70 PP) met Catelyn Stark (lv8 : 130 HP and 65 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+
+[GAME] TURN N°18 BEGIN
+
+[MEET] Jaime Lannister (lv4 : 18 HP and 35 PP) met Sansa Stark (lv9 : 140 HP and 70 PP)
+[ATTACK] Jaime Lannister	 : Successful attack : Sansa Stark lost 35 HP and has now 105 hp.
+[ATTACK] Sansa Stark	 : Successful attack : Jaime Lannister lost 70 HP and has now -52 hp.
+[DEATH] Sansa Stark killed Jaime Lannister. Reward : 12 XP
+
+
+[GAME] TURN N°19 BEGIN
+
+
+[GAME] TURN N°20 BEGIN
+
+[MEET] Ned Stark (lv4 : 115 HP and 45 PP) met Catelyn Stark (lv8 : 135 HP and 65 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Sansa Stark (lv10 : 110 HP and 75 PP) met Catelyn Stark (lv8 : 135 HP and 65 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Sansa Stark (lv10 : 145 HP and 75 PP) met Ned Stark (lv5 : 115 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Catelyn Stark (lv8 : 135 HP and 65 PP) met Ned Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Catelyn Stark (lv9 : 135 HP and 70 PP) met Sansa Stark (lv10 : 145 HP and 75 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[GAME] New WhiteWalker
+
+
+[GAME] TURN N°21 BEGIN
+
+[MEET] A whitewalker (150 HP and 45 PP) met Bran Stark (lv9 : 140 HP and 70 PP).
+[ATTACK] WhiteWalker :	 Missed attack! Nothing happened.
+[ATTACK] Bran Stark	 : Successful attack : The whitewalker lost 70 HP and has now 80 hp.
+[ATTACK] WhiteWalker :	 Missed attack! Nothing happened.
+[ATTACK] Bran Stark	 : Successful attack : The whitewalker lost 70 HP and has now 10 hp.
+[ATTACK] WhiteWalker :	 Successful attack : Bran Stark lost 45 HP and has now 95 hp.
+[ATTACK] Bran Stark	 : Successful attack : The whitewalker lost 70 HP and has now -60 hp.
+[DEATH] Bran Stark killed the Whitewalker : He/she gain 100 XP and 25 HP.
+
+[MEET] Sansa Stark (lv10 : 145 HP and 75 PP) met Catelyn Stark (lv9 : 140 HP and 70 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Sansa Stark (lv11 : 145 HP and 80 PP) met Ned Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Catelyn Stark (lv9 : 140 HP and 70 PP) met Sansa Stark (lv11 : 150 HP and 80 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Catelyn Stark (lv9 : 140 HP and 70 PP) met Ned Stark (lv5 : 120 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Ned Stark (lv6 : 121 HP and 55 PP) met Catelyn Stark (lv10 : 140 HP and 75 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+
+[GAME] TURN N°22 BEGIN
+
+[MEET] Catelyn Stark (lv10 : 145 HP and 75 PP) met Sansa Stark (lv11 : 150 HP and 80 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Catelyn Stark (lv10 : 145 HP and 75 PP) met Ned Stark (lv6 : 125 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 9 xp.
+
+[MEET] Sansa Stark (lv12 : 151 HP and 85 PP) met Catelyn Stark (lv11 : 145 HP and 80 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Sansa Stark (lv12 : 155 HP and 85 PP) met Ned Stark (lv6 : 125 HP and 55 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Bran Stark (lv10 : 123 HP and 75 PP) met a whitewalker (21 HP and 45 PP)
+[ATTACK] Bran Stark	 : Successful attack : The whitewalker lost 75 HP and has now -54 hp.
+[DEATH] Bran Stark killed the Whitewalker : He/she gain 100 XP and 25 HP.
+
+[GAME] Victory of Stark

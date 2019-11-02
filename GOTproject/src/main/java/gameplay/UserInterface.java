@@ -6,12 +6,12 @@ import java.util.concurrent.TimeUnit;
 import map.GameBoard;
 
 public class UserInterface {
-    protected static final int M_CONSOLE_SIZE = 20;
+    protected static final int M_CONSOLE_SIZE = 25;
     protected static String swipe;
-    private static final int LATENCY_MESSAGE_IMPORTANT = 1000;
-    private static final int LATENCY_MESSAGE_LONG = 1200;
-    private static final int LATENCY_MESSAGE_SHORT = 800;
-    private static final int LATENCY_MESSAGE_REDUNDANT = 250;
+    private static final int LATENCY_MESSAGE_IMPORTANT = 500;//1000;
+    private static final int LATENCY_MESSAGE_LONG = 0;//1200;
+    private static final int LATENCY_MESSAGE_SHORT = 0;//800;
+    private static final int LATENCY_MESSAGE_REDUNDANT = 0;//250;
     private static Scanner keyboard = new Scanner(System.in);
     
     //destructeur
@@ -21,7 +21,7 @@ public class UserInterface {
 
     //arret sur message
     public static void blockingMessage(String message, String action) throws IOException {
-        UserInterface.displayConsole(false,"\n" + message + " - Appuyez sur une touche pour " + action);
+        UserInterface.displayConsole(false,"\n" + message + "\n\tAppuyez sur une touche pour " + action);
 
         System.in.read();
         keyboard.nextLine();//récupère retour chariot (touche entrée)

@@ -14,24 +14,24 @@ import map.SafeZone;
 
 public abstract class Character {
     //Attributs - Instance définie par :
+	
     //  sa position sur la map et la possibilité de s'y mouvoir
     protected GameBoard westeros;//agrégation
     protected Box currentBox;//agrégation
-    protected final static int MAX_RANGE = 10;//Attribut statique qui a du sens
+    protected final static int MAX_RANGE = (int)(GameBoard.getSize() * 3/5);//portée maximum pour déplacement
     
     //  sa vie et les dégâts qu'il fait
     protected final static int DEFAULT_STAT_VALUE = 100;
-    protected int maxLife;//ww op car + de vie que les autres
-    protected int life;
-    protected int maxPower;//ww op car + de power que les autres & systeme de niveau
-    protected int power;
-    //protected int dodge;//ajouter complexité aux combats
+    protected int maxLife;//100% de la vie qui augmente de niveau en niveau
+    protected int life; //% de vie actuelle
+    protected int maxPower;//Maximum de puissance en augmentant de niveau
+    protected int power; //puissance qui augmente de niveau en niveau jusque MaxPower
     
     //  sa chance
-    private final static int DEFAULT_THRESHOLD_VALUE = 50;
-    private final static int THRESHOLD_MAX = 100; //Attribut statique qui a du sens
-    private final int criticalSuccessThreshold;
-    private final int failureThreshold;
+    private final static int THRESHOLD_MAX = 100; //Nombre de faces du dé
+    private final static int DEFAULT_THRESHOLD_VALUE = THRESHOLD_MAX/2;
+    private final int criticalSuccessThreshold; //palier de succès critique
+    private final int failureThreshold; //palier d'échec
     
     //Constructeur & destructeur - naissance et mort de l'instance
     public Character(int maxLife, int maxPower, int power, int criticalSuccessThreshold, int failureThreshold) {
@@ -40,14 +40,16 @@ public abstract class Character {
         
         this.power = power < 0 ? 0 : (power > this.maxPower ? DEFAULT_STAT_VALUE/4 : power);
         
-        this.criticalSuccessThreshold   = criticalSuccessThreshold < 0  ? DEFAULT_THRESHOLD_VALUE   : (criticalSuccessThreshold > THRESHOLD_MAX ? THRESHOLD_MAX : criticalSuccessThreshold);
-        this.failureThreshold           = failureThreshold < 0          ? DEFAULT_THRESHOLD_VALUE   : (failureThreshold         > THRESHOLD_MAX ? THRESHOLD_MAX : failureThreshold);
+        this.criticalSuccessThreshold   = criticalSuccessThreshold < 0  ? DEFAULT_THRESHOLD_VALUE   : (criticalSuccessThreshold > THRESHOLD_MAX ? DEFAULT_THRESHOLD_VALUE : criticalSuccessThreshold);
+        this.failureThreshold           = failureThreshold < 0          ? DEFAULT_THRESHOLD_VALUE   : (failureThreshold         > THRESHOLD_MAX ? DEFAULT_THRESHOLD_VALUE : failureThreshold);
     }
     
     public void death(DamageSource cause, Character character) throws InterruptedException {
-        westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
+        // Supprime le personnage mort de la map
+    	westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
         displayConsole((this instanceof Human? ((Human)this).getFullName() : "Le marcheur blanc") + " meurt", westeros, 3);
 
+        // Dans tous les cas, l'instance meurt pour une raison (combat ou épuisement des statistiques)
         if (this instanceof Lannister) {
             if (cause.equals(DamageSource.Nature)) {
                 Statistics.LannisterDeadAlone();
@@ -81,7 +83,8 @@ public abstract class Character {
             }
         }
         else {
-            Statistics.WWDeadInBattle();
+            //White Walker ne peut mourir que par combat donc cherche qui l'a tué
+        	Statistics.WWDeadInBattle();
             
             if (character instanceof Lannister) {
                 Statistics.WWKilledByLannister();
@@ -98,8 +101,10 @@ public abstract class Character {
         }
         
         if (this instanceof Human) {
+        	// Si dernier humain d'une famille meurt, supprime la safezone
             this.westeros.getSafeZone(this.getClass().getSimpleName()).removeEmptyFaction();
             
+            // Si mort au combat, cherche le responsable
             if (cause.equals(DamageSource.Battle)) {
                 if (character instanceof Lannister) {
                     Statistics.northernerKilledByLannister();
@@ -120,8 +125,7 @@ public abstract class Character {
         }
     }
     
-    //Getters & setters utiles
-    //  caractéristiques
+    //Affichage des caractéristiques statiques de la classe
     public static void displayStatics() {
         String display = "\n\nClasse Character";
         display += "\nPortée max : "+MAX_RANGE;
@@ -131,6 +135,8 @@ public abstract class Character {
         
         System.out.println(display);
     }
+    
+    //Getters & setters utiles
 
     //  position
     public void setMap(GameBoard map) {
@@ -148,12 +154,16 @@ public abstract class Character {
     //  attributs
     public void addLife(int life) {
         this.life += life;
-        if (this.life > maxLife) this.life = maxLife;
+        if (this.life > maxLife) {
+        	this.life = maxLife;
+        }
     }
     
     public void reduceLife(int life, DamageSource cause, Character character) throws InterruptedException {
         this.life -= life;
-        if (this.life <= 0) this.death(cause,character);
+        if (this.life <= 0) {
+        	this.death(cause,character);
+        }
     }
     
     public boolean isAlive() {
@@ -162,12 +172,16 @@ public abstract class Character {
 
     public void addPower(int power) {
         this.power += power;
-        if (this.power > maxPower) this.power = maxPower;
+        if (this.power > maxPower) {
+        	this.power = maxPower;
+        }
     }
     
     //Méthodes private - actions spécifiques
+    
+    //Détermine la portée du personnage pour le déplacement
     private int currentRange() throws InterruptedException {
-        //si humain à court d'energie, bouge plus
+        //si humain à court d'energie, ne bouge plus
         if (this instanceof Human && ((Human)this).stamina == 0) {
             if (((Human)this).turnsWithoutStamina++ >= Human.MAX_TURNS_WITHOUT_STAMINA) {//not found : no rescue
                 this.reduceLife(this.life,DamageSource.Nature,null);
@@ -175,6 +189,7 @@ public abstract class Character {
             return 0;
         }
         
+        //lancer de dés pour déterminer la portée 
         switch(this.rollDice()) {
             case CRITICAL_SUCCESS:
                 return MAX_RANGE;
@@ -185,9 +200,12 @@ public abstract class Character {
         }	
     }
     
+    //Vérifie que la case suivante dans la direction donnée est accessible et libre 
     private boolean isNextFree(Direction takenDirection) {
-        int posX = this.currentBox.getX(), posY = this.currentBox.getY();
-        int xMax = GameBoard.getSize(), yMax = GameBoard.getSize();
+        int posX = this.currentBox.getX();
+        int posY = this.currentBox.getY();
+        int xMax = GameBoard.getSize();
+        int yMax = GameBoard.getSize();
         
         switch(takenDirection) {//bas gauche: (0,0) ; haut droite : (max,max)
             case NorthWest :
@@ -211,6 +229,7 @@ public abstract class Character {
         }
     }
     
+    //Retourne la direction diagonale droite de la direction donnée
     private Direction diagoRight(Direction dir) {
         switch (dir) {
             case North:
@@ -234,6 +253,7 @@ public abstract class Character {
         }
     }
     
+    //Retourne la direction diagonale gauche de la direction donnée
     private Direction diagoLeft(Direction dir) {
         switch (dir) {
             case North:
@@ -257,10 +277,11 @@ public abstract class Character {
         }
     }
     
+    // Retourne la liste des directions que peut emprunter un personnage (liste de directions où la case suivante est libre)
     private ArrayList<Direction> potentialDirections() {
         ArrayList<Direction> list = new ArrayList<>();
         
-        //si humain bientot à court d'énergie, cherche safezone
+        //si humain bientot à court d'énergie, recherche safezone
         if (this instanceof Human && !currentBox.isSafe() && ((Human)this).stamina <= Human.LOW_STAMINA) {
             //les 3 directions qui rapprochent de la safezone en verifiant qu'elles ne sont pas bouchées
             //si bouchées, ne se déplace pas (économise ses forces)
@@ -271,7 +292,8 @@ public abstract class Character {
                 list.add(corner);
             }
             
-            int posX = this.currentBox.getX(), posY = this.currentBox.getY();
+            int posX = this.currentBox.getX();
+            int posY = this.currentBox.getY();
             
             //une coordonnée au niveau de safezone : déplacement en "+"
             if ((corner.equals(Direction.NorthWest) && posX < SafeZone.getSize()) || 
@@ -313,6 +335,8 @@ public abstract class Character {
                 }
             }
         }
+        
+        //si personnage peut se déplacer librement 
         else {
             //ajoute directions dégagées à une case de distance
             for (Direction dir : Direction.values()) {
@@ -325,9 +349,11 @@ public abstract class Character {
         return list;
     }
 
+    //Faire un pas dans une direction donnée
     private Box makeStep(Direction direction) {
         //complémentaire de isNextFree
-        int posX = this.currentBox.getX(), posY = this.currentBox.getY();
+        int posX = this.currentBox.getX();
+        int posY = this.currentBox.getY();
         
         switch(direction) {
             case NorthWest :
@@ -351,6 +377,7 @@ public abstract class Character {
         }
     }
     
+    //Message affiché sur console lors d'un déplacement d'un personnage
     private void moveMessage() throws InterruptedException {
         String message1, message2;
         if (this instanceof Human) {
@@ -364,6 +391,7 @@ public abstract class Character {
         displayConsole(message1 + " se déplace (vie : " + this.life + message2, westeros, 4);
     }
     
+    //Scan des environs : retourne vrai quand a interagi avec un autre personnage 
     private boolean foundSomeoneInSurroundings(int range) throws IOException, InterruptedException {
         //scan des environs dans carte et interaction avec persos des cases juxtaposées
         boolean foundSomeone = false;
@@ -377,7 +405,6 @@ public abstract class Character {
             yMax = GameBoard.getSize();
         
         //test des limites de map dans boucle for (moins de test au total)
-        this.currentBox.displayBox();
         for (int x = limXInf+(limXInf<0 ? 1 : 0); x <= limXSup-(limXSup>=xMax ? 1 : 0); ++x) {
             for (int y = limYInf+(limYInf<0 ? 1 : 0); y <= limYSup-(limYSup>=yMax? 1 : 0); ++y) {
                 //si être vivant présent autour du perso
@@ -391,6 +418,8 @@ public abstract class Character {
                     else {
                         meet((WhiteWalker) somebody,range);
                     }
+                    
+                    //si instance meurt à la fin de la rencontre, fin prématurée du scan et a bien rencontré qqn
                     if (!this.isAlive()) return true;
                 }
             }
@@ -405,7 +434,7 @@ public abstract class Character {
     * @return diceResult   result of the throw
     */ 
     protected  DiceResult rollDice() {
-       int diceValue = (int) (Math.random() * 100) + 1;//plus grand échec : 1 | plus grande réussite : 100
+       int diceValue = (int) (Math.random() * THRESHOLD_MAX) + 1;//plus grand échec : 1 | plus grande réussite : 100
        
        //more to less probable
        if (diceValue < this.criticalSuccessThreshold && diceValue > this.failureThreshold) {
@@ -451,10 +480,14 @@ public abstract class Character {
                     westeros.getMap()[currentBox.getX()][currentBox.getY()].setCharacter(this);
 
                     moveMessage();//etat final
-                } while(!foundSomeoneInSurroundings(range) && this.isAlive() && --range > 0 && isNextFree(takenDir));
+                } while(!foundSomeoneInSurroundings(range) && --range > 0 && isNextFree(takenDir));
+                return;
+            }
+            else {
+            	foundSomeoneInSurroundings(range);
             }
         }
-        else if (this.isAlive()) {//mort par manque de stamina et de secours
+        else if (this.isAlive()) {//pas (mort par manque de stamina et de secours)
             foundSomeoneInSurroundings(0);
         }
     }

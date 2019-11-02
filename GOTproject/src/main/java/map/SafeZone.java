@@ -1,14 +1,14 @@
 package map;
 
 import factions.Faction;
-import static gameplay.GameMaster.getTurn;
+import gameplay.GameMaster;
 import gameplay.Statistics;
-import static gameplay.UserInterface.displayConsole;
+import gameplay.UserInterface;
 
 public class SafeZone {
     protected Faction safeFor;
-    protected Direction corner;//par rapport au centre
-    protected GameBoard westeros;//aggrégation
+    protected Direction corner; //coin par rapport au centre (NO, NE, SO ou SE)
+    protected GameBoard westeros;//composition
     
     protected static int SIZE;
     protected final static int RECOVERY = 10;//stamina récupérée
@@ -92,22 +92,22 @@ public class SafeZone {
         switch(safeFor) {
             case Lannister:
                 if ((remaining = Statistics.LannisterAlive()) == 0) {
-                    Statistics.endOfLannister(getTurn());
+                    Statistics.endOfLannister(GameMaster.getTurn());
                 }
                 break;
             case Targaryen:
                 if ((remaining = Statistics.TargaryenAlive()) == 0) {
-                    Statistics.endOfTargaryen(getTurn());
+                    Statistics.endOfTargaryen(GameMaster.getTurn());
                 }
                 break;
             case Stark:
                 if ((remaining = Statistics.StarkAlive()) == 0) {
-                    Statistics.endOfStark(getTurn());
+                    Statistics.endOfStark(GameMaster.getTurn());
                 }
                 break;
             case Wilding:
                 if ((remaining = Statistics.WildingsAlive()) == 0) {
-                    Statistics.endOfWildings(getTurn());
+                    Statistics.endOfWildings(GameMaster.getTurn());
                 }
                 break;
         }
@@ -116,8 +116,8 @@ public class SafeZone {
             String name = safeFor.toString();
             safeFor = null;
             applySafeZone(false);//affichage carte
-            westeros.towns.remove(this);//enregistrement safezone
-            displayConsole("Les " + name + " sont morts : leur zone d'influence disparaît", westeros, 2);
+            westeros.getTowns().remove(this);//enregistrement safezone
+            UserInterface.displayConsole("Les " + name + " sont morts : leur zone d'influence disparaît", westeros, 2);
         }
     }
     

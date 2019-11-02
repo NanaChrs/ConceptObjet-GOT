@@ -4,7 +4,7 @@ import character.Character;
 import character.Human;
 import character.WhiteWalker;
 import factions.Faction;
-import static gameplay.GameMaster.getTurn;
+import gameplay.GameMaster;
 import static java.lang.Character.toLowerCase;
 
 public class Box {
@@ -16,8 +16,8 @@ public class Box {
     //  son climat
     private final Weather weather;
     private final static int NB_TURN_WW_EFFECT = 4;
-    private int beginTurn;
-    private final static int BAD_WEATHER_DAMAGES = 2;
+    private int beginTurn; //début de l'effet du White Walker sur le climat
+    private final static int BAD_WEATHER_DAMAGES = 2; //dégats de vie 
     
     //  son occupant
     private Character character;
@@ -25,7 +25,7 @@ public class Box {
     
     //  son appartenance à une safezone
     private Faction safeFor;
-    private boolean limitSafeZone;
+    private boolean limitSafeZone; //pour l'affichage de la safezone
 
     //Constructeur - naissance de l'instance
     public Box(int x, int y, Weather weather, boolean obstacle) {
@@ -48,8 +48,9 @@ public class Box {
     
     //  weather
     public boolean isFrozen() {
-        return getTurn() < beginTurn + BAD_WEATHER_DAMAGES;
+        return GameMaster.getTurn() < beginTurn + BAD_WEATHER_DAMAGES;
     }
+    
     public Weather getWeather() {
         return isFrozen() ? Weather.Frozen : weather;
     }
@@ -70,7 +71,7 @@ public class Box {
     }
     
     public void setWhiteWalkerWeather() {
-        beginTurn = getTurn();
+        beginTurn = GameMaster.getTurn();
     }
     
     //  character & obstacle

@@ -18,7 +18,6 @@ import character.Targaryen;
 import character.WhiteWalker;
 import character.Wilding;
 import factions.Faction;
-import java.util.Scanner;
 import map.GameBoard;
 
 
@@ -87,6 +86,7 @@ public class GameMaster {
     private void initialize(int mapSize, int safezoneSize, int popByFaction) throws InterruptedException, IOException {
         //lance une nouvelle partie
         turn = 0;
+        endReason = null;
     	FileManager.cleanLogFile();
         FileManager.writeToLogFile("[GAME] New simulation");
         

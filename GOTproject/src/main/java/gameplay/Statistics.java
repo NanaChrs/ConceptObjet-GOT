@@ -206,41 +206,41 @@ public class Statistics {
         String stats = "";
         
         stats += "\n\nFAMILLE LANNISTER :\n";
-        stats += LannisterAdded+" représentants\n";
-        stats += endOfLannister+" tours traversés\n";
-        stats += LannisterDeadInBattle+" morts au combat\n";
-        stats += LannisterDeadAlone+" morts sur les routes\n";
-        stats += northernerKilledByLannister+" Nordiens tués\n";
-        stats += WWKilledByLannister+" Marcheurs tués\n";
+        stats += LannisterAdded+" représentant(s)\n";
+        stats += endOfLannister+" tour(s) traversé(s)\n";
+        stats += LannisterDeadInBattle+" mort(s) au combat\n";
+        stats += LannisterDeadAlone+" mort(s) sur les routes\n";
+        stats += northernerKilledByLannister+" personne(s) du Nord tuée(s)\n";
+        stats += WWKilledByLannister+" Marcheur(s) tué(s)\n";
         
         stats += "\n\nFAMILLE TARGARYEN :\n";
-        stats += TargaryenAdded+" représentants\n";
-        stats += endOfTargaryen+" tours traversés\n";
-        stats += TargaryenDeadInBattle+" morts au combat\n";
-        stats += TargaryenDeadAlone+" morts sur les routes\n";
-        stats += northernerKilledByTargaryen+" Nordiens tués\n";
-        stats += WWKilledByTargaryen+" Marcheurs tués\n";
+        stats += TargaryenAdded+" représentant(s)\n";
+        stats += endOfTargaryen+" tour(s) traversé(s)\n";
+        stats += TargaryenDeadInBattle+" mort(s) au combat\n";
+        stats += TargaryenDeadAlone+" mort(s) sur les routes\n";
+        stats += northernerKilledByTargaryen+" personne(s) du Nord tuée(s)\n";
+        stats += WWKilledByTargaryen+" Marcheur(s) tué(s)\n";
         
         stats += "\n\nFAMILLE STARK :\n";
-        stats += StarkAdded+" représentants\n";
-        stats += endOfStark+" tours traversés\n";
-        stats += StarkDeadInBattle+" morts au combat\n";
-        stats += StarkDeadAlone+" morts sur les routes\n";
-        stats += southernerKilledByStark+" Sudien tués\n";
-        stats += WWKilledByStark+" Marcheurs tués\n";
+        stats += StarkAdded+" représentant(s)\n";
+        stats += endOfStark+" tour(s) traversé(s)\n";
+        stats += StarkDeadInBattle+" mort(s) au combat\n";
+        stats += StarkDeadAlone+" mort(s) sur les routes\n";
+        stats += southernerKilledByStark+" personne(s) du Sud tuée(s)\n";
+        stats += WWKilledByStark+" Marcheur(s) tué(s)\n";
         
         stats += "\n\nFAMILLE WILDINGS :\n";
-        stats += WildingsAdded+" représentants\n";
-        stats += endOfWildings+" tours traversés\n";
-        stats += WildingsDeadInBattle+" morts au combat\n";
-        stats += WildingsDeadAlone+" morts sur les routes\n";
-        stats += southernerKilledByWildings+" Sudien tués\n";
-        stats += WWKilledByWildings+" Marcheurs tués\n";
+        stats += WildingsAdded+" représentant(s)\n";
+        stats += endOfWildings+" tour(s) traversé(s)\n";
+        stats += WildingsDeadInBattle+" mort(s) au combat\n";
+        stats += WildingsDeadAlone+" mort(s) sur les routes\n";
+        stats += southernerKilledByWildings+" personne(s) du Sud tuée(s)\n";
+        stats += WWKilledByWildings+" Marcheur(s) tué(s)\n";
         
         stats += "\n\nMARCHEURS BLANCS :\n";
-        stats += WWAdded+" apparus\n";
-        stats += WWDeadInBattle+" morts\n";
-        stats += humanKilledByWW+" Humains tués\n";
+        stats += WWAdded+" apparu(s)\n";
+        stats += WWDeadInBattle+" mort(s)\n";
+        stats += humanKilledByWW+" Humain(s) tué(s)\n";
         
         UserInterface.displayConsole(false,stats,1);
     }

@@ -9,8 +9,8 @@ import java.io.IOException;
 public class Application {
 	
     public static void main(String[] args) throws IOException, InterruptedException {
-    	GameMaster.getInstance().runSimulation("test equilibrage", 50, 15, 4, 6, 4, 8);
-    	/*
+    	//GameMaster.getInstance().runSimulation("test equilibrage", 50, 15, 4, 6, 4, 8);
+    	
         String mode1 = "Un nouveau peuple arrive (mode classique)";
         String mode2 = "Les marcheurs blancs? Un conte pour enfants! (aucun marcheur blanc)";
         String mode3 = "Battle royale! (un représentant par faction)";
@@ -32,7 +32,7 @@ public class Application {
                 	GameMaster.getInstance().runSimulation(mode3, 13, 9, 2, 1, 1, 20);
                     break;
             }
-        }*/
+        }
         UserInterface.closeReader();
         
         UserInterface.displayConsole(false,"\n\nAu revoir, et merci d'avoir joué à Sangsational Simulator!");

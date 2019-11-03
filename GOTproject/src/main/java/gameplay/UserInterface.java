@@ -8,10 +8,10 @@ import map.GameBoard;
 public class UserInterface {
     protected static final int M_CONSOLE_SIZE = 25;
     protected static String swipe;
-    private static final int LATENCY_MESSAGE_IMPORTANT = 500;//1000;
-    private static final int LATENCY_MESSAGE_LONG = 0;//1200;
-    private static final int LATENCY_MESSAGE_SHORT = 0;//800;
-    private static final int LATENCY_MESSAGE_REDUNDANT = 0;//250;
+    private static final int LATENCY_MESSAGE_IMPORTANT = 1000;
+    private static final int LATENCY_MESSAGE_LONG = 1200;
+    private static final int LATENCY_MESSAGE_SHORT = 800;
+    private static final int LATENCY_MESSAGE_REDUNDANT = 250;
     private static Scanner keyboard = new Scanner(System.in);
     
     //destructeur

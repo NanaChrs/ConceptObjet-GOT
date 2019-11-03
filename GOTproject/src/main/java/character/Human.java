@@ -75,7 +75,7 @@ public abstract class Human extends Character {
     
     //  expérience
     private void newLevel() {
-        this.xp = 0;
+        this.xp %= XP_THRESHOLD;
         this.level++;
         this.maxLife += GAIN_BY_LEVEL;
         this.addPower(GAIN_BY_LEVEL);
@@ -84,7 +84,9 @@ public abstract class Human extends Character {
     public void addXp(int xp) {
         this.xp += (xp > 0 ? xp : 0);
         if (this.xp >= XP_THRESHOLD) {
-            this.newLevel();
+        	for (int i = 0; i < this.xp/XP_THRESHOLD; ++xp) {
+        		this.newLevel();
+        	}
         }
     }
     
@@ -209,12 +211,12 @@ public abstract class Human extends Character {
                 //si l'instance a perdu
                 if(!this.isAlive()) {
                     FileManager.writeToLogFile("DEATH",h.getFullName()+" killed "+this.getFullName()+". Reward : "+this.xp+" XP");
-                    h.addXp(this.xp);
+                    h.addXp(this.xp + this.level * Human.XP_THRESHOLD);
                 }
                 //si l'autre perso a perdu
                 else {
                     FileManager.writeToLogFile("DEATH",this.getFullName()+" killed "+h.getFullName()+". Reward : "+h.xp+" XP");
-                    this.addXp(h.xp);
+                    this.addXp(h.xp + h.level * Human.XP_THRESHOLD);
                 }
             }
         }
@@ -233,7 +235,6 @@ public abstract class Human extends Character {
                     FileManager.writeToLogFile("ATTACK",this.getFullName()+"\t : Successful attack : "+ h.getFullName()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
                 }
                 else {
-                    WhiteWalker w = (WhiteWalker) c;
                     FileManager.writeToLogFile("ATTACK",this.getFullName()+"\t : Successful attack : The whitewalker lost "+this.power +" HP and has now "+ c.life+" hp.");
                 }
                 break;

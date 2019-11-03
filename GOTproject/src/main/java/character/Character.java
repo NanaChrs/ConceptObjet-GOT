@@ -473,7 +473,7 @@ public abstract class Character {
                 moveMessage();//etat initial
                 do {//premiere case forcément vide
                     movmentConsequences();
-                    if (!this.isAlive()) return;//humains qui perdent vie sur terrain inhospitaliers
+                    if (this instanceof Human && (!this.isAlive() || ((Human)this).stamina == 0)) return;//humains qui perdent stamina par déplacement et vie sur terrain inhospitaliers
 
                     westeros.getMap()[currentBox.getX()][currentBox.getY()].removeCharacter();
                     currentBox = makeStep(takenDir);

@@ -4,7 +4,6 @@ package character;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import gameplay.DiceResult;
 import gameplay.Statistics;
 import static gameplay.UserInterface.displayConsole;
 import map.Box;

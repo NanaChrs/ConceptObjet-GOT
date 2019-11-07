@@ -23,7 +23,7 @@ public class Application {
             //mode, maxTurn, mapSize, safezoneSize, popByFaction, firstWW, wwFrequency
             switch(userChoice) {
                 case 1:
-                	GameMaster.getInstance().runSimulation(mode1, 15, 12, 3, 4, 3, 4);
+                	GameMaster.getInstance().runSimulation(mode1, 18, 12, 3, 4, 3, 4);
                     break;
                 case 2:
                 	GameMaster.getInstance().runSimulation(mode2, 14, 12, 4, 5, 20, 0);

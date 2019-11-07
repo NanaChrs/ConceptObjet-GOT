@@ -3,76 +3,38 @@
 
 [GAME] TURN N°1 BEGIN
 
-[MEET] Tormund Wilding (lv1 : 96 HP and 30 PP) met Daenerys Targaryen (lv1 : 100 HP and 20 PP)
-[ATTACK] Tormund Wilding	 : Successful attack : Daenerys Targaryen lost 30 HP and has now 70 hp.
-[ATTACK] Daenerys Targaryen	 : Successful attack : Tormund Wilding lost 20 HP and has now 76 hp.
-[ATTACK] Tormund Wilding	 : Successful attack : Daenerys Targaryen lost 30 HP and has now 40 hp.
-[ATTACK] Daenerys Targaryen	 : Successful attack : Tormund Wilding lost 20 HP and has now 56 hp.
-[SUPER ATTACK] Tormund Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
-[ATTACK] Daenerys Targaryen	 : Successful attack : Tormund Wilding lost 20 HP and has now 46 hp.
-[ATTACK] Tormund Wilding	 : Missed attack! Nothing happened.
-[ATTACK] Daenerys Targaryen	 : Successful attack : Tormund Wilding lost 20 HP and has now 26 hp.
-[ATTACK] Tormund Wilding	 : Missed attack! Nothing happened.
-[ATTACK] Daenerys Targaryen	 : Missed attack! Nothing happened.
-[ATTACK] Tormund Wilding	 : Missed attack! Nothing happened.
-[ATTACK] Daenerys Targaryen	 : Successful attack : Tormund Wilding lost 20 HP and has now 6 hp.
-[SUPER ATTACK] Tormund Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
-[DEATH] Tormund Wilding killed Daenerys Targaryen. Reward : 0 XP
+[MEET] Sansa Stark (lv1 : 100 HP and 30 PP) met Gilly Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Sansa Stark (lv1 : 100 HP and 30 PP) met Aerys Targaryen (lv1 : 100 HP and 20 PP)
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[ATTACK] Targaryen	 : Successful attack : class character.Stark lost 20 HP and has now 80 hp.
+[ATTACK] Stark	 : Successful attack : class character.Targaryen lost 30 HP and has now 37 hp.
+[ATTACK] Targaryen	 : Successful attack : class character.Stark lost 20 HP and has now 60 hp.
+[ATTACK] Stark	 : Successful attack : class character.Targaryen lost 30 HP and has now 7 hp.
+[ATTACK] Targaryen	 : Successful attack : class character.Stark lost 20 HP and has now 40 hp.
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[DEATH] Sansa Stark killed Aerys Targaryen. Reward : 0 XP
 
 [GAME] New WhiteWalker
 
 
 [GAME] TURN N°2 BEGIN
 
+[MEET] Kevan Lannister (lv1 : 94 HP and 20 PP) met a whitewalker (150 HP and 45 PP)
+[SUPER ATTACK] A Lannister always pays his debts ! Kevan gave 1/6 of his life to inflict 50damages.
+[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
+[ATTACK] Lannister	 : Successful attack : The whitewalker lost 20 HP and has now 80 hp.
+[ATTACK] WhiteWalker	: Successful attack : Kevan Lannister lost 45 HP and has now 34 hp.
+[SUPER ATTACK] A Lannister always pays his debts ! Kevan gave 1/6 of his life to inflict 50damages.
+[ATTACK] WhiteWalker	: Successful attack : Kevan Lannister lost 45 HP and has now -16 hp.
+[DEATH] The whitewalker killed Kevan Lannister.
+
 
 [GAME] TURN N°3 BEGIN
 
-[MEET] Bran Stark (lv1 : 84 HP and 30 PP) met Tormund Wilding (lv2 : 16 HP and 35 PP)
-[SHARING] They both restored 1/4 of their HP.
+[MEET] Sansa Stark (lv2 : 44 HP and 35 PP) met a whitewalker (30 HP and 45 PP)
+[ATTACK] Stark	 : Successful attack : The whitewalker lost 35 HP and has now -5 hp.
+[DEATH] Sansa Stark killed the Whitewalker : He/she gain 100 XP and 25 HP.
 
-[MEET] Tormund Wilding (lv2 : 43 HP and 35 PP) met Bran Stark (lv1 : 100 HP and 30 PP)
-[SHARING] They both restored 1/4 of their HP.
-
-
-[GAME] TURN N°4 BEGIN
-
-[MEET] Jaime Lannister (lv1 : 100 HP and 20 PP) met a whitewalker (150 HP and 45 PP)
-[ATTACK] Jaime Lannister	 : Missed attack! Nothing happened.
-[ATTACK] WhiteWalker :	 Successful attack : Jaime Lannister lost 45 HP and has now 55 hp.
-[SUPER ATTACK] A Lannister always pays his debts ! Jaime gave 1/6 of his life to inflict 50damages.
-[ATTACK] WhiteWalker :	 Successful attack : Jaime Lannister lost 45 HP and has now 1 hp.
-[ATTACK] Jaime Lannister	 : Successful attack : The whitewalker lost 20 HP and has now 80 hp.
-[ATTACK] WhiteWalker :	 Successful attack : Jaime Lannister lost 45 HP and has now -44 hp.
-[DEATH] The whitewalker killed Jaime Lannister.
-
-[MEET] Tormund Wilding (lv2 : 70 HP and 35 PP) met Bran Stark (lv1 : 100 HP and 30 PP)
-[SHARING] They both restored 1/4 of their HP.
-
-
-[GAME] TURN N°5 BEGIN
-
-
-[GAME] TURN N°6 BEGIN
-
-
-[GAME] TURN N°7 BEGIN
-
-
-[GAME] TURN N°8 BEGIN
-
-
-[GAME] TURN N°9 BEGIN
-
-
-[GAME] TURN N°10 BEGIN
-
-
-[GAME] TURN N°11 BEGIN
-
-
-[GAME] TURN N°12 BEGIN
-
-
-[GAME] TURN N°13 BEGIN
-
-[GAME] Probable victory of Wildings
+[GAME] Victory of Stark

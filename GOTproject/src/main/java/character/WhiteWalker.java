@@ -78,10 +78,10 @@ public class WhiteWalker extends Character {
             case SUCCESS:
                 Human h = (Human) c;
                 c.reduceLife(this.power,DamageSource.Battle,this);
-                FileManager.writeToLogFile("ATTACK","WhiteWalker :\t Successful attack : "+ h.getFullName()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
+                FileManager.writeToLogFile("ATTACK","WhiteWalker\t: Successful attack : "+ h.getFullName()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
                 break;
             default:
-                FileManager.writeToLogFile("ATTACK","WhiteWalker :\t Missed attack! Nothing happened.");
+                FileManager.writeToLogFile("ATTACK","WhiteWalker\t: Missed attack! Nothing happened.");
                 break;
         }
     }

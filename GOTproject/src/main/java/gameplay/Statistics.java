@@ -86,7 +86,12 @@ public class Statistics {
     //Setters
     //nouvelle partie
     public static void initialize(int maxTurn) {
+    	LannisterAdded = TargaryenAdded = StarkAdded = WildingsAdded = WWAdded = 0;
         endOfLannister = endOfTargaryen = endOfStark = endOfWildings = maxTurn;
+    	LannisterDeadInBattle = TargaryenDeadInBattle = StarkDeadInBattle = WildingsDeadInBattle = WWDeadInBattle = 0;
+    	LannisterDeadAlone = TargaryenDeadAlone = StarkDeadAlone = WildingsDeadAlone = 0;
+    	humanKilledByWW = 0;
+    	northernerKilledByLannister = northernerKilledByTargaryen = southernerKilledByStark = southernerKilledByWildings = 0;
     }
     
     //population

@@ -111,49 +111,47 @@ public class GameMaster {
         int Southerner = Lannister + Targaryen, Northerner = Stark + Wildings;
         int Walkers = Statistics.WWAlive();
         
-        if (!lastTurn) {
-            if(Northerner + Southerner == 0) {
-                endReason = "Plus aucun humains sur le terrain. Les marcheurs blancs ont gagné !";
+        if(Northerner + Southerner == 0) {
+            endReason = "Plus aucun humains sur le terrain. Les marcheurs blancs ont gagné !";
 
-                FileManager.writeToLogFile(1,"GAME","Victory of WhiteWalker");
-                return true;
-            }
-            if((Lannister > 0 || Targaryen > 0) && Northerner + Walkers == 0) {
-                endReason = "Il ne reste plus que les familles du sud sur le plateau.\nLa guerre est finie : ";
-
-                if (Lannister > Targaryen || (Lannister == Targaryen && LannisterKill > TargaryenKill)) {
-                    endReason += "les Lannister sont sur le trône !";
-                    FileManager.writeToLogFile(1,"GAME","Victory of Lannister");
-                }
-                else if (Lannister < Targaryen || (Lannister == Targaryen && LannisterKill < TargaryenKill)) {
-                    endReason += "Les Targaryen sont sur le trône !";
-                    FileManager.writeToLogFile(1,"GAME","Victory of Targaryen");
-                }
-                else {
-                    endReason += "Les deux familles font la paix (égalité)";
-                    FileManager.writeToLogFile(1,"GAME","Victory of South");
-                }
-                return true;
-            }
-            if((Stark > 0 || Wildings > 0) && Southerner + Walkers == 0) {
-                endReason = "Il ne reste plus que les familles du nord sur le plateau.\nLa guerre est finie : ";
-                if (Stark > Wildings || (Stark == Wildings && StarkKill > WildingsKill)) {
-                    endReason += "Les Stark sont sur le trône !";
-                    FileManager.writeToLogFile(1,"GAME","Victory of Stark");
-                }
-                else if (Stark < Wildings || (Stark == Wildings && StarkKill < WildingsKill)) {
-                    endReason += "Les Sauvageons sont sur le trône !";
-                    FileManager.writeToLogFile(1,"GAME","Victory of Wildings");
-                }
-                else {
-                    endReason += "Les deux familles font la paix (égalité)";
-                    FileManager.writeToLogFile(1,"GAME","Victory of North");
-                }
-                return true;
-            }
-            return false;
+            FileManager.writeToLogFile(1,"GAME","Victory of WhiteWalker");
+            return true;
         }
-        else {
+        if((Lannister > 0 || Targaryen > 0) && Northerner + Walkers == 0) {
+            endReason = "Il ne reste plus que les familles du sud sur le plateau.\nLa guerre est finie : ";
+
+            if (Lannister > Targaryen || (Lannister == Targaryen && LannisterKill > TargaryenKill)) {
+                endReason += "les Lannister sont sur le trône !";
+                FileManager.writeToLogFile(1,"GAME","Victory of Lannister");
+            }
+            else if (Lannister < Targaryen || (Lannister == Targaryen && LannisterKill < TargaryenKill)) {
+                endReason += "Les Targaryen sont sur le trône !";
+                FileManager.writeToLogFile(1,"GAME","Victory of Targaryen");
+            }
+            else {
+                endReason += "Les deux familles font la paix (égalité)";
+                FileManager.writeToLogFile(1,"GAME","Victory of South");
+            }
+            return true;
+        }
+        if((Stark > 0 || Wildings > 0) && Southerner + Walkers == 0) {
+            endReason = "Il ne reste plus que les familles du nord sur le plateau.\nLa guerre est finie : ";
+            if (Stark > Wildings || (Stark == Wildings && StarkKill > WildingsKill)) {
+                endReason += "Les Stark sont sur le trône !";
+                FileManager.writeToLogFile(1,"GAME","Victory of Stark");
+            }
+            else if (Stark < Wildings || (Stark == Wildings && StarkKill < WildingsKill)) {
+                endReason += "Les Sauvageons sont sur le trône !";
+                FileManager.writeToLogFile(1,"GAME","Victory of Wildings");
+            }
+            else {
+                endReason += "Les deux familles font la paix (égalité)";
+                FileManager.writeToLogFile(1,"GAME","Victory of North");
+            }
+            return true;
+        }
+ 
+    	if (lastTurn) {	
             endReason = "Et la guerre continua jusque la probable domination des ";
             String house;
             
@@ -173,6 +171,8 @@ public class GameMaster {
             
             return true;
         }
+    	
+        return false;
     }
     
     public void runSimulation(String mode, int maxTurn, int mapSize, int safezoneSize, int popByFaction, int firstWW, int wwFrequency) throws InterruptedException, IOException {

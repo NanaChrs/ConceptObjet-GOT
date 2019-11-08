@@ -9,8 +9,8 @@ public class WhiteWalker extends Character {
     //Attributs - Instance définie par :
     
 	//  sa vie et les dégâts qu'il fait
-    protected final static int LIFE = 150;//équivaut au INITIAL_LIFE de human
-    protected final static int POWER = 45;//équivaut aux MAX_POWER de southerner et northerner
+    protected final static int LIFE = 175;//équivaut au INITIAL_LIFE de human
+    protected final static int POWER = 50;//équivaut aux MAX_POWER de southerner et northerner
     
     //  sa chance
     protected final static int CRITICAL_SUCCESS_THRESHOLD = 100;

@@ -232,7 +232,7 @@ public abstract class Human extends Character {
                 c.reduceLife(this.power,DamageSource.Battle,this);
                 if(c instanceof Human) {
                     Human h = (Human) c;
-                    FileManager.writeToLogFile("ATTACK",this.getClass().getSimpleName().toString()+"\t : Successful attack : "+ h.getClass().toString()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
+                    FileManager.writeToLogFile("ATTACK",this.getClass().getSimpleName().toString()+"\t : Successful attack : "+ h.getClass().getSimpleName().toString()+" lost "+this.power +" HP and has now "+ c.life+" hp.");
                 }
                 else {
                     FileManager.writeToLogFile("ATTACK",this.getClass().getSimpleName().toString()+"\t : Successful attack : The whitewalker lost "+this.power +" HP and has now "+ c.life+" hp.");

@@ -1,40 +1,430 @@
-[GAME] New simulation : Battle royale! (un représentant par faction)
+[GAME] New simulation : Un nouveau peuple arrive (mode classique)
 
 
 [GAME] TURN N°1 BEGIN
 
-[MEET] Sansa Stark (lv1 : 100 HP and 30 PP) met Gilly Wilding (lv1 : 100 HP and 30 PP)
+[MEET] Rhaegar Targaryen (lv1 : 100 HP and 20 PP) met John Targaryen (lv1 : 100 HP and 20 PP)
 [SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 1 xp.
 
-[MEET] Sansa Stark (lv1 : 100 HP and 30 PP) met Aerys Targaryen (lv1 : 100 HP and 20 PP)
-[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
-[ATTACK] Targaryen	 : Successful attack : class character.Stark lost 20 HP and has now 80 hp.
-[ATTACK] Stark	 : Successful attack : class character.Targaryen lost 30 HP and has now 37 hp.
-[ATTACK] Targaryen	 : Successful attack : class character.Stark lost 20 HP and has now 60 hp.
-[ATTACK] Stark	 : Successful attack : class character.Targaryen lost 30 HP and has now 7 hp.
-[ATTACK] Targaryen	 : Successful attack : class character.Stark lost 20 HP and has now 40 hp.
-[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
-[DEATH] Sansa Stark killed Aerys Targaryen. Reward : 0 XP
+[MEET] Cersei Lannister (lv1 : 100 HP and 20 PP) met Robb Stark (lv1 : 100 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
 
-[GAME] New WhiteWalker
+[MEET] Viserys Targaryen (lv1 : 98 HP and 20 PP) met Osha Wilding (lv1 : 100 HP and 30 PP)
+[ATTACK] Targaryen	 : Successful attack : Wilding lost 20 HP and has now 80 hp.
+[SUPER ATTACK] Osha Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[ATTACK] Targaryen	 : Missed attack! Nothing happened.
+[ATTACK] Wilding	 : Missed attack! Nothing happened.
+[SUPER ATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.
+[DEATH] Viserys Targaryen killed Osha Wilding. Reward : 0 XP
+
+[MEET] Tyrion Lannister (lv1 : 100 HP and 20 PP) met Cersei Lannister (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Tyrion Lannister (lv1 : 100 HP and 20 PP) met Sansa Stark (lv1 : 100 HP and 30 PP)
+[ATTACK] Lannister	 : Successful attack : Stark lost 20 HP and has now 80 hp.
+[SUPER ATTACK] The wolves of Winterfell attack ! The opponent loses 1/3 of his HP
+[SUPER ATTACK] A Lannister always pays his debts ! Tyrion gave 1/6 of his life to inflict 50damages.
+[ATTACK] Stark	 : Successful attack : Lannister lost 30 HP and has now 26 hp.
+[ATTACK] Lannister	 : Successful attack : Stark lost 20 HP and has now 10 hp.
+[ATTACK] Stark	 : Successful attack : Lannister lost 30 HP and has now -4 hp.
+[DEATH] Sansa Stark killed Tyrion Lannister. Reward : 5 XP
+
+[MEET] Kevan Lannister (lv1 : 97 HP and 20 PP) met Sansa Stark (lv2 : 10 HP and 35 PP)
+[ATTACK] Lannister	 : Successful attack : Stark lost 20 HP and has now -10 hp.
+[DEATH] Kevan Lannister killed Sansa Stark. Reward : 5 XP
+
+[MEET] Tormund Wilding (lv1 : 98 HP and 30 PP) met Tywin Lannister (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Aerys Targaryen (lv1 : 100 HP and 20 PP) met Rhaegar Targaryen (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Tywin Lannister (lv1 : 100 HP and 20 PP) met Tormund Wilding (lv1 : 98 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
 
 
 [GAME] TURN N°2 BEGIN
 
-[MEET] Kevan Lannister (lv1 : 94 HP and 20 PP) met a whitewalker (150 HP and 45 PP)
-[SUPER ATTACK] A Lannister always pays his debts ! Kevan gave 1/6 of his life to inflict 50damages.
-[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
-[ATTACK] Lannister	 : Successful attack : The whitewalker lost 20 HP and has now 80 hp.
-[ATTACK] WhiteWalker	: Successful attack : Kevan Lannister lost 45 HP and has now 34 hp.
-[SUPER ATTACK] A Lannister always pays his debts ! Kevan gave 1/6 of his life to inflict 50damages.
-[ATTACK] WhiteWalker	: Successful attack : Kevan Lannister lost 45 HP and has now -16 hp.
-[DEATH] The whitewalker killed Kevan Lannister.
+[MEET] Cersei Lannister (lv1 : 100 HP and 20 PP) met Robb Stark (lv1 : 96 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] John Targaryen (lv1 : 100 HP and 20 PP) met Tormund Wilding (lv1 : 98 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Aerys Targaryen (lv1 : 100 HP and 20 PP) met Rhaegar Targaryen (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Tywin Lannister (lv1 : 100 HP and 20 PP) met Bran Stark (lv1 : 92 HP and 30 PP)
+[SUPER ATTACK] A Lannister always pays his debts ! Tywin gave 1/6 of his life to inflict 50damages.
+[ATTACK] Stark	 : Successful attack : Lannister lost 30 HP and has now 54 hp.
+[SUPER ATTACK] A Lannister always pays his debts ! Tywin gave 1/6 of his life to inflict 50damages.
+[DEATH] Tywin Lannister killed Bran Stark. Reward : 4 XP
+
+[MEET] Robb Stark (lv1 : 94 HP and 30 PP) met Cersei Lannister (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Mance Wilding (lv1 : 100 HP and 30 PP) met Ned Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
 
 
 [GAME] TURN N°3 BEGIN
 
-[MEET] Sansa Stark (lv2 : 44 HP and 35 PP) met a whitewalker (30 HP and 45 PP)
-[ATTACK] Stark	 : Successful attack : The whitewalker lost 35 HP and has now -5 hp.
-[DEATH] Sansa Stark killed the Whitewalker : He/she gain 100 XP and 25 HP.
+[MEET] Kevan Lannister (lv2 : 101 HP and 25 PP) met Cersei Lannister (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 7 xp.
 
-[GAME] Victory of Stark
+[MEET] Aerys Targaryen (lv1 : 100 HP and 20 PP) met Rhaegar Targaryen (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 3 xp.
+
+[MEET] Aerys Targaryen (lv1 : 100 HP and 20 PP) met John Targaryen (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 3 xp.
+
+[MEET] Cersei Lannister (lv1 : 100 HP and 20 PP) met Kevan Lannister (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 7 xp.
+
+[MEET] Cersei Lannister (lv2 : 100 HP and 25 PP) met Robb Stark (lv1 : 94 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Tywin Lannister (lv2 : 47 HP and 25 PP) met Robb Stark (lv1 : 86 HP and 30 PP)
+[ATTACK] Lannister	 : Successful attack : Stark lost 25 HP and has now 61 hp.
+[ATTACK] Stark	 : Successful attack : Lannister lost 30 HP and has now 17 hp.
+[SUPER ATTACK] A Lannister always pays his debts ! Tywin gave 1/6 of his life to inflict 52damages.
+[ATTACK] Stark	 : Missed attack! Nothing happened.
+[ATTACK] Lannister	 : Successful attack : Stark lost 25 HP and has now -16 hp.
+[DEATH] Tywin Lannister killed Robb Stark. Reward : 7 XP
+
+[MEET] Rhaegar Targaryen (lv1 : 100 HP and 20 PP) met Aerys Targaryen (lv1 : 100 HP and 20 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Ygritte Wilding (lv1 : 100 HP and 30 PP) met Ned Stark (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Viserys Targaryen (lv2 : 74 HP and 25 PP) met Kevan Lannister (lv3 : 105 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] John Targaryen (lv1 : 100 HP and 20 PP) met Aerys Targaryen (lv2 : 100 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Ned Stark (lv1 : 100 HP and 30 PP) met Ygritte Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Tormund Wilding (lv1 : 92 HP and 30 PP) met Aerys Targaryen (lv2 : 105 HP and 25 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Tormund Wilding (lv1 : 92 HP and 30 PP) met John Targaryen (lv1 : 100 HP and 20 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[GAME] New WhiteWalker
+
+
+[GAME] TURN N°4 BEGIN
+
+[MEET] Tywin Lannister (lv4 : 18 HP and 35 PP) met Kevan Lannister (lv3 : 110 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Tywin Lannister (lv4 : 46 HP and 35 PP) met Cersei Lannister (lv2 : 100 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 5 xp.
+
+[MEET] Viserys Targaryen (lv2 : 101 HP and 25 PP) met Tywin Lannister (lv4 : 74 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Cersei Lannister (lv2 : 105 HP and 25 PP) met Kevan Lannister (lv3 : 110 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] John Targaryen (lv1 : 100 HP and 20 PP) met Rhaegar Targaryen (lv2 : 100 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] John Targaryen (lv1 : 100 HP and 20 PP) met Aerys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Aerys Targaryen (lv2 : 105 HP and 25 PP) met Rhaegar Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Aerys Targaryen (lv2 : 105 HP and 25 PP) met Tormund Wilding (lv1 : 92 HP and 30 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Rhaegar Targaryen (lv2 : 105 HP and 25 PP) met Aerys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Tormund Wilding (lv1 : 90 HP and 30 PP) met Rhaegar Targaryen (lv2 : 105 HP and 25 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+[MEET] Tormund Wilding (lv1 : 90 HP and 30 PP) met John Targaryen (lv1 : 100 HP and 20 PP)
+[ATTACK] Wilding	 : Missed attack! Nothing happened.
+[ATTACK] Targaryen	 : Successful attack : Wilding lost 20 HP and has now 70 hp.
+[SUPER ATTACK] Tormund Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[ATTACK] Targaryen	 : Successful attack : Wilding lost 20 HP and has now 60 hp.
+[SUPER ATTACK] Tormund Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[ATTACK] Targaryen	 : Successful attack : Wilding lost 20 HP and has now 50 hp.
+[ATTACK] Wilding	 : Successful attack : Targaryen lost 30 HP and has now 10 hp.
+[ATTACK] Targaryen	 : Successful attack : Wilding lost 20 HP and has now 30 hp.
+[SUPER ATTACK] Tormund Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[DEATH] Tormund Wilding killed John Targaryen. Reward : 18 XP
+
+[MEET] Tormund Wilding (lv2 : 40 HP and 35 PP) met Aerys Targaryen (lv2 : 105 HP and 25 PP)
+[MEET] One of the character is inside a safezone ! No fight allowed.
+
+
+[GAME] TURN N°5 BEGIN
+
+[MEET] Rhaegar Targaryen (lv2 : 105 HP and 25 PP) met Tormund Wilding (lv2 : 40 HP and 35 PP)
+[ATTACK] Targaryen	 : Successful attack : Wilding lost 25 HP and has now 15 hp.
+[ATTACK] Wilding	 : Missed attack! Nothing happened.
+[ATTACK] Targaryen	 : Missed attack! Nothing happened.
+[ATTACK] Wilding	 : Missed attack! Nothing happened.
+[ATTACK] Targaryen	 : Successful attack : Wilding lost 25 HP and has now -10 hp.
+[DEATH] Rhaegar Targaryen killed Tormund Wilding. Reward : 3 XP
+
+[MEET] Rhaegar Targaryen (lv3 : 105 HP and 30 PP) met Aerys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Kevan Lannister (lv4 : 110 HP and 35 PP) met Viserys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Ygritte Wilding (lv1 : 100 HP and 30 PP) met Mance Wilding (lv1 : 100 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 7 xp.
+
+[MEET] Mance Wilding (lv2 : 105 HP and 35 PP) met Rhaegar Targaryen (lv4 : 110 HP and 35 PP)
+[ATTACK] Wilding	 : Missed attack! Nothing happened.
+[ATTACK] Targaryen	 : Missed attack! Nothing happened.
+[ATTACK] Wilding	 : Successful attack : Targaryen lost 35 HP and has now 75 hp.
+[SUPER ATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.
+[DEATH] Rhaegar Targaryen killed Mance Wilding. Reward : 5 XP
+
+[MEET] Viserys Targaryen (lv2 : 105 HP and 25 PP) met Tywin Lannister (lv4 : 103 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Ned Stark (lv1 : 100 HP and 30 PP) met a whitewalker (175 HP and 50 PP)
+[ATTACK] Stark	 : Missed attack! Nothing happened.
+[ATTACK] WhiteWalker	: Successful attack : Ned Stark lost 50 HP and has now 50 hp.
+[ATTACK] Stark	 : Successful attack : The whitewalker lost 30 HP and has now 145 hp.
+[ATTACK] WhiteWalker	: Successful attack : Ned Stark lost 50 HP and has now 0 hp.
+[DEATH] The whitewalker killed Ned Stark.
+
+
+[GAME] TURN N°6 BEGIN
+
+[MEET] Tywin Lannister (lv4 : 115 HP and 35 PP) met Cersei Lannister (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Aerys Targaryen (lv3 : 109 HP and 30 PP) met Viserys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+[MEET] Kevan Lannister (lv4 : 115 HP and 35 PP) met Viserys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Kevan Lannister (lv4 : 115 HP and 35 PP) met Aerys Targaryen (lv3 : 110 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+
+[GAME] TURN N°7 BEGIN
+
+[MEET] Tywin Lannister (lv4 : 115 HP and 35 PP) met Cersei Lannister (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Viserys Targaryen (lv2 : 105 HP and 25 PP) met Kevan Lannister (lv4 : 115 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Viserys Targaryen (lv2 : 105 HP and 25 PP) met Aerys Targaryen (lv3 : 110 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Cersei Lannister (lv3 : 106 HP and 30 PP) met Tywin Lannister (lv5 : 115 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 7 xp.
+
+[MEET] Aerys Targaryen (lv3 : 110 HP and 30 PP) met Viserys Targaryen (lv2 : 105 HP and 25 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[GAME] New WhiteWalker
+
+
+[GAME] TURN N°8 BEGIN
+
+[MEET] A whitewalker (175 HP and 50 PP) met Kevan Lannister (lv4 : 115 HP and 35 PP).
+[ATTACK] WhiteWalker	: Successful attack : Kevan Lannister lost 50 HP and has now 65 hp.
+[ATTACK] Lannister	 : Successful attack : The whitewalker lost 35 HP and has now 140 hp.
+[ATTACK] WhiteWalker	: Successful attack : Kevan Lannister lost 50 HP and has now 15 hp.
+[SUPER ATTACK] A Lannister always pays his debts ! Kevan gave 1/6 of his life to inflict 57damages.
+[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
+[ATTACK] Lannister	 : Successful attack : The whitewalker lost 35 HP and has now 48 hp.
+[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
+[ATTACK] Lannister	 : Successful attack : The whitewalker lost 35 HP and has now 13 hp.
+[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
+[ATTACK] Lannister	 : Successful attack : The whitewalker lost 35 HP and has now -22 hp.
+[DEATH] Kevan Lannister killed the Whitewalker : He/she gain 100 XP and 25 HP.
+
+[MEET] Aerys Targaryen (lv3 : 110 HP and 30 PP) met Viserys Targaryen (lv3 : 105 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Cersei Lannister (lv3 : 110 HP and 30 PP) met Tywin Lannister (lv5 : 120 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Rhaegar Targaryen (lv5 : 80 HP and 40 PP) met Viserys Targaryen (lv3 : 110 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 1 xp.
+
+[MEET] Kevan Lannister (lv5 : 40 HP and 40 PP) met Tywin Lannister (lv5 : 120 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 3 xp.
+
+[MEET] Tywin Lannister (lv5 : 120 HP and 40 PP) met Cersei Lannister (lv3 : 110 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Viserys Targaryen (lv3 : 110 HP and 30 PP) met Aerys Targaryen (lv4 : 110 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 2 xp.
+
+
+[GAME] TURN N°9 BEGIN
+
+[MEET] Cersei Lannister (lv4 : 111 HP and 35 PP) met Tywin Lannister (lv6 : 120 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Cersei Lannister (lv4 : 115 HP and 35 PP) met Kevan Lannister (lv5 : 70 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+
+[GAME] TURN N°10 BEGIN
+
+[MEET] Viserys Targaryen (lv3 : 110 HP and 30 PP) met Kevan Lannister (lv5 : 99 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Ygritte Wilding (lv2 : 102 HP and 35 PP) met a whitewalker (145 HP and 50 PP)
+[ATTACK] Wilding	 : Successful attack : The whitewalker lost 35 HP and has now 110 hp.
+[ATTACK] WhiteWalker	: Successful attack : Ygritte Wilding lost 50 HP and has now 52 hp.
+[SUPER ATTACK] Ygritte Wilding just drank Giant milk ! He gained 10HP and his next attack is multiplied by 1,5 !
+[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
+[ATTACK] Wilding	 : Missed attack! Nothing happened.
+[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
+[ATTACK] Wilding	 : Missed attack! Nothing happened.
+[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
+[ATTACK] Wilding	 : Successful attack : The whitewalker lost 35 HP and has now 40 hp.
+[ATTACK] WhiteWalker	: Successful attack : Ygritte Wilding lost 50 HP and has now 12 hp.
+[ATTACK] Wilding	 : Missed attack! Nothing happened.
+[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
+[ATTACK] Wilding	 : Missed attack! Nothing happened.
+[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
+[ATTACK] Wilding	 : Successful attack : The whitewalker lost 35 HP and has now 5 hp.
+[ATTACK] WhiteWalker	: Successful attack : Ygritte Wilding lost 50 HP and has now -38 hp.
+[DEATH] The whitewalker killed Ygritte Wilding.
+
+[MEET] Rhaegar Targaryen (lv5 : 115 HP and 40 PP) met Tywin Lannister (lv6 : 121 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Tywin Lannister (lv6 : 125 HP and 45 PP) met Rhaegar Targaryen (lv5 : 120 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Tywin Lannister (lv6 : 125 HP and 45 PP) met Kevan Lannister (lv5 : 120 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Kevan Lannister (lv6 : 121 HP and 45 PP) met Viserys Targaryen (lv3 : 110 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+
+[GAME] TURN N°11 BEGIN
+
+[MEET] Tywin Lannister (lv6 : 125 HP and 45 PP) met Cersei Lannister (lv4 : 115 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 1 xp.
+
+[MEET] Cersei Lannister (lv4 : 115 HP and 35 PP) met Tywin Lannister (lv6 : 125 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 7 xp.
+
+[MEET] Rhaegar Targaryen (lv5 : 120 HP and 40 PP) met Viserys Targaryen (lv3 : 110 HP and 30 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[GAME] New WhiteWalker
+
+
+[GAME] TURN N°12 BEGIN
+
+[MEET] Viserys Targaryen (lv4 : 115 HP and 35 PP) met Rhaegar Targaryen (lv6 : 120 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 1 xp.
+
+[MEET] Rhaegar Targaryen (lv6 : 125 HP and 45 PP) met Cersei Lannister (lv4 : 115 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Tywin Lannister (lv7 : 126 HP and 50 PP) met Cersei Lannister (lv4 : 115 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Kevan Lannister (lv6 : 125 HP and 45 PP) met Rhaegar Targaryen (lv6 : 125 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Aerys Targaryen (lv4 : 115 HP and 35 PP) met a whitewalker (5 HP and 50 PP)
+[ATTACK] Targaryen	 : Successful attack : The whitewalker lost 35 HP and has now -30 hp.
+[DEATH] Aerys Targaryen killed the Whitewalker : He/she gain 100 XP and 25 HP.
+
+
+[GAME] TURN N°13 BEGIN
+
+[MEET] Cersei Lannister (lv5 : 117 HP and 40 PP) met Tywin Lannister (lv7 : 130 HP and 50 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 7 xp.
+
+[MEET] Cersei Lannister (lv5 : 120 HP and 40 PP) met Rhaegar Targaryen (lv6 : 125 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Kevan Lannister (lv6 : 125 HP and 45 PP) met Rhaegar Targaryen (lv6 : 125 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Tywin Lannister (lv7 : 130 HP and 50 PP) met Cersei Lannister (lv5 : 120 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] Rhaegar Targaryen (lv6 : 125 HP and 45 PP) met Cersei Lannister (lv5 : 120 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+
+[GAME] TURN N°14 BEGIN
+
+[MEET] Rhaegar Targaryen (lv6 : 125 HP and 45 PP) met Kevan Lannister (lv6 : 125 HP and 45 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Kevan Lannister (lv6 : 123 HP and 45 PP) met Viserys Targaryen (lv4 : 115 HP and 35 PP)
+[SHARING] They both restored 1/4 of their HP.
+
+[MEET] Tywin Lannister (lv8 : 131 HP and 55 PP) met Cersei Lannister (lv5 : 120 HP and 40 PP)
+[SHARING] They both restored 1/4 of their HP.
+[SHARING] They both gained 4 xp.
+
+[MEET] A whitewalker (175 HP and 50 PP) met Aerys Targaryen (lv5 : 118 HP and 40 PP).
+[ATTACK] WhiteWalker	: Missed attack! Nothing happened.
+[ATTACK] Targaryen	 : Successful attack : The whitewalker lost 40 HP and has now 135 hp.
+[ATTACK] WhiteWalker	: Successful attack : Aerys Targaryen lost 50 HP and has now 68 hp.
+[SUPER ATTACK] The dragons burns the opponent to the ground ! The opponent doesn't survive.
+[DEATH] Aerys Targaryen killed the Whitewalker : He/she gain 100 XP and 25 HP.
+
+[GAME] Victory of Targaryen
